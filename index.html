@@ -218,8 +218,26 @@
 .cos-price{font-size:11px;color:var(--color-text-tertiary);border-top:0.5px solid rgba(0,0,0,0.05);padding-top:.45rem;margin-top:.4rem}
 .cos-price .yen-conv{display:inline-block;margin-left:6px;font-size:10px}
 .page-bg.jp .cos-price b{color:#3B89C9}.page-bg.kr .cos-price b{color:#D4537E}
+/* OYアワードバッジ */
+.oy-note{background:linear-gradient(135deg,rgba(212,83,126,0.08),rgba(255,183,0,0.08));border:1px solid rgba(212,83,126,0.2);border-radius:10px;padding:.6rem .9rem;font-size:12px;color:var(--color-text-secondary);margin-bottom:1rem;line-height:1.6}
+.oy-badge{position:absolute;top:8px;left:8px;font-size:11px;font-weight:700;background:linear-gradient(135deg,#FFB800,#FF8C00);color:#fff;padding:3px 8px;border-radius:999px;box-shadow:0 2px 6px rgba(255,140,0,0.4);z-index:2;white-space:nowrap}
 
-/* ===== スマホ対応 モバイルファースト改善 ===== */
+/* ===== 免責事項フッター ===== */
+.disclaimer-footer{margin-top:2.5rem;background:rgba(30,30,40,0.96);backdrop-filter:blur(12px);border-radius:20px 20px 0 0;padding:2.5rem 1.5rem 2rem}
+.disclaimer-inner{max-width:680px;margin:0 auto}
+.disclaimer-logo{font-size:13px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:.75rem}
+.disclaimer-divider{height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.15),transparent);margin-bottom:1.5rem}
+.disclaimer-title{font-size:16px;font-weight:700;color:rgba(255,255,255,0.85);margin-bottom:1.5rem;display:flex;align-items:center;gap:8px}
+.disclaimer-title::before{content:'';display:inline-block;width:3px;height:16px;border-radius:2px;background:linear-gradient(180deg,#3B89C9,#D4537E)}
+.disclaimer-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.disclaimer-block{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:.9rem 1rem}
+.disclaimer-block-title{font-size:12px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:.5rem}
+.disclaimer-block p{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.75}
+.disclaimer-copy{font-size:10px;color:rgba(255,255,255,0.25);text-align:center;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.07);line-height:1.7}
+@media(max-width:640px){
+  .disclaimer-grid{grid-template-columns:1fr}
+  .disclaimer-footer{border-radius:16px 16px 0 0;padding:2rem 1rem 1.5rem}
+}
 @media (max-width:640px){
   /* ページ全体のパディング調整 */
   .page-bg{padding:1rem !important;margin:-0.5rem !important}
@@ -374,6 +392,42 @@
 </div>
 
 </div>
+
+<!-- 免責事項フッター -->
+<footer class="disclaimer-footer">
+  <div class="disclaimer-inner">
+    <div class="disclaimer-logo">Bihada Guide</div>
+    <div class="disclaimer-divider"></div>
+    <h2 class="disclaimer-title">免責事項</h2>
+    <div class="disclaimer-grid">
+      <div class="disclaimer-block">
+        <p class="disclaimer-block-title">📋 情報の正確性について</p>
+        <p>本サイトに掲載されている施術・クリニック・化粧品に関する情報は、公開情報をもとに作成した参考情報です。内容の正確性・完全性・最新性を保証するものではありません。料金・営業時間・メニュー等は予告なく変更される場合がありますので、必ず各クリニック・公式サイトにてご確認ください。</p>
+      </div>
+      <div class="disclaimer-block">
+        <p class="disclaimer-block-title">🏥 医療行為ではありません</p>
+        <p>本サイトの内容は、美容医療に関する一般的な情報提供を目的としており、医療診断・治療の代替となるものではありません。施術を受ける際は、必ず有資格の医師・医療機関にご相談のうえ、ご自身の判断と責任でお決めください。施術の効果・リスクには個人差があります。</p>
+      </div>
+      <div class="disclaimer-block">
+        <p class="disclaimer-block-title">💊 副作用・リスクについて</p>
+        <p>美容医療施術にはダウンタイム・副作用・感染リスクが伴う場合があります。本サイトで紹介している施術の痛みレベル・効果レベルはあくまで一般的な目安であり、実際の施術結果を保証するものではありません。渡航を伴う施術の場合、帰国後のアフターケアについても事前に確認してください。</p>
+      </div>
+      <div class="disclaimer-block">
+        <p class="disclaimer-block-title">🌐 外部リンクについて</p>
+        <p>本サイトに掲載している外部リンク（クリニック公式HP・オリーブヤング等）は参考情報として提供しています。リンク先サイトの内容・サービスについて、本サイトは一切の責任を負いません。また、リンク先の情報は予告なく変更・削除される場合があります。</p>
+      </div>
+      <div class="disclaimer-block">
+        <p class="disclaimer-block-title">💱 価格・為替について</p>
+        <p>掲載している料金はすべて参考目安です。韓国ウォン（₩）の円換算は₩100≒¥11で計算していますが、実際の為替レートは変動します。また、クリニックによってキャンペーン・パッケージ価格が異なる場合があります。</p>
+      </div>
+      <div class="disclaimer-block">
+        <p class="disclaimer-block-title">📅 情報更新について</p>
+        <p>本サイトの情報は定期的な更新を目指していますが、すべての情報をリアルタイムに反映することを保証するものではありません。特にクリニック情報・アワードランキングは変動が早いため、最新情報は必ず各公式サイトや現地にてご確認ください。</p>
+      </div>
+    </div>
+    <p class="disclaimer-copy">© 2025 Bihada Guide　本サイトの情報を利用したことによる損害について、当サイトは一切の責任を負いかねます。</p>
+  </div>
+</footer>
 
 <!-- 施術詳細オーバーレイ -->
 <div class="detail-overlay" id="detail-overlay">
@@ -624,27 +678,27 @@ function bottleSVG(c1,c2,label){return '<svg viewBox="0 0 100 130" xmlns="http:/
 var COS={
 vitc:{intro:'<strong>ビタミンC</strong>は抗酸化作用でシミ・くすみ予防、コラーゲン生成、毛穴引き締めなど多機能。朝の使用で日中の酸化を防ぐのが◎',c1:'#FFE38A',c2:'#FFB84D',label:'Vit C',
 jp:[{b:'Obagi',n:'オバジC25セラム ネオ',d:'ピュアビタミンC25%の医療レベルセラム。即効性で長年トップ。',tags:['VC25%'],p:'<b>¥11,000</b>'},{b:'Roche-Posay',n:'メラC ナイト クリーム',d:'ビタミンC＋ナイアシンアミドの夜用。敏感肌でも使える。',tags:['敏感肌◎'],p:'<b>¥5,500</b>'},{b:'Melano CC',n:'薬用しみ集中対策プレミアム',d:'活性型ビタミンC＋Eで濃いシミに。プチプラの定番。',tags:['プチプラ'],p:'<b>¥1,500</b>前後'},{b:'Anua',n:'グリーンレモン ビタCセラム',d:'レモン由来でマイルド。初心者向けの韓国発。',tags:['マイルド'],p:'<b>¥2,800</b>'}],
-kr:[{b:'TIAM',n:'レッドCセラム',d:'VC20%＋ナイアシンアミド4%。OY常連のベストセラー。',tags:['VC20%'],p:'<b>₩28,000</b>'},{b:'Some By Mi',n:'ガラクトミセス エッセンス',d:'発酵97%＋ナイアシンアミド。透明感UP。',tags:['発酵'],p:'<b>₩22,000</b>'},{b:'Medi-Peel',n:'ビタミンC アンプル',d:'ピュアVC30%超高濃度。Kビューティー定番。',tags:['30%'],p:'<b>₩38,000</b>'},{b:'goodal',n:'青みかんビタC',d:'ヘスペリジン配合。シミ・跡集中ケア。',tags:['柑橘'],p:'<b>₩25,000</b>'}]},
+kr:[{b:'goodal',n:'青みかんビタC ダークスポットセラム',d:'済州島みかんエキス70%＋VitC/B3/E配合。オリヤン定番ビタCセラム。',tags:['OYランキング常連'],oy:'🏆',p:'<b>₩25,000</b>'},{b:'COSRX',n:'ザ ビタミンC23セラム',d:'ピュアVC23%超高濃度。くすみ・シミに即効性あり。',tags:['VC23%','高濃度'],p:'<b>₩27,000</b>'},{b:'Anua',n:'ビタミン10 PORESTRIXセラム',d:'VC10%＋毛穴引き締め成分配合。2025年話題作。',tags:['毛穴◎','2025新'],p:'<b>₩24,000</b>'},{b:'TIAM',n:'マイシートセラム VC10',d:'VC10%＋ナイアシンアミド配合。穏やかで初心者◎',tags:['初心者'],p:'<b>₩22,000</b>'}]},
 white:{intro:'<strong>美白・シミ対策</strong>はメラニン生成を抑える成分が鍵。トラネキサム酸・アルブチン・ナイアシンアミドなど。3〜6ヶ月で効果。',c1:'#FAEAEE',c2:'#E8AFBC',label:'White',
 jp:[{b:'HAKU',n:'メラノフォーカス Z',d:'資生堂の薬用美白。Wトラネキサム酸で肝斑にも。',tags:['薬用'],p:'<b>¥11,000</b>'},{b:'TRANSINO',n:'ホワイトニング エッセンスEX',d:'トラネキサム酸主成分でコスパ良好。',tags:['プチプラ'],p:'<b>¥4,500</b>'},{b:'POLA',n:'ホワイトショット SXS',d:'ポーラ最高峰。部分シミに集中。',tags:['ハイエンド'],p:'<b>¥16,500</b>'},{b:'IHADA',n:'薬用クリアエマルジョン',d:'敏感肌専用の薬用美白乳液。',tags:['敏感肌◎'],p:'<b>¥1,800</b>'}],
-kr:[{b:'Beauty of Joseon',n:'グロウ セラム',d:'プロポリス60%＋ナイアシンアミド。世界的ヒット。',tags:['人気'],p:'<b>₩17,000</b>'},{b:'Mediheal',n:'メラホワイト マスク',d:'美白成分5種配合。シミ部位集中。',tags:['マスク'],p:'<b>₩2,500</b>'},{b:'Round Lab',n:'ドカブハ スポットセラム',d:'海水ミネラル＋ナイアシンアミド5%。',tags:['ミネラル'],p:'<b>₩24,000</b>'},{b:'MEDICUBE',n:'PDRN ピンクワン',d:'PDRN＋トラネキサム酸でくすみに。',tags:['PDRN'],p:'<b>₩32,000</b>'}]},
+kr:[{b:'Beauty of Joseon',n:'グロウセラム プロポリス＋ナイアシンアミド',d:'プロポリス60%×ナイアシンアミド2%。世界的ロングセラー美白セラム。',tags:['OYランキング常連','美白'],oy:'🏆',p:'<b>₩17,000</b>'},{b:'ISOI',n:'ブルガリアンローズ ブレミッシュセラム',d:'3年連続オリヤンアワードベストエッセンス1位。バラ由来美白×鎮静。',tags:['3年連続1位'],oy:'🥇3年連続',p:'<b>₩32,000</b>'},{b:'Round Lab',n:'ドカブハ スポットセラム',d:'独島深海水ミネラル×ナイアシンアミド5%。スポットケアに。',tags:['ミネラル'],p:'<b>₩24,000</b>'},{b:'MEDICUBE',n:'PDRN ピンクワン',d:'PDRN×トラネキサム酸。肌再生しながらくすみ改善。',tags:['PDRN'],p:'<b>₩32,000</b>'}]},
 moist:{intro:'<strong>保湿・セラミド</strong>は美肌の土台。バリア機能を補うことで乾燥・敏感肌が改善しやすい「下地」。',c1:'#D6EAFB',c2:'#8FBFE0',label:'Moist',
 jp:[{b:'Curel',n:'ディープモイスチャースプレー',d:'花王のセラミドケア代表。スプレーで気軽に。',tags:['セラミド'],p:'<b>¥1,100</b>'},{b:'DECORTÉ',n:'モイスチュアリポソーム',d:'多重層リポソームで肌深部へ。名作。',tags:['名作'],p:'<b>¥12,100</b>'},{b:'Minon',n:'アミノモイスト ミルク',d:'アミノ酸9種＋セラミドで敏感肌に。',tags:['敏感肌◎'],p:'<b>¥2,400</b>'},{b:'IHADA',n:'薬用バーム',d:'高精製ワセリン100%。最後の蓋に。',tags:['超乾燥'],p:'<b>¥1,500</b>'}],
-kr:[{b:'Dr.Jart+',n:'セラマイディン クリーム',d:'5種セラミドのバリア修復。超人気。',tags:['セラミド'],p:'<b>₩28,000</b>'},{b:'COSRX',n:'スネイル96 エッセンス',d:'カタツムリ96%。世界的名作。',tags:['名作'],p:'<b>₩20,000</b>'},{b:'TORRIDEN',n:'ダイブイン セラム',d:'低分子ヒアルロン酸5種。さっぱり名品。',tags:['HA'],p:'<b>₩19,000</b>'},{b:'Aestura',n:'アトバリア 365',d:'アトピー肌向けの医療系クリーム。',tags:['医療系'],p:'<b>₩30,000</b>'}]},
+kr:[{b:'TORRIDEN',n:'ダイブイン 低分子HAセラム',d:'2025年オリヤンアワード セラム部門1位。5種低分子HAでさっぱり深保湿。',tags:['2025アワード1位','セラム'],oy:'🥇2025セラム1位',p:'<b>₩19,000</b>'},{b:'AESTURA',n:'アトバリア365 クリーム',d:'2025年オリヤンアワード クリーム部門1位。セラミド高密度配合、乾燥敏感肌の定番。',tags:['2025アワード1位','クリーム'],oy:'🥇2025クリーム1位',p:'<b>₩30,000</b>'},{b:'Round Lab',n:'独島トナー',d:'2025年オリヤンアワード 化粧水部門1位。独島深海水ミネラルで軽やか保湿。',tags:['2025アワード1位','化粧水'],oy:'🥇2025化粧水1位',p:'<b>₩15,000</b>'},{b:'ILLIYOON',n:'セラミド アトローション',d:'全身使える低刺激保湿ローション。オリヤンアワード受賞常連。',tags:['OYアワード受賞','全身OK'],oy:'🏆',p:'<b>₩18,000</b>'}]},
 reti:{intro:'<strong>レチノール</strong>はビタミンA誘導体。シワ・たるみ・毛穴に効果。低濃度で夜のみから。日中はSPF必須。',c1:'#F5E5D6',c2:'#D9B284',label:'Reti',
 jp:[{b:'ELIXIR',n:'リンクルクリーム S',d:'純粋レチノール薬用シワ改善。日本初承認。',tags:['薬用'],p:'<b>¥6,500</b>'},{b:'POLA',n:'リンクルショット',d:'ニールワン成分の薬用シワ改善。',tags:['ニールワン'],p:'<b>¥14,850</b>'},{b:'ENVIRON',n:'C-クエンス セラム 1',d:'段階的に上げる本格レチノール。',tags:['本格'],p:'<b>¥16,500</b>'},{b:'avene',n:'レチノール セラム',d:'敏感肌対応カプセル化。薬局コスメ。',tags:['敏感肌'],p:'<b>¥6,800</b>'}],
-kr:[{b:'MEDICUBE',n:'リフティングクリーム',d:'低分子コラーゲン＋ナイアシン。初心者◎',tags:['初心者'],p:'<b>₩42,000</b>'},{b:'COSRX',n:'コラーゲン アンプル',d:'純粋レチノール0.1%。コスパ抜群。',tags:['0.1%'],p:'<b>₩25,000</b>'},{b:'goodal',n:'ビタCナイトクリーム',d:'バクチオール配合の優しいレチノ。',tags:['バクチオール'],p:'<b>₩29,000</b>'},{b:'A.true',n:'リアル レチノール 0.1%',d:'カプセル化で乾燥肌でも。',tags:['カプセル'],p:'<b>₩35,000</b>'}]},
+kr:[{b:'Anua',n:'レチノール0.3 ナイアシン リニューイングセラム',d:'2025年オリヤン話題作。レチノール×ナイアシンアミド配合で初心者にも◎',tags:['2025話題','初心者◎'],oy:'🔥2025注目',p:'<b>₩29,000</b>'},{b:'IOPE',n:'レチノール エキスパート 0.1%',d:'韓国クリニコスメの老舗IOPE。カプセル化で安定性高く皮むけしにくい。',tags:['安定型','低刺激'],p:'<b>₩45,000</b>'},{b:'COSRX',n:'ザ レチノール 0.1 クリーム',d:'純粋レチノール0.1%配合。COSRXの超定番でコスパ抜群。',tags:['コスパ◎'],p:'<b>₩25,000</b>'},{b:'Dr.Jart+',n:'タイムリバイバルレチノ アンプル',d:'レチノール×セラミド。ダウンタイムを最小限に抑えた処方。',tags:['ダウンタイム少'],p:'<b>₩52,000</b>'}]},
 acne:{intro:'<strong>ニキビ・毛穴</strong>にはBHA・AHA・ナイアシンアミド・アゼライン酸が定番。毛穴詰まりや角質を取り除き皮脂をコントロール。',c1:'#E6F1E8',c2:'#9CC8A4',label:'Acne',
 jp:[{b:'PAIR ACNE',n:'クリームW',d:'第2類医薬品。赤ニキビに効くロングセラー。',tags:['医薬品'],p:'<b>¥1,100</b>'},{b:'ORBIS',n:'クリアフル ローション',d:'大人ニキビ向けの薬用ローション。',tags:['大人ニキビ'],p:'<b>¥1,650</b>'},{b:'Naturie',n:'ハトムギ化粧水',d:'大容量でニキビ予防にバシャバシャ。',tags:['大容量'],p:'<b>¥715</b>'},{b:'Aesop',n:'ファシャル ジェル',d:'BHA配合で毛穴詰まりに。',tags:['BHA'],p:'<b>¥5,500</b>'}],
-kr:[{b:'COSRX',n:'BHA パワーリキッド',d:'BHA4%。毛穴と黒ずみケアの世界的定番。',tags:['BHA4%'],p:'<b>₩22,000</b>'},{b:'Some By Mi',n:'30Days トナー',d:'三酸配合で30日でツルツル肌へ。',tags:['三酸'],p:'<b>₩20,000</b>'},{b:'COSRX',n:'ピンプル パッチ',d:'貼って寝るだけの魔法のパッチ。名作。',tags:['名作'],p:'<b>₩3,000</b>'},{b:'Anua',n:'ハートリーフ77% トナー',d:'ドクダミ77%で赤み・ニキビ後を鎮静。',tags:['鎮静'],p:'<b>₩18,000</b>'}]},
+kr:[{b:'MEDIHEAL',n:'マデカソサイド ブレミッシュパッド',d:'2025年オリヤンアワード トナーパッド部門1位。1枚で拭き取り×保湿×鎮静。',tags:['2025アワード1位','パッド'],oy:'🥇2025パッド1位',p:'<b>₩22,000</b>'},{b:'Anua',n:'ハートリーフ77% トナー',d:'ドクダミ77%の超鎮静トナー。赤み・ニキビ跡・敏感肌の韓国定番。',tags:['OYランキング常連','鎮静'],oy:'🏆',p:'<b>₩18,000</b>'},{b:'COSRX',n:'BHA パワーリキッド',d:'BHA4%。毛穴黒ずみ・皮脂詰まりの世界的定番。',tags:['BHA4%'],p:'<b>₩22,000</b>'},{b:'COSRX',n:'ピンプルパッチ（ニキビパッチ）',d:'貼って寝るだけの名作パッチ。オリヤン全期間通じてベストセラー。',tags:['殿堂入り'],oy:'🏆殿堂',p:'<b>₩3,000</b>'}]},
 uv:{intro:'<strong>日焼け止め</strong>は美肌ケアの最重要ステップ。シミ・シワ・たるみの最大原因が紫外線。SPF30〜50・PA+++以上を毎朝。',c1:'#FFEDC1',c2:'#F0B83B',label:'UV',
 jp:[{b:'ANESSA',n:'パーフェクトUV ミルク N',d:'日焼け止めキング。汗・水で強くなる技術。',tags:['SPF50+'],p:'<b>¥3,300</b>'},{b:'Bioré',n:'UV アクアリッチ',d:'みずみずしい処方。コスパ抜群。',tags:['プチプラ'],p:'<b>¥800</b>前後'},{b:'La Roche-Posay',n:'UVイデア XL',d:'敏感肌対応＋トーンアップ。',tags:['敏感肌◎'],p:'<b>¥3,300</b>'},{b:'ALLIE',n:'ジェルUV EX',d:'透明感ジェル。化粧崩れしにくい。',tags:['ジェル'],p:'<b>¥1,800</b>'}],
-kr:[{b:'Beauty of Joseon',n:'リリーフサン',d:'米＋B5で白浮きなし。世界的ヒット。',tags:['人気'],p:'<b>₩13,000</b>'},{b:'Round Lab',n:'バーチ サンクリーム',d:'白樺樹液配合の韓国王道。低刺激。',tags:['白樺'],p:'<b>₩15,000</b>'},{b:'Anua',n:'ハートリーフ サンスティック',d:'ドクダミ配合スティック。塗り直し◎',tags:['スティック'],p:'<b>₩18,000</b>'},{b:'INNISFREE',n:'UV ディフェンス スティック',d:'さらっとした使用感。済州島由来。',tags:['さらっと'],p:'<b>₩12,000</b>'}]}
+kr:[{b:'Round Lab',n:'1025 白樺 水分サンクリーム',d:'2025年オリヤンアワード 日焼け止め部門1位。白浮きなし・水分クリームのような塗り心地。',tags:['2025アワード1位','SPF50+'],oy:'🥇2025UV1位',p:'<b>₩15,000</b>'},{b:'Beauty of Joseon',n:'リリーフサン 米＋B5',d:'OY全期間通じて上位。米エキス×B5で白浮きなし・肌荒れしにくい。',tags:['OY長期定番'],oy:'🏆',p:'<b>₩13,000</b>'},{b:'SKIN1004',n:'マダガスカル センテラ ハイドラ-シカ ウォーターフィット サンセラム',d:'2025〜2026年話題のセンテラベース。サラサラ仕上がりで脂性肌にも。',tags:['2025〜2026話題'],oy:'🔥急上昇',p:'<b>₩18,000</b>'},{b:'d\'Alba',n:'ウォーターフル トーンアップサンクリーム',d:'トーンアップ×UV。白浮き少なくツヤ仕上がりで人気急上昇。',tags:['トーンアップ'],p:'<b>₩20,000</b>'}]}
 };
 var currentCos='vitc';
 function setCos(t,b){currentCos=t;document.querySelectorAll('.cos-tab').forEach(function(x){x.classList.remove('active');x.classList.remove('jp-on');x.classList.remove('kr-on');});b.classList.add('active');b.classList.add(currentCountry+'-on');renderCos();}
 function addYenConv(s){var ms=s.match(/₩([\d,]+)/g);if(!ms)return s;ms.forEach(function(m){var won=parseInt(m.replace(/[₩,]/g,''));var yen=Math.round(won*WON_TO_YEN/10)*10;s=s.replace(m,m+' <span class="yen-conv">≒約¥'+yen.toLocaleString()+'</span>');});return s;}
-function renderCos(){var d=COS[currentCos];if(!d)return;var items=d[currentCountry];var html='<div class="cos-intro">'+d.intro+'</div><div class="cos-grid">';items.forEach(function(it,i){var price=currentCountry==='kr'?addYenConv(it.p):it.p;html+='<div class="cos-card"><div class="cos-img">'+bottleSVG(d.c1,d.c2,d.label)+'</div><span class="cos-rank">#'+(i+1)+'</span><div class="cos-body"><p class="cos-brand">'+it.b+'</p><h4>'+it.n+'</h4><p class="cos-desc">'+it.d+'</p><div class="cos-tags">'+it.tags.map(function(t){return '<span class="cos-tag">'+t+'</span>';}).join('')+'</div><p class="cos-price">参考価格 '+price+'</p></div></div>';});html+='</div>';document.getElementById('cos-content').innerHTML=html;}
+function renderCos(){var d=COS[currentCos];if(!d)return;var items=d[currentCountry];var html='<div class="cos-intro">'+d.intro+'</div>';if(currentCountry==='kr'){html+='<div class="oy-note"><i class="ti ti-trophy"></i> <strong>🏆 = オリーブヤングアワード受賞</strong>　🥇= カテゴリ1位　🔥= 急上昇注目作（2025年オリーブヤングアワード基準）　<a href="https://www.oliveyoung.co.kr" target="_blank" rel="noopener" style="font-size:11px;text-decoration:none;color:#D4537E;font-weight:600;">オリーブヤング公式サイト ↗</a></div>';}html+='<div class="cos-grid">';items.forEach(function(it,i){var price=currentCountry==='kr'?addYenConv(it.p):it.p;var oyBadge=it.oy?'<div class="oy-badge">'+it.oy+'</div>':'';html+='<div class="cos-card">'+oyBadge+'<div class="cos-img">'+bottleSVG(d.c1,d.c2,d.label)+'</div><span class="cos-rank">#'+(i+1)+'</span><div class="cos-body"><p class="cos-brand">'+it.b+'</p><h4>'+it.n+'</h4><p class="cos-desc">'+it.d+'</p><div class="cos-tags">'+it.tags.map(function(t){return '<span class="cos-tag">'+t+'</span>';}).join('')+'</div><p class="cos-price">参考価格 '+price+'</p></div></div>';});html+='</div>';document.getElementById('cos-content').innerHTML=html;}
 
 var TREATS=[{n:'ピーリング',c:'acne',jp:[8000,15000],kr:[5000,10000],nt:'月1回'},{n:'LED青',c:'acne',jp:[5000,10000],kr:[3000,6000],nt:'敏感肌◎'},{n:'ダーマペン',c:'acne',jp:[20000,40000],kr:[10000,25000],nt:'3〜5回'},{n:'アグネスRF',c:'acne',jp:[40000,80000],kr:[30000,60000],nt:'🇰🇷韓国限定'},{n:'フォトフェイシャル',c:'spot',jp:[15000,30000],kr:[8000,15000],nt:'×5回'},{n:'ピコレーザー',c:'spot',jp:[10000,30000],kr:[5000,15000],nt:'即効'},{n:'トーニング',c:'spot',jp:[10000,20000],kr:[5000,12000],nt:'×10回'},{n:'グルタチオン点滴',c:'spot',jp:[10000,25000],kr:[8000,20000],nt:'🇰🇷韓国定番'},{n:'ダーマペン4',c:'pore',jp:[20000,40000],kr:[10000,25000],nt:'毛穴'},{n:'ポテンツァ',c:'pore',jp:[80000,150000],kr:[40000,80000],nt:'凸凹'},{n:'シルファームX',c:'pore',jp:[50000,100000],kr:[35000,70000],nt:'🇰🇷韓国限定'},{n:'スキンボトックス',c:'pore',jp:[35000,70000],kr:[30000,60000],nt:'🇰🇷韓国発'},{n:'HIFU',c:'wrinkle',jp:[50000,150000],kr:[30000,80000],nt:'引き締め'},{n:'ボトックス',c:'wrinkle',jp:[20000,40000],kr:[10000,25000],nt:'4〜6ヶ月'},{n:'ヒアルロン酸',c:'wrinkle',jp:[50000,100000],kr:[30000,60000],nt:'1年持続'},{n:'エクソソーム',c:'wrinkle',jp:[80000,180000],kr:[60000,150000],nt:'🇰🇷韓国最先端'},{n:'ジュベルック',c:'wrinkle',jp:[60000,120000],kr:[40000,80000],nt:'🇰🇷韓国発'},{n:'ベビーコラーゲン',c:'wrinkle',jp:[60000,120000],kr:[40000,90000],nt:'🇰🇷韓国限定'},{n:'水光注射',c:'dry',jp:[30000,50000],kr:[15000,30000],nt:'即効'},{n:'ヒアルロン酸導入',c:'dry',jp:[8000,15000],kr:[5000,10000],nt:'コスパ◎'},{n:'リジュランI/HB',c:'dry',jp:[40000,80000],kr:[25000,45000],nt:'🇰🇷韓国発'},{n:'子鹿注射',c:'dry',jp:[20000,40000],kr:[15000,30000],nt:'🇰🇷韓国トレンド'},{n:'NMN点滴',c:'dry',jp:[40000,100000],kr:[30000,80000],nt:'🇰🇷韓国限定'}];
 var simCountry='jp',simBudget=50000,simConcerns={acne:true,spot:false,pore:false,wrinkle:false,dry:false};
