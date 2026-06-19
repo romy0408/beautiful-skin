@@ -151,6 +151,32 @@ body{
 .t-pill{font-size:11px;padding:2px 9px;border-radius:999px;background:var(--rouge-soft);color:var(--rouge-deep)}
 
 .kcard-foot{display:flex;gap:10px;flex-wrap:wrap;padding:0 20px 18px;align-items:center}
+
+/* 2カラム：左=院情報 / 右=施術メニュー */
+.kcard-cols{display:grid;grid-template-columns:1fr 270px}
+.kcard-left{border-right:1px solid var(--line-soft);min-width:0}
+.kcard-right{background:linear-gradient(180deg,rgba(247,228,234,0.5),rgba(255,255,255,0.4));padding:16px 18px 18px;display:flex;flex-direction:column}
+.menu-head{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge-deep);font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:13px}
+.menu-head::after{content:'';flex:1;height:1px;background:var(--line)}
+.menu-item{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+.menu-item:last-of-type{border-bottom:none}
+.menu-ic{width:32px;height:32px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--rouge);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.menu-txt h5{font-size:12.5px;font-weight:700;margin-bottom:3px;line-height:1.4}
+.menu-txt .for{font-size:10px;color:var(--rouge-deep);background:var(--rouge-soft);border-radius:999px;padding:1px 8px;display:inline-block;margin-bottom:4px}
+.menu-txt p{font-size:11px;color:var(--ink-soft);line-height:1.6}
+.menu-price{font-size:11px;color:var(--ink-soft);margin-top:5px;display:flex;align-items:center;gap:4px}
+.menu-price .ti{font-size:12px;color:var(--gold)}
+.menu-price b{font-family:'Zen Old Mincho',serif;color:var(--rouge-deep);font-weight:700;font-size:12px}
+.menu-stars{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap}
+.star-row{display:inline-flex;align-items:center;gap:4px;font-size:13px;letter-spacing:1px;line-height:1}
+.star-label{font-size:10px;color:var(--ink-soft);letter-spacing:0;white-space:nowrap;margin-right:2px}
+.st-fill{color:#FFB800}
+.st-empty{color:#E0D8DC}
+@media(max-width:680px){
+  .kcard-cols{grid-template-columns:1fr}
+  .kcard-left{border-right:none;border-bottom:1px solid var(--line-soft)}
+  .kcard-right{background:linear-gradient(180deg,rgba(247,228,234,0.4),rgba(255,255,255,0.3))}
+}
 .btn-hp{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 18px;border-radius:999px;color:#fff;background:linear-gradient(120deg,var(--rouge),var(--rouge-deep));box-shadow:0 3px 12px rgba(194,69,106,0.28);transition:transform .15s}
 .btn-hp:hover{transform:translateY(-1px)}
 .btn-map{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;text-decoration:none;color:var(--gold);font-weight:700}
@@ -436,6 +462,24 @@ var CLINICS=[
 var WORRY_LBL={pore:'毛穴・イチゴ鼻',wrinkle:'小顔・たるみ',dry:'ツヤ肌・水光肌',spot:'シミ・くすみ',acne:'ニキビ・赤み',scar:'ニキビ跡・凸凹'};
 var TYPE_LBL={factory:'工場型',premium:'上質・高品質型'};
 
+/* 悩み別の代表施術と効果（院の worry タグから自動表示） */
+var MENU={
+  pore:   {ic:'ti-circle-dotted', name:'ポテンツァ／ダーマペン', eff:'針＋RFで毛穴を引き締め、皮脂とイチゴ鼻をケア', price:'¥15,000〜40,000', pain:3, effect:5},
+  wrinkle:{ic:'ti-face-id',       name:'HIFU（ハイフ）・リフト系', eff:'たるみを引き上げ、フェイスラインを小顔に', price:'¥30,000〜80,000', pain:3, effect:5},
+  dry:    {ic:'ti-droplet',       name:'水光注射・スキンブースター', eff:'真皮にうるおいを注入し、ツヤと水光肌へ', price:'¥15,000〜35,000', pain:2, effect:4},
+  spot:   {ic:'ti-sun',           name:'レーザートーニング・ピコ', eff:'メラニンを分解し、シミ・くすみを明るく', price:'¥8,000〜20,000', pain:1, effect:3},
+  acne:   {ic:'ti-flame',         name:'ニキビ管理・LED・ピーリング', eff:'炎症と皮脂を抑え、赤みニキビを鎮静', price:'¥5,000〜15,000', pain:1, effect:3},
+  scar:   {ic:'ti-grain',         name:'ダーマペン・フラクショナル', eff:'肌を再生し、ニキビ跡の凸凹をなめらかに', price:'¥20,000〜50,000', pain:2, effect:4}
+};
+/* ☆5段階の星を生成 */
+function stars(n){var s='';for(var i=1;i<=5;i++)s+='<span class="'+(i<=n?'st-fill':'st-empty')+'">★</span>';return s;}
+/* 施術メニューを最大3件まで返す */
+function clinicMenu(c){
+  var order=['pore','wrinkle','dry','spot','acne','scar'];
+  var ws=order.filter(function(w){return c.worry.indexOf(w)>-1;});
+  return ws.slice(0,3).map(function(w){return {w:w,m:MENU[w]};});
+}
+
 /* ===== state ===== */
 var sel={type:null,concern:[],support:[],budget:200000};
 
@@ -526,14 +570,26 @@ function render(){
       return '<span class="t-pill" style="'+(on?'background:var(--rouge);color:#fff':'')+'">'+WORRY_LBL[w]+'</span>';
     }).join(' ');
 
+    // 右パネル：主な施術と効果
+    var menuHtml='<div class="menu-head"><i class="ti ti-stethoscope"></i> 主な施術と効果</div>';
+    clinicMenu(c).forEach(function(item){
+      var m=item.m;
+      menuHtml+='<div class="menu-item"><div class="menu-ic"><i class="ti '+m.ic+'"></i></div>'
+        + '<div class="menu-txt"><span class="for">'+WORRY_LBL[item.w]+'</span>'
+        + '<h5>'+m.name+'</h5><p>'+m.eff+'</p>'
+        + '<div class="menu-stars"><span class="star-row"><span class="star-label">😣 痛み</span>'+stars(m.pain)+'</span>'
+        + '<span class="star-row"><span class="star-label">✨ 効果</span>'+stars(m.effect)+'</span></div>'
+        + '<p class="menu-price"><i class="ti ti-tag"></i> 目安 <b>'+m.price+'</b>／1回</p></div></div>';
+    });
+
     html+='<div class="kcard" style="animation-delay:'+(idx*0.06)+'s">'
       + rankHtml
+      + '<div class="kcard-cols"><div class="kcard-left">'
       + '<div class="kcard-top"><div style="flex:1"><h3>'+c.n+'</h3>'
       + '<span class="area"><i class="ti ti-map-pin"></i> '+c.area+'（'+c.areaNote+'）</span></div>'
       + typeBadge+'</div>'
       + '<p class="kcard-desc">'+c.d+'</p>'
       + '<dl class="spec-table">'
-      + '<div class="spec-row"><dt><i class="ti ti-tag"></i>料金目安</dt><dd><span class="pricepill">¥'+c.price.toLocaleString()+'〜</span>／1回</dd></div>'
       + '<div class="spec-row"><dt><i class="ti ti-language"></i>日本語</dt><dd>'+(c.jp?yes('日本人通訳が常駐'):no('通訳の常駐なし'))+'</dd></div>'
       + '<div class="spec-row"><dt><i class="ti ti-zzz"></i>睡眠麻酔</dt><dd>'+(c.sleep?yes('対応可'):no('非対応'))+'</dd></div>'
       + '<div class="spec-row"><dt><i class="ti ti-sparkles"></i>得意な悩み</dt><dd>'+wpills+'</dd></div>'
@@ -541,6 +597,8 @@ function render(){
       + '<div class="kcard-foot">'
       + (c.u?'<a class="btn-hp" href="'+c.u+'" target="_blank" rel="noopener"><i class="ti ti-external-link"></i> '+c.ut+'</a>':'')
       + '<a class="btn-map" href="'+c.map+'" target="_blank" rel="noopener"><i class="ti ti-map-2"></i> 地図で見る</a>'
+      + '</div></div>'
+      + '<div class="kcard-right">'+menuHtml+'</div>'
       + '</div></div>';
   });
 
