@@ -381,9 +381,9 @@ document.querySelectorAll('#nav a').forEach(function(a){
 });
 
 
-var WORRY_LBL={pore:'毛穴・イチゴ鼻',wrinkle:'小顔・たるみ',dry:'ツヤ肌・水光肌',spot:'シミ・くすみ',acne:'ニキビ・赤み',scar:'ニキビ跡・凸凹'};
-var WORRY_IC={pore:'ti-circle-dotted',wrinkle:'ti-face-id',dry:'ti-droplet',spot:'ti-sun',acne:'ti-flame',scar:'ti-grain'};
-var ORDER=['pore','wrinkle','dry','spot','acne','scar'];
+var WORRY_LBL={pore:'毛穴・イチゴ鼻',wrinkle:'小顔・たるみ',dryskin:'乾燥',spot:'シミ・くすみ',acne:'ニキビ・赤み',scar:'ニキビ跡・凸凹'};
+var WORRY_IC={pore:'ti-circle-dotted',wrinkle:'ti-face-id',dryskin:'ti-wind',spot:'ti-sun',acne:'ti-flame',scar:'ti-grain'};
+var ORDER=['pore','wrinkle','dryskin','spot','acne','scar'];
 
 /* 悩み別・複数施術データベース
    tag: 'pop'=人気 / 'new'=韓国で新しく出てきている / null=通常
@@ -393,37 +393,48 @@ var TREATMENTS={
     {name:'ポテンツァ', en:'POTENZA', ic:'ti-needle', tag:'pop', desc:'針＋RFで毛穴を引き締め、皮脂分泌を抑えてイチゴ鼻を改善。韓国で大定番のマイクロニードリングRF。', pain:3, effect:5, price:'¥15,000〜40,000', note:'1〜2週間隔・複数回推奨'},
     {name:'毛穴専用ピーリング', en:'PORE PEELING', ic:'ti-droplet-half-2', tag:null, desc:'酸ピーリングで角質と皮脂汚れをオフ。即効性があり、施術当日から毛穴の目立ちが軽減。', pain:1, effect:2, price:'¥5,000〜12,000', note:'ダウンタイムほぼなし'},
     {name:'AGNES（アグネス）', en:'AGNES', ic:'ti-bolt', tag:'new', desc:'極細針で皮脂腺をピンポイントに高周波焼灼。韓国で急速に人気が伸びている毛穴・皮脂治療。', pain:4, effect:5, price:'¥40,000〜90,000', note:'ダウンタイム3〜5日'},
-    {name:'CO2フラクショナルレーザー', en:'CO2 FRACTIONAL', ic:'ti-laser', tag:null, desc:'微細な穴を皮膚に開けて再生を促進。毛穴の凸凹そのものを底上げする本格レーザー。', pain:4, effect:4, price:'¥25,000〜60,000', note:'ダウンタイム3〜7日'}
+    {name:'CO2フラクショナルレーザー', en:'CO2 FRACTIONAL', ic:'ti-laser', tag:null, desc:'微細な穴を皮膚に開けて再生を促進。毛穴の凸凹そのものを底上げする本格レーザー。', pain:4, effect:4, price:'¥25,000〜60,000', note:'ダウンタイム3〜7日'},
+    {name:'ウルトラセルQ＋（毛穴モード）', en:'ULTRACEL Q+', ic:'ti-wave-sine', tag:null, desc:'HIFUとRFを組み合わせ、毛穴の引き締めと肌質改善を同時に狙う複合機施術。', pain:3, effect:4, price:'¥35,000〜75,000', note:'たるみ毛穴に特に向く'},
+    {name:'BLT毛穴トリートメント', en:'BLT PORE CARE', ic:'ti-circle-dotted', tag:'new', desc:'光・レーザー・超音波を組み合わせた韓国発の複合トリートメント。皮脂腺を狙い撃ちする新しい選択肢。', pain:2, effect:4, price:'¥25,000〜55,000', note:'刺激が少なく続けやすい'}
   ],
   wrinkle:[
     {name:'ウルセラ（HIFU）', en:'ULTHERA', ic:'ti-wave-sine', tag:'pop', desc:'高密度焦点式超音波で皮膚の深層に熱を入れ、たるみを引き上げる。韓国リフトの代名詞的施術。', pain:3, effect:5, price:'¥60,000〜150,000', note:'効果は1〜3ヶ月かけて実感'},
     {name:'シュリンク／オリジオ', en:'SHURINK', ic:'ti-wave-sine', tag:'pop', desc:'ウルセラと同系統のHIFUながら低価格帯。コスパ重視の弾丸リフトとして定番。', pain:3, effect:4, price:'¥30,000〜80,000', note:'1回でも実感しやすい'},
     {name:'チタニウムリフト', en:'TITANIUM LIFT', ic:'ti-sparkles', tag:'new', desc:'チタン電極で深部を加熱しコラーゲン生成を促す、韓国の上質クリニックで広がる最新リフト。', pain:2, effect:4, price:'¥50,000〜120,000', note:'ダウンタイムが少ない'},
-    {name:'糸リフト（リードファイバー）', en:'THREAD LIFT', ic:'ti-axe', tag:null, desc:'溶ける糸を皮下に通して物理的に引き上げる施術。フェイスラインの輪郭をはっきりさせたい人向け。', pain:4, effect:4, price:'¥40,000〜100,000', note:'ダウンタイム5〜10日'}
+    {name:'糸リフト（リードファイバー）', en:'THREAD LIFT', ic:'ti-axe', tag:null, desc:'溶ける糸を皮下に通して物理的に引き上げる施術。フェイスラインの輪郭をはっきりさせたい人向け。', pain:4, effect:4, price:'¥40,000〜100,000', note:'ダウンタイム5〜10日'},
+    {name:'ボトックス（輪郭・エラ）', en:'BOTOX CONTOUR', ic:'ti-injection', tag:'pop', desc:'エラの筋肉を萎縮させ、フェイスラインをすっきりと。即効性のある小顔施術の定番。', pain:2, effect:3, price:'¥15,000〜35,000', note:'効果は2〜4週間で安定'},
+    {name:'リニアファームZ', en:'LINEAR FIRM Z', ic:'ti-wave-sine', tag:'new', desc:'線状にHIFUを照射する新方式で、より均一なリフトアップを狙う韓国発の最新マシン。', pain:3, effect:4, price:'¥45,000〜100,000', note:'ウルセラより痛みが少なめ'}
   ],
-  dry:[
-    {name:'水光注射（リジュラン等）', en:'WATER GLOW', ic:'ti-droplet', tag:'pop', desc:'真皮にヒアルロン酸や成長因子を注入し、内側からうるおう水光肌へ。韓国渡韓施術の王道。', pain:2, effect:4, price:'¥15,000〜35,000', note:'1〜2週間でツヤ実感'},
-    {name:'リジュラン（サーモン注射）', en:'REJURAN', ic:'ti-fish', tag:'new', desc:'サケのDNA由来成分PDRNで肌の再生力を底上げ。韓国で人気急上昇中のエイジングケア注射。', pain:3, effect:5, price:'¥25,000〜55,000', note:'3〜4週間隔で複数回推奨'},
-    {name:'エクソソームスキンブースター', en:'EXOSOME', ic:'ti-vaccine', tag:'new', desc:'幹細胞由来エクソソームで肌再生を促進する、韓国の上質クリニックで導入が進む最新メニュー。', pain:2, effect:5, price:'¥40,000〜90,000', note:'即効性と持続性の両立が話題'},
-    {name:'プロファイロ', en:'PROFHILO', ic:'ti-droplet', tag:null, desc:'高濃度ヒアルロン酸を数点注入し、肌全体にハリとうるおいを面で広げる施術。', pain:2, effect:4, price:'¥30,000〜60,000', note:'2回セットが基本'}
+  dryskin:[
+    {name:'スキンボトックス（保湿モード）', en:'SKIN BOTOX', ic:'ti-droplet', tag:'pop', desc:'極薄くボトックスを面状に注入し、皮脂と毛穴を整えながら肌のキメと潤いを底上げ。', pain:2, effect:3, price:'¥20,000〜45,000', note:'毛穴の引き締めにも効果'},
+    {name:'ヒアルロン酸スキンブースター', en:'HA BOOSTER', ic:'ti-droplet', tag:'pop', desc:'低濃度ヒアルロン酸を肌全体に細かく注入し、乾燥によるカサつきとハリ不足を改善。', pain:2, effect:4, price:'¥18,000〜40,000', note:'即効性ありの定番乾燥ケア'},
+    {name:'リジュランヒーラー', en:'REJURAN HEALER', ic:'ti-fish', tag:'new', desc:'PDRN成分で肌のバリア機能から立て直す、韓国で広がる乾燥・敏感肌向けの新系統注射。', pain:3, effect:4, price:'¥30,000〜60,000', note:'敏感肌にもやさしい設計'},
+    {name:'保湿エクソソームマスク療法', en:'EXOSOME MASK', ic:'ti-vaccine', tag:'new', desc:'エクソソーム美容液を浸透させる施術後ケア由来のメニュー。乾燥・小ジワの両方にアプローチ。', pain:1, effect:3, price:'¥15,000〜35,000', note:'痛みがほぼなく続けやすい'},
+    {name:'水分クリニック点滴（保湿カクテル）', en:'HYDRA DRIP', ic:'ti-droplet', tag:null, desc:'ビタミン・アミノ酸配合の点滴で体の内側から保湿力をサポート。渡韓のついでに受けやすい。', pain:1, effect:2, price:'¥10,000〜25,000', note:'施術前後のケアにも人気'}
   ],
   spot:[
     {name:'レーザートーニング', en:'LASER TONING', ic:'ti-sun', tag:'pop', desc:'低出力レーザーを複数回当ててメラニンを少しずつ分解。韓国シミ治療の定番ベース施術。', pain:1, effect:3, price:'¥8,000〜20,000', note:'5回前後のコース推奨'},
     {name:'ピコレーザー', en:'PICO LASER', ic:'ti-bolt', tag:'pop', desc:'ピコ秒単位の超短パルスでメラニンを微粉砕。トーニングより少ない回数で効果を狙える。', pain:2, effect:4, price:'¥12,000〜30,000', note:'ダウンタイム少なめ'},
     {name:'ジェムストーン／ピコトーニング複合', en:'GEMSTONE', ic:'ti-diamond', tag:'new', desc:'複数波長を組み合わせた最新マシンで、シミ・毛穴・色ムラを一度にケア。韓国上質型院で導入進行中。', pain:2, effect:4, price:'¥30,000〜70,000', note:'肌質改善も同時に狙える'},
-    {name:'IPL（フォトフェイシャル）', en:'IPL', ic:'ti-flash', tag:null, desc:'広域の光でシミ・赤み・くすみをまとめてケア。肌全体のトーンアップを狙いたい人向け。', pain:1, effect:3, price:'¥10,000〜25,000', note:'季節の変わり目におすすめ'}
+    {name:'IPL（フォトフェイシャル）', en:'IPL', ic:'ti-flash', tag:null, desc:'広域の光でシミ・赤み・くすみをまとめてケア。肌全体のトーンアップを狙いたい人向け。', pain:1, effect:3, price:'¥10,000〜25,000', note:'季節の変わり目におすすめ'},
+    {name:'シミ取りレーザー（Qスイッチ）', en:'Q-SWITCH', ic:'ti-bolt', tag:null, desc:'濃いシミ・あざにピンポイントで照射する高出力レーザー。1〜2回で大きな変化を狙う施術。', pain:3, effect:5, price:'¥10,000〜30,000', note:'施術後はテープ保護が必要'},
+    {name:'グローピーリング（韓方ピーリング）', en:'GLOW PEEL', ic:'ti-leaf', tag:'new', desc:'韓方成分を使った低刺激ピーリングで、くすみと色ムラをやさしく整える韓国発の新メニュー。', pain:1, effect:3, price:'¥8,000〜18,000', note:'肌に優しく続けやすい'}
   ],
   acne:[
     {name:'LEDフォトセラピー', en:'LED THERAPY', ic:'ti-bulb', tag:null, desc:'赤色・青色光で炎症と皮脂分泌を抑制。痛みがほぼなく、施術後すぐにメイクも可能。', pain:1, effect:2, price:'¥5,000〜12,000', note:'継続ケア向き'},
     {name:'ニキビ管理（圧出＋鎮静）', en:'ACNE CARE', ic:'ti-flame', tag:'pop', desc:'専門医による圧出と鎮静パックのセット。韓国皮膚科で最も基本的なニキビ施術。', pain:2, effect:3, price:'¥6,000〜15,000', note:'定期通院で効果が安定'},
     {name:'サリチル酸ピーリング', en:'SALICYLIC PEEL', ic:'ti-droplet-half-2', tag:null, desc:'皮脂と角質を分解し毛穴づまりを解消。赤みニキビ・初期ニキビに向く低刺激ピーリング。', pain:1, effect:3, price:'¥7,000〜15,000', note:'ダウンタイムほぼなし'},
-    {name:'PDT光線力学治療', en:'PDT', ic:'ti-bolt', tag:'new', desc:'光感受性物質と光を組み合わせ、皮脂腺に直接アプローチ。難治性ニキビに強い韓国の先進治療。', pain:3, effect:4, price:'¥20,000〜45,000', note:'複数回コースが基本'}
+    {name:'PDT光線力学治療', en:'PDT', ic:'ti-bolt', tag:'new', desc:'光感受性物質と光を組み合わせ、皮脂腺に直接アプローチ。難治性ニキビに強い韓国の先進治療。', pain:3, effect:4, price:'¥20,000〜45,000', note:'複数回コースが基本'},
+    {name:'ニキビ注射（病変内注射）', en:'INTRALESIONAL', ic:'ti-injection', tag:'pop', desc:'炎症の強い大きなニキビにピンポイントでステロイドを注入。腫れを素早く鎮める即効ケア。', pain:2, effect:4, price:'¥3,000〜8,000', note:'1箇所あたりの料金目安'},
+    {name:'AviClearレーザー', en:'AVICLEAR', ic:'ti-bolt', tag:'new', desc:'皮脂腺そのものを狙う波長で根本からニキビを抑える、韓国上質院で導入が進む最新治療機器。', pain:2, effect:4, price:'¥25,000〜55,000', note:'繰り返すニキビに向く'}
   ],
   scar:[
     {name:'ダーマペン', en:'DERMAPEN', ic:'ti-grain', tag:'pop', desc:'極細針で肌に微細な穴を開け、自己再生力でニキビ跡の凸凹をなめらかに。韓国の定番再生施術。', pain:3, effect:4, price:'¥20,000〜45,000', note:'4週間隔で複数回推奨'},
     {name:'フラクショナルレーザー（CO2/Er）', en:'FRACTIONAL', ic:'ti-laser', tag:null, desc:'レーザーで深いクレーター状の跡にアプローチ。ダーマペンより強めの凸凹に向く本格治療。', pain:4, effect:5, price:'¥30,000〜70,000', note:'ダウンタイム5〜7日'},
     {name:'TCAクロス', en:'TCA CROSS', ic:'ti-needle', tag:null, desc:'高濃度の薬剤を毛穴・クレーター部分にピンポイントで塗布し、再生を促す部分集中治療。', pain:4, effect:4, price:'¥15,000〜35,000', note:'深いクレーターに有効'},
-    {name:'リジュランターンオーバー', en:'REJURAN TURNOVER', ic:'ti-fish', tag:'new', desc:'PDRN成分でニキビ跡の修復力を底上げする最新アプローチ。韓国上質型院で人気が拡大中。', pain:3, effect:4, price:'¥30,000〜60,000', note:'ダーマペンと併用されることも'}
+    {name:'リジュランターンオーバー', en:'REJURAN TURNOVER', ic:'ti-fish', tag:'new', desc:'PDRN成分でニキビ跡の修復力を底上げする最新アプローチ。韓国上質型院で人気が拡大中。', pain:3, effect:4, price:'¥30,000〜60,000', note:'ダーマペンと併用されることも'},
+    {name:'サブシジョン（皮下剥離術）', en:'SUBCISION', ic:'ti-needle', tag:null, desc:'クレーターの下の癒着組織を針でほぐし、凹みを物理的に底上げする外科的アプローチ。', pain:4, effect:5, price:'¥35,000〜80,000', note:'重度の凸凹に向く'},
+    {name:'エクソソーム複合再生治療', en:'EXOSOME SCAR', ic:'ti-vaccine', tag:'new', desc:'レーザーとエクソソームを組み合わせ、再生スピードを高める韓国上質院の最新コンビ治療。', pain:3, effect:5, price:'¥45,000〜95,000', note:'ダウンタイムの肌荒れが少ない'}
   ]
 };
 
