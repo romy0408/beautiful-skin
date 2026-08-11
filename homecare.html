@@ -247,6 +247,30 @@
   }
   .key-ingredient strong { color: #7A5585; }
 
+  /* ── PRODUCT IMAGE ── */
+  .product-image {
+    padding: 24px;
+    text-align: center;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .product-image.bg-coral {
+    background: linear-gradient(135deg, #FDF0EE 0%, #FBE5E1 100%);
+  }
+  .product-image.bg-sage {
+    background: linear-gradient(135deg, #EEF4F0 0%, #DFEAE3 100%);
+  }
+  .product-image.bg-gold {
+    background: linear-gradient(135deg, #FDF5E4 0%, #F7EACB 100%);
+  }
+  .product-image img {
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 8px 16px rgba(45, 35, 32, 0.12));
+  }
+
   /* ── NOTE ── */
   .note {
     background: var(--sage-light);
@@ -347,16 +371,20 @@
 
   <!-- RANK 1 -->
   <div class="product-card">
+    <div class="product-image bg-coral">
+      <img src="dr_reju_all_pdrn.webp" alt="Dr.Reju-All アドバンストPDRN リジュビネイティングクリーム">
+    </div>
     <div class="product-card-header">
       <div class="rank-badge rank-1">1</div>
       <div class="product-meta">
         <div class="product-brand">Dr.Reju-All</div>
         <div class="product-name">アドバンストPDRN<br>リジュビネイティングクリーム</div>
-        <span class="product-tag tag-coral">製薬会社開発</span>
+        <span class="product-tag tag-coral">医師×薬剤師 共同開発</span>
       </div>
     </div>
     <div class="product-body">
-      <p>江南の薬局に行くと、スタッフさんが真っ先に勧めてくれるのがこちら。<strong>製薬会社が開発した</strong>というのが最大の特徴で、コスメブランドとは一線を画す信頼感があります。</p>
+      <p>実は私自身、江南の薬局で「<strong>施術後のケアにおすすめのクリームってありますか？</strong>」と聞いたところ、スタッフさんに迷うことなくこれを勧められた商品なんです。「施術後ならこれ！」と太鼓判を押されました。</p>
+      <p>最大の特徴は、<strong>医師と薬剤師によって共同開発された</strong>クリームだということ。一般的なコスメブランドとは一線を画す信頼感があります。</p>
       <div class="key-ingredient">
         🌿 注目成分：<strong>PDRN（ポリデオキシリボヌクレオチド）</strong><br>
         韓国の美容皮膚科で注射剤としても使われる肌再生成分。施術後のダウンタイムを短くしたい方に。
@@ -367,6 +395,9 @@
 
   <!-- RANK 2 -->
   <div class="product-card">
+    <div class="product-image bg-sage">
+      <img src="centellian24_madeca.webp" alt="センテリアン24 マデカクリーム タイムリバース">
+    </div>
     <div class="product-card-header">
       <div class="rank-badge rank-2">2</div>
       <div class="product-meta">
@@ -387,6 +418,9 @@
 
   <!-- RANK 3 -->
   <div class="product-card">
+    <div class="product-image bg-gold">
+      <img src="rejuran_active_cream.webp" alt="REJURAN ターンオーバーアクティブクリーム 50ml">
+    </div>
     <div class="product-card-header">
       <div class="rank-badge rank-3">3</div>
       <div class="product-meta">
