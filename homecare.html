@@ -189,8 +189,8 @@
     padding: 18px 22px 16px;
     border-bottom: 1.5px solid var(--border);
     display: flex;
-    align-items: flex-start;
-    gap: 16px;
+    align-items: center;
+    gap: 14px;
   }
   .rank-badge {
     font-family: 'Zen Maru Gothic', sans-serif;
@@ -205,7 +205,7 @@
   .rank-2 { color: var(--sage); }
   .rank-3 { color: var(--gold); }
 
-  .product-meta { flex: 1; }
+  .product-meta { flex: 1; min-width: 0; }
   .product-brand {
     font-size: 11px;
     font-weight: 700;
@@ -249,9 +249,14 @@
 
   /* ── PRODUCT IMAGE ── */
   .product-image {
-    padding: 24px;
-    text-align: center;
-    border-bottom: 1.5px solid var(--border);
+    flex-shrink: 0;
+    width: 110px;
+    height: 110px;
+    padding: 10px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .product-image.bg-coral {
     background: linear-gradient(135deg, #FDF0EE 0%, #FBE5E1 100%);
@@ -263,12 +268,12 @@
     background: linear-gradient(135deg, #FDF5E4 0%, #F7EACB 100%);
   }
   .product-image img {
-    max-width: 220px;
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
-    display: block;
-    margin: 0 auto;
-    filter: drop-shadow(0 8px 16px rgba(45, 35, 32, 0.12));
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(45, 35, 32, 0.15));
   }
 
   /* ── NOTE ── */
@@ -306,8 +311,10 @@
   @media (max-width: 480px) {
     .rules-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
     .rule-card { padding: 12px; }
-    .product-card-header { gap: 12px; }
-    .rank-badge { font-size: 34px; width: 44px; }
+    .product-card-header { gap: 10px; padding: 14px 16px; }
+    .rank-badge { font-size: 34px; width: 40px; }
+    .product-image { width: 88px; height: 88px; padding: 8px; }
+    .product-name { font-size: 14px; }
   }
 </style>
 </head>
@@ -371,15 +378,15 @@
 
   <!-- RANK 1 -->
   <div class="product-card">
-    <div class="product-image bg-coral">
-      <img src="dr_reju_all_pdrn.webp" alt="Dr.Reju-All アドバンストPDRN リジュビネイティングクリーム">
-    </div>
     <div class="product-card-header">
       <div class="rank-badge rank-1">1</div>
       <div class="product-meta">
         <div class="product-brand">Dr.Reju-All</div>
         <div class="product-name">アドバンストPDRN<br>リジュビネイティングクリーム</div>
         <span class="product-tag tag-coral">医師×薬剤師 共同開発</span>
+      </div>
+      <div class="product-image bg-coral">
+        <img src="dr_reju_all_pdrn.webp" alt="Dr.Reju-All アドバンストPDRN リジュビネイティングクリーム">
       </div>
     </div>
     <div class="product-body">
@@ -395,15 +402,15 @@
 
   <!-- RANK 2 -->
   <div class="product-card">
-    <div class="product-image bg-sage">
-      <img src="centellian24_madeca.webp" alt="センテリアン24 マデカクリーム タイムリバース">
-    </div>
     <div class="product-card-header">
       <div class="rank-badge rank-2">2</div>
       <div class="product-meta">
         <div class="product-brand">センテリアン24</div>
         <div class="product-name">マデカクリーム<br>タイムリバース</div>
         <span class="product-tag tag-sage">敏感肌向け</span>
+      </div>
+      <div class="product-image bg-sage">
+        <img src="centellian24_madeca.webp" alt="センテリアン24 マデカクリーム タイムリバース">
       </div>
     </div>
     <div class="product-body">
@@ -418,15 +425,15 @@
 
   <!-- RANK 3 -->
   <div class="product-card">
-    <div class="product-image bg-gold">
-      <img src="rejuran_active_cream.webp" alt="REJURAN ターンオーバーアクティブクリーム 50ml">
-    </div>
     <div class="product-card-header">
       <div class="rank-badge rank-3">3</div>
       <div class="product-meta">
         <div class="product-brand">REJURAN</div>
         <div class="product-name">ターンオーバー<br>アクティブクリーム 50ml</div>
         <span class="product-tag tag-gold">定番・大人気</span>
+      </div>
+      <div class="product-image bg-gold">
+        <img src="rejuran_active_cream.webp" alt="REJURAN ターンオーバーアクティブクリーム 50ml">
       </div>
     </div>
     <div class="product-body">
