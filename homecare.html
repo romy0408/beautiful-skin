@@ -184,6 +184,15 @@
     border: 1.5px solid var(--border);
     overflow: hidden;
     margin: 28px 0 0;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: stretch;
+  }
+  .product-card-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
   }
   .product-card-header {
     padding: 18px 22px 16px;
@@ -235,6 +244,7 @@
 
   .product-body {
     padding: 18px 22px 20px;
+    flex: 1;
   }
   .product-body p { font-size: 14px; }
   .key-ingredient {
@@ -250,10 +260,8 @@
   /* ── PRODUCT IMAGE ── */
   .product-image {
     flex-shrink: 0;
-    width: 110px;
-    height: 110px;
-    padding: 10px;
-    border-radius: 14px;
+    width: 240px;
+    padding: 24px 18px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -269,11 +277,11 @@
   }
   .product-image img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 320px;
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 4px 8px rgba(45, 35, 32, 0.15));
+    filter: drop-shadow(0 8px 16px rgba(45, 35, 32, 0.15));
   }
 
   /* ── NOTE ── */
@@ -311,10 +319,13 @@
   @media (max-width: 480px) {
     .rules-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
     .rule-card { padding: 12px; }
-    .product-card-header { gap: 10px; padding: 14px 16px; }
-    .rank-badge { font-size: 34px; width: 40px; }
-    .product-image { width: 88px; height: 88px; padding: 8px; }
+    .product-card-header { gap: 10px; padding: 14px 14px; }
+    .rank-badge { font-size: 32px; width: 36px; }
     .product-name { font-size: 14px; }
+    .product-body { padding: 14px 14px 16px; }
+    .product-body p { font-size: 13px; }
+    .product-image { width: 130px; padding: 14px 10px; }
+    .product-image img { max-height: 220px; }
   }
 </style>
 </head>
@@ -378,69 +389,75 @@
 
   <!-- RANK 1 -->
   <div class="product-card">
-    <div class="product-card-header">
-      <div class="rank-badge rank-1">1</div>
-      <div class="product-meta">
-        <div class="product-brand">Dr.Reju-All</div>
-        <div class="product-name">アドバンストPDRN<br>リジュビネイティングクリーム</div>
-        <span class="product-tag tag-coral">医師×薬剤師 共同開発</span>
+    <div class="product-card-content">
+      <div class="product-card-header">
+        <div class="rank-badge rank-1">1</div>
+        <div class="product-meta">
+          <div class="product-brand">Dr.Reju-All</div>
+          <div class="product-name">アドバンストPDRN<br>リジュビネイティングクリーム</div>
+          <span class="product-tag tag-coral">医師×薬剤師 共同開発</span>
+        </div>
       </div>
-      <div class="product-image bg-coral">
-        <img src="dr_reju_all_pdrn.webp" alt="Dr.Reju-All アドバンストPDRN リジュビネイティングクリーム">
+      <div class="product-body">
+        <p>実は私自身、江南の薬局で「<strong>施術後のケアにおすすめのクリームってありますか？</strong>」と聞いたところ、スタッフさんに迷うことなくこれを勧められた商品なんです。「施術後ならこれ！」と太鼓判を押されました。</p>
+        <p>最大の特徴は、<strong>医師と薬剤師によって共同開発された</strong>クリームだということ。一般的なコスメブランドとは一線を画す信頼感があります。</p>
+        <div class="key-ingredient">
+          🌿 注目成分：<strong>PDRN（ポリデオキシリボヌクレオチド）</strong><br>
+          韓国の美容皮膚科で注射剤としても使われる肌再生成分。施術後のダウンタイムを短くしたい方に。
+        </div>
+        <p>薬局で手軽に買えるのも嬉しいポイント。渡韓中に立ち寄れる機会があればぜひチェックを。</p>
       </div>
     </div>
-    <div class="product-body">
-      <p>実は私自身、江南の薬局で「<strong>施術後のケアにおすすめのクリームってありますか？</strong>」と聞いたところ、スタッフさんに迷うことなくこれを勧められた商品なんです。「施術後ならこれ！」と太鼓判を押されました。</p>
-      <p>最大の特徴は、<strong>医師と薬剤師によって共同開発された</strong>クリームだということ。一般的なコスメブランドとは一線を画す信頼感があります。</p>
-      <div class="key-ingredient">
-        🌿 注目成分：<strong>PDRN（ポリデオキシリボヌクレオチド）</strong><br>
-        韓国の美容皮膚科で注射剤としても使われる肌再生成分。施術後のダウンタイムを短くしたい方に。
-      </div>
-      <p>薬局で手軽に買えるのも嬉しいポイント。渡韓中に立ち寄れる機会があればぜひチェックを。</p>
+    <div class="product-image bg-coral">
+      <img src="dr_reju_all_pdrn.webp" alt="Dr.Reju-All アドバンストPDRN リジュビネイティングクリーム">
     </div>
   </div>
 
   <!-- RANK 2 -->
   <div class="product-card">
-    <div class="product-card-header">
-      <div class="rank-badge rank-2">2</div>
-      <div class="product-meta">
-        <div class="product-brand">センテリアン24</div>
-        <div class="product-name">マデカクリーム<br>タイムリバース</div>
-        <span class="product-tag tag-sage">敏感肌向け</span>
+    <div class="product-card-content">
+      <div class="product-card-header">
+        <div class="rank-badge rank-2">2</div>
+        <div class="product-meta">
+          <div class="product-brand">センテリアン24</div>
+          <div class="product-name">マデカクリーム<br>タイムリバース</div>
+          <span class="product-tag tag-sage">敏感肌向け</span>
+        </div>
       </div>
-      <div class="product-image bg-sage">
-        <img src="centellian24_madeca.webp" alt="センテリアン24 マデカクリーム タイムリバース">
+      <div class="product-body">
+        <p><strong>ツボクサエキス（シカ成分）</strong>配合の、肌再生ケアに特化したブランド「センテリアン24」のクリームです。</p>
+        <div class="key-ingredient">
+          🌿 注目成分：<strong>ツボクサエキス（シカ成分）</strong><br>
+          本場韓国では昔から肌トラブルのケアに使われてきた定番成分。赤みが出やすい方に特におすすめ。
+        </div>
+        <p>「肌がよわよわな私が一度も荒れたことのない商品！」と太鼓判を押すほど。敏感肌さんの施術後ケアとして心強い一品です。</p>
       </div>
     </div>
-    <div class="product-body">
-      <p><strong>ツボクサエキス（シカ成分）</strong>配合の、肌再生ケアに特化したブランド「センテリアン24」のクリームです。</p>
-      <div class="key-ingredient">
-        🌿 注目成分：<strong>ツボクサエキス（シカ成分）</strong><br>
-        本場韓国では昔から肌トラブルのケアに使われてきた定番成分。赤みが出やすい方に特におすすめ。
-      </div>
-      <p>「肌がよわよわな私が一度も荒れたことのない商品！」と太鼓判を押すほど。敏感肌さんの施術後ケアとして心強い一品です。</p>
+    <div class="product-image bg-sage">
+      <img src="centellian24_madeca.webp" alt="センテリアン24 マデカクリーム タイムリバース">
     </div>
   </div>
 
   <!-- RANK 3 -->
   <div class="product-card">
-    <div class="product-card-header">
-      <div class="rank-badge rank-3">3</div>
-      <div class="product-meta">
-        <div class="product-brand">REJURAN</div>
-        <div class="product-name">ターンオーバー<br>アクティブクリーム 50ml</div>
-        <span class="product-tag tag-gold">定番・大人気</span>
+    <div class="product-card-content">
+      <div class="product-card-header">
+        <div class="rank-badge rank-3">3</div>
+        <div class="product-meta">
+          <div class="product-brand">REJURAN</div>
+          <div class="product-name">ターンオーバー<br>アクティブクリーム 50ml</div>
+          <span class="product-tag tag-gold">定番・大人気</span>
+        </div>
       </div>
-      <div class="product-image bg-gold">
-        <img src="rejuran_active_cream.webp" alt="REJURAN ターンオーバーアクティブクリーム 50ml">
+      <div class="product-body">
+        <p>美容好きなら一度は聞いたことがあるかもしれない「リジュラン」ブランドのコスメライン。<strong>保湿力の高さ</strong>が特徴で、乾燥しやすい施術後の肌をしっかりうるおしてくれます。</p>
+        <div class="key-ingredient">
+          ✨ ポイント：昔から人気の定番アイテム。最近はオリーブヤングでも<strong>欠品が続出するほどの人気ぶり</strong>。見かけたら即買いをおすすめします！
+        </div>
       </div>
     </div>
-    <div class="product-body">
-      <p>美容好きなら一度は聞いたことがあるかもしれない「リジュラン」ブランドのコスメライン。<strong>保湿力の高さ</strong>が特徴で、乾燥しやすい施術後の肌をしっかりうるおしてくれます。</p>
-      <div class="key-ingredient">
-        ✨ ポイント：昔から人気の定番アイテム。最近はオリーブヤングでも<strong>欠品が続出するほどの人気ぶり</strong>。見かけたら即買いをおすすめします！
-      </div>
+    <div class="product-image bg-gold">
+      <img src="rejuran_active_cream.webp" alt="REJURAN ターンオーバーアクティブクリーム 50ml">
     </div>
   </div>
 
