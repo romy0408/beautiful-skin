@@ -190,6 +190,16 @@ body{
 .btn-hp:hover{transform:translateY(-1px)}
 .btn-map{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;text-decoration:none;color:var(--gold);font-weight:700}
 .btn-map:hover{opacity:.7}
+.area-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.ai-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 15px;transition:all .2s}
+.ai-card.on{border-color:var(--rouge);background:rgba(255,255,255,0.9);box-shadow:var(--shadow)}
+.ai-card .ai-top{display:flex;align-items:baseline;gap:8px;margin-bottom:9px}
+.ai-card .ai-name{font-family:'Zen Old Mincho',serif;font-size:16px;font-weight:700;letter-spacing:.02em}
+.ai-card.on .ai-name{color:var(--rouge-deep)}
+.ai-card .ai-sub{font-size:10.5px;color:var(--ink-faint);letter-spacing:.04em}
+.ai-card .ai-time{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--rouge);background:var(--rouge-soft);border-radius:8px;padding:7px 10px;margin-bottom:10px;line-height:1.5}
+.ai-card .ai-route{font-size:11px;color:var(--ink-faint);margin-bottom:9px;line-height:1.6}
+.ai-card .ai-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.75}
 
 .empty{text-align:center;padding:40px 20px;color:var(--ink-soft);font-size:13.5px;border:1px dashed var(--line);border-radius:var(--r);background:rgba(255,255,255,0.5)}
 .empty .ti{font-size:30px;color:var(--ink-faint);display:block;margin-bottom:10px}
@@ -260,7 +270,6 @@ body{
       <a href="homecare.html">ホームケア</a>
       <a href="news.html">最新ニュース</a>
       <a href="about.html">このサイトについて</a>
-      <a href="#finder" class="cta">問診をはじめる</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニューを開く" onclick="toggleNav()"><i class="ti ti-menu-2"></i></button>
   </div>
@@ -302,7 +311,7 @@ body{
           <span class="chip" data-a="明洞" onclick="toggleArea(this)"><i class="ti ti-map-pin"></i>明洞</span>
           <span class="chip" data-a="江南" onclick="toggleArea(this)"><i class="ti ti-map-pin"></i>江南</span>
         </div>
-        <div id="area-map-wrap" style="margin-top:16px"></div>
+        <div id="area-info-wrap" style="margin-top:16px"></div>
       </div>
 
       <!-- AXIS 1: type -->
@@ -366,44 +375,6 @@ body{
 
   <!-- results -->
   <div class="results" id="results"></div>
-</section>
-
-<!-- ===== ARTICLE NAV ===== -->
-<section class="wrap section" id="articles">
-  <div class="section-tag"><span class="no">其ノ二</span><span class="ln"></span><span class="ja">READ THE KARTE</span></div>
-  <h2 class="section-title">渡韓を“体験”で読む</h2>
-  <p class="section-sub">クリニック選びの先にある、リアルな渡韓のすべて。スケジュール、現地での言葉、施術後のホームケアまで。</p>
-
-  <div class="art-grid">
-    <a class="art-card" href="#" data-kanji="札">
-      <div class="ac-ic"><i class="ti ti-clipboard-text"></i></div>
-      <div class="ac-kicker">Karte</div>
-      <h4>クリニック個別カルテ</h4>
-      <p>冒頭5秒でわかるスペック表つき。タイプ・通訳・睡眠麻酔の有無を一院ずつ丁寧に解剖した個別レビュー。</p>
-      <span class="ac-go">カルテ記事を読む <i class="ti ti-arrow-right"></i></span>
-    </a>
-    <a class="art-card" href="#" data-kanji="動">
-      <div class="ac-ic"><i class="ti ti-route"></i></div>
-      <div class="ac-kicker">Route</div>
-      <h4>渡韓スケジュール・動線</h4>
-      <p>「土日でいく工場型弾丸ルート」「ダウンタイム中のソウルお買い物・カフェ巡り動線」など体験軸の旅程集。</p>
-      <span class="ac-go">動線記事を読む <i class="ti ti-arrow-right"></i></span>
-    </a>
-    <a class="art-card" href="#" data-kanji="言">
-      <div class="ac-ic"><i class="ti ti-messages"></i></div>
-      <div class="ac-kicker">Talk</div>
-      <h4>リアルな言葉・伝え方</h4>
-      <p>「カウンセリングで希望を100%伝えるための逆質問フレーズ集」など、現地で困らない安心の会話術。</p>
-      <span class="ac-go">会話の記事を読む <i class="ti ti-arrow-right"></i></span>
-    </a>
-    <a class="art-card" href="homecare.html" data-kanji="肌">
-      <div class="ac-ic"><i class="ti ti-flask"></i></div>
-      <div class="ac-kicker">Homecare</div>
-      <h4>クリニック×ホームケア連動</h4>
-      <p>「施術後のデリケートな肌に本当に使える、現地調達の神再生クリーム3選」。</p>
-      <span class="ac-go">ホームケアページを読む <i class="ti ti-arrow-right"></i></span>
-    </a>
-  </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
@@ -517,32 +488,29 @@ function toggleArea(el){
   render();
 }
 
-/* ソウル簡易マップ：漢江を挟んで北=明洞／南=江南 */
+/* エリア情報：ソウル駅からのアクセス時間と街の特徴 */
+var AREA_INFO=[
+  {n:'明洞',sub:'中区・江北エリア',
+   time:'ソウル駅から約5分',
+   route:'地下鉄4号線で2駅・乗り換えなし（約1,550ウォン）',
+   d:'免税店・コスメショップ・ホテルが密集する観光の中心地。空港鉄道が停まるソウル駅から目と鼻の先で、弾丸日程や初渡韓でも動きやすいのが最大の強み。日本語が通じる店やクリニックが多く、施術後の買い物もそのまま徒歩圏で完結します。'},
+  {n:'江南',sub:'江南区・漢江南エリア',
+   time:'ソウル駅から約30〜40分',
+   route:'4号線→舎堂で2号線乗り換え、または市庁経由で2号線（乗り換え1回）',
+   d:'韓国美容医療の本場。江南大路沿いに大型院・高級院が集中し、最新機器や専門メニューの選択肢が最も豊富なエリアです。落ち着いた街並みでカフェやセレクトショップも多く、ダウンタイム中でもゆったり過ごせます。'}
+];
 function renderMap(){
-  var mdOn=sel.area.indexOf('明洞')>-1;
-  var gnOn=sel.area.indexOf('江南')>-1;
   var none=sel.area.length===0;
-  var mdActive=none||mdOn, gnActive=none||gnOn;
-  var svg=''
-    +'<svg viewBox="0 0 400 230" style="width:100%;max-width:420px;display:block;margin:0 auto" role="img" aria-label="ソウル市内、明洞と江南の位置を示す簡易地図">'
-    +'<rect x="0" y="0" width="400" height="230" rx="14" fill="var(--paper-2)"/>'
-    +'<path d="M0,128 C70,118 110,142 170,130 C230,118 270,140 330,126 C360,120 380,124 400,118 L400,150 C380,156 360,152 330,158 C270,172 230,150 170,162 C110,174 70,150 0,160 Z" fill="#CFE3EE" opacity="0.9"/>'
-    +'<text x="200" y="146" text-anchor="middle" font-size="10" fill="#6F92A8" letter-spacing="2" font-family="Zen Kaku Gothic New, sans-serif">HAN RIVER 漢江</text>'
-    +'<g style="cursor:pointer" onclick="quickArea(\'明洞\')">'
-    +'<circle cx="150" cy="76" r="30" fill="'+(mdActive?'var(--rouge)':'var(--line)')+'" opacity="'+(mdActive?'0.16':'0.5')+'"/>'
-    +'<circle cx="150" cy="76" r="7" fill="'+(mdActive?'var(--rouge)':'var(--ink-faint)')+'"/>'
-    +'<text x="150" y="46" text-anchor="middle" font-size="13" font-weight="700" fill="'+(mdActive?'var(--rouge-deep)':'var(--ink-faint)')+'" font-family="Zen Old Mincho, serif">明洞</text>'
-    +'<text x="150" y="100" text-anchor="middle" font-size="9" fill="var(--ink-faint)" font-family="Zen Kaku Gothic New, sans-serif">中区・江北エリア</text>'
-    +'</g>'
-    +'<g style="cursor:pointer" onclick="quickArea(\'江南\')">'
-    +'<circle cx="255" cy="186" r="34" fill="'+(gnActive?'var(--rouge)':'var(--line)')+'" opacity="'+(gnActive?'0.16':'0.5')+'"/>'
-    +'<circle cx="255" cy="186" r="7" fill="'+(gnActive?'var(--rouge)':'var(--ink-faint)')+'"/>'
-    +'<text x="255" y="206" text-anchor="middle" font-size="13" font-weight="700" fill="'+(gnActive?'var(--rouge-deep)':'var(--ink-faint)')+'" font-family="Zen Old Mincho, serif">江南</text>'
-    +'<text x="255" y="222" text-anchor="middle" font-size="9" fill="var(--ink-faint)" font-family="Zen Kaku Gothic New, sans-serif">江南区・漢江南エリア</text>'
-    +'</g>'
-    +'<text x="370" y="20" text-anchor="end" font-size="9" fill="var(--ink-faint)" letter-spacing="1" font-family="Zen Kaku Gothic New, sans-serif">SEOUL ソウル市内（簡略図）</text>'
-    +'</svg>';
-  document.getElementById('area-map-wrap').innerHTML=svg;
+  var html='<div class="area-info">'+AREA_INFO.map(function(a){
+    var on=none||sel.area.indexOf(a.n)>-1;
+    return '<div class="ai-card'+(on?' on':'')+'" style="cursor:pointer" onclick="quickArea(\''+a.n+'\')">'
+      +'<div class="ai-top"><span class="ai-name">'+a.n+'</span><span class="ai-sub">'+a.sub+'</span></div>'
+      +'<div class="ai-time"><i class="ti ti-train"></i>'+a.time+'</div>'
+      +'<div class="ai-route"><i class="ti ti-route"></i> '+a.route+'</div>'
+      +'<p class="ai-desc">'+a.d+'</p>'
+      +'</div>';
+  }).join('')+'</div>';
+  document.getElementById('area-info-wrap').innerHTML=html;
 }
 function quickArea(a){
   var el=document.querySelector('#area-chips .chip[data-a="'+a+'"]');
