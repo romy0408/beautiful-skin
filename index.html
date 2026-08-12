@@ -111,10 +111,6 @@ body{
 .type-card .check{position:absolute;top:12px;right:12px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
 .type-card.on .check{background:var(--rouge);border-color:var(--rouge);color:#fff}
 
-/* budget slider */
-.budget-wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.budget-wrap input[type=range]{flex:1;min-width:200px;accent-color:var(--rouge);height:4px}
-.budget-val{font-family:'Zen Old Mincho',serif;font-size:20px;font-weight:700;color:var(--rouge-deep);min-width:128px;text-align:center;background:var(--paper-2);border-radius:var(--r-sm);padding:7px 12px}
 
 /* karte footer / result count */
 .karte-foot{background:var(--paper-2);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line)}
@@ -123,85 +119,117 @@ body{
 .btn-reset{font-size:12px;color:var(--ink-faint);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .btn-reset:hover{color:var(--rouge)}
 
-/* ====== results: KARTE cards ====== */
-.results{margin-top:30px;display:flex;flex-direction:column;gap:18px}
-.result-lead{font-size:13px;color:var(--ink-soft);margin-bottom:4px}
+/* ====== results: KARTE cards (compact / 見比べ用) ====== */
+.results{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;align-items:start}
+.result-lead{grid-column:1/-1;font-size:13px;color:var(--ink-soft);margin:0}
 .result-lead b{color:var(--rouge-deep)}
-.kcard{background:rgba(255,255,255,0.92);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;position:relative;animation:rise .4s ease backwards}
+.results-note{grid-column:1/-1;text-align:center;font-size:12px;color:var(--ink-faint);margin-top:4px}
+.kcard{background:rgba(255,255,255,0.92);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:16px 18px 15px;position:relative;animation:rise .4s ease backwards}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.kcard-thumb{height:108px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.kcard-thumb.factory{background:linear-gradient(120deg,#EFE6E0,#E3D5C8)}
-.kcard-thumb.premium{background:linear-gradient(120deg,#F3E6EC,#E9D6E3)}
-.kcard-thumb .thumb-ic{font-size:30px;color:rgba(154,47,79,0.35);position:relative;z-index:1}
-.kcard-thumb.premium .thumb-ic{color:rgba(122,74,147,0.4)}
-.kcard-thumb::before{content:'';position:absolute;inset:0;opacity:.5;background-image:radial-gradient(circle,rgba(255,255,255,0.5) 1px,transparent 1.4px);background-size:14px 14px}
-.kcard-thumb .thumb-label{position:absolute;bottom:8px;left:12px;font-size:10px;letter-spacing:.1em;color:rgba(42,35,41,0.45);background:rgba(255,255,255,0.6);padding:3px 9px;border-radius:999px;z-index:1}
-.kcard-thumb .thumb-photo-link{position:absolute;top:8px;right:10px;font-size:10px;color:var(--rouge-deep);background:rgba(255,255,255,0.85);padding:4px 10px;border-radius:999px;text-decoration:none;z-index:1;display:flex;align-items:center;gap:3px;font-weight:700}
-.kcard-thumb .thumb-photo-link:hover{background:#fff}
-.kcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:18px 20px 14px;border-bottom:1px solid var(--line-soft)}
-.kcard-rank{position:absolute;top:0;left:0;background:var(--ink);color:var(--paper);font-family:'Zen Old Mincho',serif;font-size:13px;font-weight:700;padding:5px 13px 6px;border-radius:0 0 var(--r-sm) 0;letter-spacing:.05em}
-.kcard-rank.best{background:linear-gradient(120deg,var(--gold),#caa66a)}
-.kcard h3{font-family:'Zen Old Mincho',serif;font-size:18px;font-weight:700;margin:14px 0 4px;letter-spacing:.02em;padding-left:2px}
-.kcard .area{font-size:11.5px;color:var(--ink-faint);display:flex;align-items:center;gap:4px}
-.type-badge{font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;white-space:nowrap;flex-shrink:0}
-.type-badge.factory{background:#E7F1EC;color:#2E7D5B}
-.type-badge.premium{background:#EFE7F3;color:#7A4A93}
-.kcard-desc{padding:12px 20px 4px;font-size:13px;color:var(--ink-soft);line-height:1.8}
+.kcard-rank{display:inline-block;background:var(--ink);color:var(--paper);font-family:'Zen Old Mincho',serif;font-size:10.5px;font-weight:700;padding:3px 11px;border-radius:999px;letter-spacing:.06em;margin-bottom:9px}
+.kcard-rank.best{background:linear-gradient(120deg,var(--gold),#caa66a);color:#fff}
+.kcard-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.kcard h3{font-family:'Zen Old Mincho',serif;font-size:16px;font-weight:700;margin:0 0 6px;letter-spacing:.02em;line-height:1.45}
+.kcard .area{font-size:11px;color:var(--ink-faint);display:flex;align-items:center;gap:4px;line-height:1.5}
+.kcard .hours{font-size:11px;color:var(--ink-soft);display:flex;align-items:flex-start;gap:4px;line-height:1.6;margin-top:4px}
+.kcard .hours .ti{color:var(--gold);flex-shrink:0;margin-top:1px}
+.type-badge{font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+.type-badge.factory{background:#E4EEF8;color:#2B6CA3}
+.type-badge.premium{background:#E7ECF7;color:#4A5A93}
+.kcard-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.7;margin:0 0 9px}
 
-/* spec table — the "5 second" karte spec */
-.spec-table{margin:12px 20px 18px;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
-.spec-row{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid var(--line-soft);font-size:12.5px}
-.spec-row:last-child{border-bottom:none}
-.spec-row dt{background:var(--paper-2);padding:9px 12px;color:var(--ink-soft);font-weight:700;display:flex;align-items:center;gap:5px}
-.spec-row dd{padding:9px 13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.spec-yes{color:#2E7D5B;font-weight:700;display:inline-flex;align-items:center;gap:3px}
-.spec-no{color:var(--ink-faint);display:inline-flex;align-items:center;gap:3px}
-.pricepill{font-family:'Zen Old Mincho',serif;font-weight:700;color:var(--rouge-deep)}
+/* 一行スペック：横並びのピルで院ごとに見比べやすく */
+.spec-line{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.sp{font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:var(--paper-2);color:var(--ink-soft);display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.sp.on{background:#E7F1EC;border-color:#BFE0CE;color:#2E7D5B;font-weight:700}
+.sp.off{opacity:.5}
+.worry-line{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:9px}
+.worry-line .wl-label{font-size:10.5px;color:var(--ink-faint);margin-right:2px}
 .t-pill{font-size:11px;padding:2px 9px;border-radius:999px;background:var(--rouge-soft);color:var(--rouge-deep)}
-
-.kcard-foot{display:flex;gap:10px;flex-wrap:wrap;padding:0 20px 18px;align-items:center}
-
-/* 2カラム：左=院情報 / 右=施術メニュー */
-.kcard-cols{display:grid;grid-template-columns:1fr 270px}
-.kcard-left{border-right:1px solid var(--line-soft);min-width:0}
-.kcard-right{background:linear-gradient(180deg,rgba(247,228,234,0.5),rgba(255,255,255,0.4));padding:16px 18px 18px;display:flex;flex-direction:column}
-.menu-head{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge-deep);font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:13px}
-.menu-head::after{content:'';flex:1;height:1px;background:var(--line)}
-.menu-item{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
-.menu-item:last-of-type{border-bottom:none}
-.menu-ic{width:32px;height:32px;border-radius:9px;background:#fff;border:1px solid var(--line);color:var(--rouge);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.menu-txt h5{font-size:12.5px;font-weight:700;margin-bottom:3px;line-height:1.4}
-.menu-txt .for{font-size:10px;color:var(--rouge-deep);background:var(--rouge-soft);border-radius:999px;padding:1px 8px;display:inline-block;margin-bottom:4px}
-.menu-txt p{font-size:11px;color:var(--ink-soft);line-height:1.6}
-.menu-price{font-size:11px;color:var(--ink-soft);margin-top:5px;display:flex;align-items:center;gap:4px}
-.menu-price .ti{font-size:12px;color:var(--gold)}
-.menu-price b{font-family:'Zen Old Mincho',serif;color:var(--rouge-deep);font-weight:700;font-size:12px}
-.menu-stars{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap}
-.star-row{display:inline-flex;align-items:center;gap:4px;font-size:13px;letter-spacing:1px;line-height:1}
-.star-label{font-size:10px;color:var(--ink-soft);letter-spacing:0;white-space:nowrap;margin-right:2px}
-.st-fill{color:#FFB800}
-.st-empty{color:#E0D8DC}
-@media(max-width:680px){
-  .kcard-cols{grid-template-columns:1fr}
-  .kcard-left{border-right:none;border-bottom:1px solid var(--line-soft)}
-  .kcard-right{background:linear-gradient(180deg,rgba(247,228,234,0.4),rgba(255,255,255,0.3))}
-}
-.btn-hp{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 18px;border-radius:999px;color:#fff;background:linear-gradient(120deg,var(--rouge),var(--rouge-deep));box-shadow:0 3px 12px rgba(194,69,106,0.28);transition:transform .15s}
+.kcard-foot{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:11px;border-top:1px solid var(--line-soft)}
+.btn-hp{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;text-decoration:none;padding:7px 15px;border-radius:999px;color:#fff;background:linear-gradient(120deg,var(--rouge),var(--rouge-deep));box-shadow:0 3px 12px rgba(194,69,106,0.28);transition:transform .15s}
 .btn-hp:hover{transform:translateY(-1px)}
-.btn-map{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;text-decoration:none;color:var(--gold);font-weight:700}
+.btn-map{display:inline-flex;align-items:center;gap:5px;font-size:12px;text-decoration:none;color:var(--gold);font-weight:700}
 .btn-map:hover{opacity:.7}
+
+/* ====== エリア選択カード（.type-card と同じ選択表現に統一） ====== */
 .area-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-.ai-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 15px;transition:all .2s}
-.ai-card.on{border-color:var(--rouge);background:rgba(255,255,255,0.9);box-shadow:var(--shadow)}
-.ai-card .ai-top{display:flex;align-items:baseline;gap:8px;margin-bottom:9px}
-.ai-card .ai-name{font-family:'Zen Old Mincho',serif;font-size:16px;font-weight:700;letter-spacing:.02em}
+.ai-card{border:1.5px solid var(--line);border-radius:var(--r-sm);padding:16px 16px 14px;cursor:pointer;background:#fff;transition:all .18s;position:relative}
+.ai-card:hover{border-color:var(--rouge);transform:translateY(-2px)}
+.ai-card.on{border-color:var(--rouge);background:var(--rouge-soft);box-shadow:0 4px 14px rgba(194,69,106,0.16)}
+.ai-card .check{position:absolute;top:12px;right:12px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;background:#fff}
+.ai-card.on .check{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.ai-card .ai-top{display:flex;align-items:baseline;gap:8px;margin-bottom:9px;padding-right:26px}
+.ai-card .ai-name{font-family:'Zen Old Mincho',serif;font-size:15px;font-weight:700;letter-spacing:.02em}
 .ai-card.on .ai-name{color:var(--rouge-deep)}
 .ai-card .ai-sub{font-size:10.5px;color:var(--ink-faint);letter-spacing:.04em}
-.ai-card .ai-time{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--rouge);background:var(--rouge-soft);border-radius:8px;padding:7px 10px;margin-bottom:10px;line-height:1.5}
-.ai-card .ai-route{font-size:11px;color:var(--ink-faint);margin-bottom:9px;line-height:1.6}
-.ai-card .ai-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.75}
+.ai-card .ai-time{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--rouge-deep);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 11px;margin-bottom:10px;line-height:1.4}
+.ai-card.on .ai-time{border-color:rgba(194,69,106,0.35)}
+.ai-card .ai-desc{font-size:11.5px;color:var(--ink-soft);line-height:1.7}
 
-.empty{text-align:center;padding:40px 20px;color:var(--ink-soft);font-size:13.5px;border:1px dashed var(--line);border-radius:var(--r);background:rgba(255,255,255,0.5)}
+/* ====== 悩み別の施術セクション（価格の縦軸＋クリックで詳細） ====== */
+.tr-layout{display:flex;gap:16px;align-items:stretch}
+.tr-axis{width:46px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;padding:4px 0}
+.ax-label{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--ink-faint);white-space:nowrap}
+.ax-top{color:#2B6CA3}
+.ax-bottom{color:var(--rouge-deep)}
+.ax-line{flex:1;width:6px;margin:8px 0 14px;border-radius:999px;background:linear-gradient(180deg,#CFE0F0,var(--rouge));position:relative}
+.ax-line::after{content:'';position:absolute;left:50%;bottom:-13px;transform:translateX(-50%);border-left:9px solid transparent;border-right:9px solid transparent;border-top:14px solid var(--rouge)}
+.tr-list{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+.tr-row{position:relative;background:rgba(255,255,255,0.9);border:1px solid var(--line);border-radius:var(--r-sm);transition:border-color .18s,box-shadow .18s}
+.tr-row:hover{border-color:var(--rouge)}
+.tr-row.open{border-color:var(--rouge);box-shadow:0 4px 16px rgba(194,69,106,0.14);background:#fff}
+.tr-dot{position:absolute;left:-25px;top:24px;width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid var(--rouge)}
+.tr-toggle{width:100%;display:flex;gap:12px;align-items:flex-start;background:none;border:0;padding:14px 16px 13px;text-align:left;cursor:pointer;font-family:inherit;color:inherit}
+.tr-ic{width:34px;height:34px;border-radius:10px;background:var(--rouge-soft);color:var(--rouge);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;margin-top:2px}
+.tr-main{flex:1;min-width:0}
+.tr-for{font-size:10px;color:var(--gold);letter-spacing:.1em;display:block;margin-bottom:2px}
+.tr-title{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-bottom:8px}
+.tr-name{font-family:'Zen Old Mincho',serif;font-size:15px;font-weight:700;line-height:1.4}
+.tr-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.03em;display:inline-flex;align-items:center;gap:3px}
+.tr-badge.pop{background:linear-gradient(120deg,var(--rouge),var(--rouge-deep));color:#fff}
+.tr-badge.pop .ti{font-size:11px}
+.tr-badge.kr{background:#E4EEF8;color:#2B6CA3}
+.tr-meta{display:flex;flex-wrap:wrap;gap:7px 15px;align-items:center}
+.star-row{display:inline-flex;align-items:center;gap:4px;font-size:13px;letter-spacing:1px;line-height:1}
+.star-label{font-size:10.5px;color:var(--ink-soft);letter-spacing:0;white-space:nowrap;margin-right:2px}
+.st-fill{color:#FFB800}
+.st-empty{color:#E0D8DC}
+.tr-times,.tr-shots{font-size:11.5px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:4px}
+.tr-times .ti{color:var(--rouge);font-size:13px}
+.tr-shots{font-weight:700;color:var(--rouge-deep);background:var(--rouge-soft);border-radius:999px;padding:3px 10px}
+.tr-shots .ti{font-size:12px}
+.tr-caret{color:var(--ink-faint);font-size:17px;flex-shrink:0;margin-top:4px;transition:transform .2s}
+.tr-row.open .tr-caret{transform:rotate(180deg);color:var(--rouge)}
+.tr-detail{display:none;padding:0 18px 16px 62px}
+.tr-row.open .tr-detail{display:block}
+.tr-detail p{font-size:12.5px;color:var(--ink-soft);line-height:2;border-top:1px dashed var(--line);padding-top:13px}
+
+/* リジュラン解説 */
+.rej-box{margin-top:18px;background:rgba(255,255,255,0.85);border:1px solid var(--line);border-left:3px solid var(--rouge);border-radius:var(--r-sm);padding:18px 20px 16px}
+.rej-box h4{font-family:'Zen Old Mincho',serif;font-size:15px;font-weight:700;display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.rej-box h4 .ti{color:var(--rouge);font-size:17px}
+.rej-lead{font-size:12px;color:var(--ink-soft);line-height:1.9;margin-bottom:13px}
+.rej-list{display:grid;gap:9px}
+.rej-item{display:grid;grid-template-columns:110px 210px 1fr;gap:10px;align-items:baseline;font-size:12px;padding:9px 0;border-top:1px dashed var(--line)}
+.rej-n{font-weight:700;color:var(--rouge-deep);font-family:'Zen Old Mincho',serif;font-size:13px}
+.rej-spec{color:var(--ink-faint);font-size:11px}
+.rej-u{color:var(--ink-soft);line-height:1.7}
+
+.tr-empty{text-align:center;padding:34px 20px;color:var(--ink-soft);font-size:13px;line-height:2;border:1px dashed var(--line);border-radius:var(--r);background:rgba(255,255,255,0.55)}
+.tr-empty b{color:var(--rouge-deep)}
+.tr-empty .ti{font-size:28px;color:var(--ink-faint);display:block;margin-bottom:8px}
+.tr-note{font-size:11.5px;color:var(--ink-faint);line-height:1.9;margin-top:16px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:13px 15px}
+@media(max-width:640px){
+  .tr-layout{gap:12px}
+  .tr-axis{width:30px}
+  .tr-dot{display:none}
+  .tr-meta{gap:6px 12px}
+  .tr-detail{padding:0 16px 15px 16px}
+  .rej-item{grid-template-columns:1fr;gap:3px}
+}
+
+.empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--ink-soft);font-size:13.5px;border:1px dashed var(--line);border-radius:var(--r);background:rgba(255,255,255,0.5)}
 .empty .ti{font-size:30px;color:var(--ink-faint);display:block;margin-bottom:10px}
 
 /* ====== article nav cards ====== */
@@ -228,8 +256,7 @@ body{
 @media(max-width:640px){
   .type-cards{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
-  .kcard-top{flex-direction:column}
-  .spec-row{grid-template-columns:84px 1fr}
+  .kcard-head{flex-direction:column;gap:7px}
   .hero-stats{gap:18px}
   .hstat .div{display:none}
 }
@@ -306,11 +333,7 @@ body{
 
       <!-- AXIS 0: area -->
       <div class="q-block">
-        <div class="q-label"><span class="q-no">零</span>エリア<span class="q-hint">明洞・江南どちらで受けたい？</span></div>
-        <div class="chips" id="area-chips">
-          <span class="chip" data-a="明洞" onclick="toggleArea(this)"><i class="ti ti-map-pin"></i>明洞</span>
-          <span class="chip" data-a="江南" onclick="toggleArea(this)"><i class="ti ti-map-pin"></i>江南</span>
-        </div>
+        <div class="q-label"><span class="q-no">零</span>エリア<span class="q-hint">カードをタップして選択（未選択なら両方）</span></div>
         <div id="area-info-wrap" style="margin-top:16px"></div>
       </div>
 
@@ -357,15 +380,6 @@ body{
         </div>
       </div>
 
-      <!-- AXIS: budget -->
-      <div class="q-block">
-        <div class="q-label"><span class="q-no">四</span>1回あたりの予算<span class="q-hint">この目安以内で受けられる院</span></div>
-        <div class="budget-wrap">
-          <input type="range" id="budget" min="10000" max="200000" step="5000" value="200000" oninput="setBudget(this.value)">
-          <span class="budget-val" id="budget-val">上限なし</span>
-        </div>
-      </div>
-
     </div>
     <div class="karte-foot">
       <span class="foot-count">条件に合うクリニック <b id="match-count">0</b> 院</span>
@@ -375,6 +389,14 @@ body{
 
   <!-- results -->
   <div class="results" id="results"></div>
+</section>
+
+<!-- ===== TREATMENT BY CONCERN ===== -->
+<section class="wrap section" id="treatments">
+  <div class="section-tag"><span class="no">其ノ二</span><span class="ln"></span><span class="ja">TREATMENT MENU</span></div>
+  <h2 class="section-title">肌悩み別・受けるべき施術</h2>
+  <p class="section-sub">問診票で選んだ肌悩みに効く施術だけを、手頃なものから順に縦に並べます。施術名をタップすると詳しい説明が開きます。</p>
+  <div id="treatment-wrap"></div>
 </section>
 
 <!-- ===== FOOTER ===== -->
@@ -436,85 +458,158 @@ document.querySelectorAll('#nav a').forEach(function(a){
    price:  1回あたりの目安下限(円) ※絞り込み用ダミー
    ========================================================= */
 var CLINICS=[
-  {n:'プムグローバル 明洞店',area:'明洞',areaNote:'明洞駅8番出口 徒歩1分',type:'factory',worry:['pore','acne','spot','scar'],jp:true,sleep:true,pop:'jp',sun:true,price:15000,tag:'ポテンツァ',d:'破格の価格で渡韓初心者の入門に最適。日本語対応も手厚い大型チェーン。',u:'https://link.inpock.co.kr/ppeum_jp',ut:'公式（日本語）',map:'https://maps.google.com/?q=프름글로벌+명동점+서울'},
-  {n:'リエンジャン 明洞店',area:'明洞',areaNote:'明洞エリア',type:'factory',worry:['spot','pore','dry'],jp:true,sleep:true,pop:'both',sun:true,price:12000,tag:'メガ院',d:'20年運営・アジア12支店のメガクリニック。安定の定番院。',u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝+명동점+서울'},
-  {n:'YOU&I皮膚科 明洞店',area:'明洞',areaNote:'明洞駅4番出口前',type:'factory',worry:['dry','spot'],jp:true,sleep:false,pop:'jp',sun:false,price:18000,tag:'水光肌',d:'バランスが良く日本人リピーター多数。水光注射が看板。',u:'https://ameblo.jp/skinuni114/',ut:'公式ブログ',map:'https://maps.google.com/?q=유앤아이피부과+명동점+서울'},
-  {n:'明洞MUSEクリニック',area:'明洞',areaNote:'明洞駅5番出口 徒歩3分',type:'premium',worry:['spot','dry','wrinkle'],jp:true,sleep:false,pop:'jp',sun:false,price:25000,tag:'トーニング',d:'明洞の老舗人気院。日本人限定プロモも実施。落ち着いた接客。',u:'https://ameblo.jp/musemdjp/',ut:'公式ブログ',map:'https://maps.google.com/?q=뮤즈클리닉+명동+서울'},
-  {n:'リーダース皮膚科 明洞',area:'明洞',areaNote:'会賢駅1番出口 直結',type:'premium',worry:['acne','pore','dry','scar'],jp:true,sleep:true,pop:'both',sun:true,price:28000,tag:'ニキビ',d:'ソウル大出身の専門医ぞろいの実力派。難治性ニキビにも強い。',u:'https://japan.leaders-md.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리더스피부과+명동점+서울'},
-  {n:'Abijouクリニック 明洞',area:'明洞',areaNote:'乙支路入口駅6番出口',type:'premium',worry:['wrinkle','pore','acne','scar'],jp:true,sleep:true,pop:'kr',sun:false,price:40000,tag:'ダブロ',d:'芸能人の来院多数。上品で丁寧な施術とプライベート空間。',u:'https://abijouclinic.com/jpn/',ut:'公式（日本語）',map:'https://maps.google.com/?q=아비쥬클리닉+명동+서울'},
-  {n:'WIZ&美',area:'明洞',areaNote:'乙支路入口駅6番出口 徒歩3分',type:'premium',worry:['wrinkle','spot'],jp:true,sleep:false,pop:'jp',sun:false,price:35000,tag:'個室',d:'時間をかけたカウンセリングが好評。完全個室でじっくり相談。',u:'https://www.konest.com/contents/clinic_mise_detail.html?id=5384',ut:'コネスト詳細',map:'https://maps.google.com/?q=위즈앤미+명동+서울'},
-  {n:'リエンジャン 江南本店',area:'江南',areaNote:'江南大路沿いタワー内',type:'factory',worry:['spot','dry','pore'],jp:true,sleep:true,pop:'both',sun:true,price:12000,tag:'メガ院',d:'アジア最大級ネットワークの本店。スケール感のある定番院。',u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝+강남본점+서울'},
-  {n:'プムグローバル 江南店',area:'江南',areaNote:'江南エリア',type:'factory',worry:['pore','acne','wrinkle','scar'],jp:true,sleep:true,pop:'jp',sun:true,price:15000,tag:'ポテンツァ',d:'2023年オープンの外国人向け店舗。日本語コーディネーター在籍。',u:'https://link.inpock.co.kr/ppeum_jp',ut:'公式（日本語）',map:'https://maps.google.com/?q=프름글로벌+강남점+서울'},
-  {n:'シャインビーム 江南店',area:'江南',areaNote:'江南駅11番出口 徒歩2分',type:'factory',worry:['pore','acne','scar'],jp:true,sleep:false,pop:'jp',sun:true,price:13000,tag:'ポテンツァ',d:'ポテンツァの安さで話題。日本語サイト完備で予約しやすい。',u:'https://gangnam.shinebeam.co.kr/ja',ut:'公式（日本語）',map:'https://maps.google.com/?q=샤인빔+강남점+서울'},
-  {n:'YOU&I皮膚科 江南店',area:'江南',areaNote:'江南駅エリア',type:'factory',worry:['dry','spot'],jp:true,sleep:false,pop:'both',sun:false,price:18000,tag:'水光肌',d:'バランス型で幅広く支持。水光・美肌注射のメニューが豊富。',u:'https://ameblo.jp/skinuni114/',ut:'公式ブログ',map:'https://maps.google.com/?q=유앤아이피부과+강남점+서울'},
-  {n:'ラミチェ皮膚科',area:'江南',areaNote:'蚕室・江南駅から約15分',type:'premium',worry:['acne','pore','spot','scar'],jp:true,sleep:true,pop:'kr',sun:false,price:30000,tag:'レーザー',d:'51種以上のレーザー設備の本格派。院長が薬剤を個別調整。',u:'https://www.konest.com/contents/clinic_mise_detail.html?id=30798',ut:'予約ページ',map:'https://maps.google.com/?q=라미체피부과+서울'},
-  {n:'Seye Clinic',area:'江南',areaNote:'新ノニョン駅7番出口 徒歩1分',type:'premium',worry:['spot','wrinkle','dry'],jp:true,sleep:true,pop:'kr',sun:false,price:45000,tag:'最新機器',d:'江南最大級規模。芸能人御用達の洗練空間。最新機器を先行導入。',u:'https://seyeclinic.com/ja',ut:'公式（日本語）',map:'https://maps.google.com/?q=세이에클리닉+강남+서울'},
-  {n:'チョンダムオラクル皮膚科',area:'江南',areaNote:'清潭洞',type:'premium',worry:['wrinkle','spot','dry'],jp:true,sleep:true,pop:'kr',sun:false,price:50000,tag:'再生医療',d:'国内外100院超のオラクル旗艦院。再生医療・点滴メニューが先進的。',u:'https://www.konest.com/contents/clinic_mise_detail.html?id=7140',ut:'予約ページ',map:'https://maps.google.com/?q=청담오라클피부과+서울'},
-  {n:'LIENJANG BLACK 江南',area:'江南',areaNote:'江南エリア',type:'premium',worry:['wrinkle','dry'],jp:true,sleep:true,pop:'both',sun:true,price:48000,tag:'個室',d:'リエンジャンのプレミアムライン。完全個室の再生プログラム。',u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝블랙+강남+서울'}
+  {n:'プムグローバル 明洞店',area:'明洞',areaNote:'明洞駅8番出口 徒歩1分',type:'factory',worry:['pore','acne','spot','scar'],jp:true,sleep:true,pop:'jp',sun:true,price:15000,tag:'ポテンツァ',d:'破格の価格で渡韓初心者の入門に最適。日本語対応も手厚い大型チェーン。',hours:'月・金 10:00〜21:00／火水木土日 10:00〜19:00',u:'https://link.inpock.co.kr/ppeum_jp',ut:'公式（日本語）',map:'https://maps.google.com/?q=프름글로벌+명동점+서울'},
+  {n:'リエンジャン 明洞店',area:'明洞',areaNote:'明洞エリア',type:'factory',worry:['spot','pore','dry','wrinkle'],jp:true,sleep:true,pop:'both',sun:true,price:12000,tag:'メガ院',d:'20年運営・アジア12支店のメガクリニック。安定の定番院。',hours:'平日 10:30〜20:00／土 10:30〜17:00／日 11:00〜17:00',u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝+명동점+서울'},
+  {n:'YOU&I皮膚科 明洞店',area:'明洞',areaNote:'明洞駅4番出口前',type:'factory',worry:['dry','spot'],jp:true,sleep:false,pop:'jp',sun:false,price:18000,tag:'水光肌',d:'バランスが良く日本人リピーター多数。水光注射が看板。',hours:'10:00〜20:30（昼休なし・曜日により変動）',u:'https://ameblo.jp/skinuni114/',ut:'公式ブログ',map:'https://maps.google.com/?q=유앤아이피부과+명동점+서울'},
+  {n:'明洞MUSEクリニック',area:'明洞',areaNote:'明洞駅5番出口 徒歩3分',type:'premium',worry:['spot','dry','wrinkle'],jp:true,sleep:false,pop:'jp',sun:true,price:25000,tag:'トーニング',d:'明洞の老舗人気院。日本人限定プロモも実施。落ち着いた接客。',hours:'平日 10:00〜20:00／土日 9:00〜15:00',u:'https://ameblo.jp/musemdjp/',ut:'公式ブログ',map:'https://maps.google.com/?q=뮤즈클리닉+명동+서울'},
+  {n:'リーダース皮膚科 明洞',area:'明洞',areaNote:'会賢駅1番出口 直結',type:'premium',worry:['acne','pore','dry','scar'],jp:true,sleep:true,pop:'both',sun:false,price:28000,tag:'ニキビ',d:'ソウル大出身の専門医ぞろいの実力派。難治性ニキビにも強い。',hours:'平日 10:30〜13:00・14:00〜17:00／日祝 休診',u:'https://japan.leaders-md.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리더스피부과+명동점+서울'},
+  {n:'Abijouクリニック 明洞',area:'明洞',areaNote:'乙支路入口駅6番出口',type:'premium',worry:['wrinkle','pore','acne','scar'],jp:true,sleep:true,pop:'kr',sun:false,price:40000,tag:'ダブロ',d:'芸能人の来院多数。上品で丁寧な施術とプライベート空間。',hours:'平日 10:30〜20:30／土 10:00〜16:30／日祝 休診',u:'https://abijouclinic.com/jpn/',ut:'公式（日本語）',map:'https://maps.google.com/?q=아비쥬클리닉+명동+서울'},
+  {n:'WIZ&美',area:'明洞',areaNote:'乙支路入口駅6番出口 徒歩3分',type:'premium',worry:['wrinkle','spot'],jp:true,sleep:false,pop:'jp',sun:false,price:35000,tag:'個室',d:'時間をかけたカウンセリングが好評。完全個室でじっくり相談。',hours:'公式サイト・予約時に要確認',u:'https://www.konest.com/contents/clinic_mise_detail.html?id=5384',ut:'コネスト詳細',map:'https://maps.google.com/?q=위즈앤미+명동+서울'},
+  {n:'リエンジャン 江南本店',area:'江南',areaNote:'江南大路沿いタワー内',type:'factory',worry:['spot','dry','pore'],jp:true,sleep:true,pop:'both',sun:true,price:12000,tag:'メガ院',d:'アジア最大級ネットワークの本店。スケール感のある定番院。',hours:'平日 10:00〜20:00／土 9:30〜17:00／日 11:00〜17:00',u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝+강남본점+서울'},
+  {n:'プムグローバル 江南店',area:'江南',areaNote:'江南エリア',type:'factory',worry:['pore','acne','wrinkle','scar'],jp:true,sleep:true,pop:'jp',sun:true,price:15000,tag:'ポテンツァ',d:'2023年オープンの外国人向け店舗。日本語コーディネーター在籍。',hours:'月・金 10:00〜21:00／火水木土日 10:00〜19:00',u:'https://link.inpock.co.kr/ppeum_jp',ut:'公式（日本語）',map:'https://maps.google.com/?q=프름글로벌+강남점+서울'},
+  {n:'シャインビーム 江南店',area:'江南',areaNote:'江南駅11番出口 徒歩2分',type:'factory',worry:['pore','acne','scar'],jp:true,sleep:false,pop:'jp',sun:true,price:13000,tag:'ポテンツァ',d:'ポテンツァの安さで話題。日本語サイト完備で予約しやすい。',hours:'平日 10:00〜20:00／土日 10:00〜18:30',u:'https://gangnam.shinebeam.co.kr/ja',ut:'公式（日本語）',map:'https://maps.google.com/?q=샤인빔+강남점+서울'},
+  {n:'YOU&I皮膚科 江南店',area:'江南',areaNote:'江南駅エリア',type:'factory',worry:['dry','spot'],jp:true,sleep:false,pop:'both',sun:false,price:18000,tag:'水光肌',d:'バランス型で幅広く支持。水光・美肌注射のメニューが豊富。',hours:'公式サイト・予約時に要確認',u:'https://ameblo.jp/skinuni114/',ut:'公式ブログ',map:'https://maps.google.com/?q=유앤아이피부과+강남점+서울'},
+  {n:'ラミチェ皮膚科',area:'江南',areaNote:'蚕室・江南駅から約15分',type:'premium',worry:['acne','pore','spot','scar'],jp:true,sleep:true,pop:'kr',sun:false,price:30000,tag:'レーザー',d:'51種以上のレーザー設備の本格派。院長が薬剤を個別調整。',hours:'月水金 12:30〜21:30／火木 10:00〜19:00／土 9:00〜15:00／日祝 休診',u:'https://www.konest.com/contents/clinic_mise_detail.html?id=30798',ut:'予約ページ',map:'https://maps.google.com/?q=라미체피부과+서울'},
+  {n:'Seye Clinic',area:'江南',areaNote:'新ノニョン駅7番出口 徒歩1分',type:'premium',worry:['spot','wrinkle','dry'],jp:true,sleep:true,pop:'kr',sun:true,price:45000,tag:'最新機器',d:'江南最大級規模。芸能人御用達の洗練空間。最新機器を先行導入。',hours:'平日 10:30〜21:00／土日祝 10:30〜19:00',u:'https://seyeclinic.com/ja',ut:'公式（日本語）',map:'https://maps.google.com/?q=세이에클리닉+강남+서울'},
+  {n:'チョンダムオラクル皮膚科',area:'江南',areaNote:'清潭洞',type:'premium',worry:['wrinkle','spot','dry'],jp:true,sleep:true,pop:'kr',sun:false,price:50000,tag:'再生医療',d:'国内外100院超のオラクル旗艦院。再生医療・点滴メニューが先進的。',hours:'平日 10:00〜19:00（昼休 13:00〜14:00）・平日夜間／土曜診療あり',u:'https://www.konest.com/contents/clinic_mise_detail.html?id=7140',ut:'予約ページ',map:'https://maps.google.com/?q=청담오라클피부과+서울'},
+  {n:'LIENJANG BLACK 江南',area:'江南',areaNote:'江南エリア',type:'premium',worry:['wrinkle','dry'],jp:true,sleep:true,pop:'both',sun:true,price:48000,tag:'個室',d:'リエンジャンのプレミアムライン。完全個室の再生プログラム。',hours:'公式サイト・予約時に要確認',u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝블랙+강남+서울'},
+  {n:'RE:BERRY 明洞',area:'明洞',areaNote:'明洞駅8番出口 徒歩2分',type:'factory',worry:['acne','scar','pore'],jp:true,sleep:false,pop:'jp',sun:true,price:14000,tag:'ニキビ特化',d:'ニキビ・ニキビ跡に特化したパッケージ型。ポテンツァ＋エクソソームの組み合わせが看板で、年中無休・日本語スタッフ常駐。',hours:'平日 10:30〜20:00／土日 10:30〜19:00（年中無休）',u:'https://myeongdongskinclinicreberry.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리베리클리닉+명동+서울'},
+  {n:'ドクタープチ医院 明洞店',area:'明洞',areaNote:'明洞駅10番出口 徒歩1分',type:'factory',worry:['wrinkle','pore','spot'],jp:true,sleep:false,pop:'jp',sun:true,price:16000,tag:'チタニウムリフト',d:'チタニウムリフトや輪郭ボトックスなどリフト系が看板。1人1室のプライベート空間で、土日祝も18時まで診療。',hours:'平日 10:00〜19:30／土日祝 10:00〜18:00',u:'https://tribeau.jp/clinics/5066',ut:'予約ページ',map:'https://maps.google.com/?q=닥터쁘띠의원+명동점+서울'},
+  {n:'アルムダウン・ミタム医院',area:'明洞',areaNote:'明洞駅 徒歩1分',type:'premium',worry:['wrinkle','spot','scar'],jp:true,sleep:false,pop:'jp',sun:true,price:32000,tag:'糸リフト',d:'韓国初の切開しない筋膜固定糸リフト「ミタムリフティング」が看板。目の下フィラーやシミ0コースも人気で日本人スタッフが常駐。',hours:'年中無休・昼休なし（詳細時間は要確認）',u:'https://mitamjp.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=아름다운미탐의원+명동+서울'},
+  {n:'江南アルムダウンナラ皮膚科',area:'江南',areaNote:'江南駅1番出口 徒歩1分',type:'premium',worry:['acne','scar','pore','wrinkle'],jp:true,sleep:false,pop:'both',sun:true,price:28000,tag:'ニキビ・跡',d:'ニキビとニキビ跡の治療に定評があり、糸リフトや高周波リフトも対応。SCI級論文47本の実績を持つ研究志向の院。',hours:'平日 10:00〜20:00／土日 10:00〜17:00（昼休 13:00〜14:00）',u:'https://www.anaclijapan.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=강남아름다운나라피부과+서울'},
+  {n:'K-cell Clinic 狎鴎亭',area:'江南',areaNote:'狎鴎亭駅4番出口',type:'premium',worry:['wrinkle','spot','dry'],jp:true,sleep:false,pop:'kr',sun:false,price:35000,tag:'リフトレーザー',d:'リフティングレーザーと輪郭デザインが中心。スキンブースターやジュベルックも扱い、LINEで日本語相談ができる。',hours:'月〜金 10:00〜19:00（木 13:00〜20:00）／土 10:00〜15:00／日祝 休診',u:'https://kcellclinicjp.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=케이셀클리닉+압구정+서울'}
 ];
 
 var WORRY_LBL={pore:'毛穴・イチゴ鼻',wrinkle:'小顔・たるみ',dry:'ツヤ肌・水光肌',spot:'シミ・くすみ',acne:'ニキビ・赤み',scar:'ニキビ跡・凸凹'};
 var TYPE_LBL={factory:'工場型',premium:'上質・高品質型'};
 
-/* 悩み別の代表施術と効果（院の worry タグから自動表示） */
-var MENU={
-  pore:   {ic:'ti-circle-dotted', name:'ポテンツァ／ダーマペン', eff:'針＋RFで毛穴を引き締め、皮脂とイチゴ鼻をケア', price:'¥15,000〜40,000', pain:3, effect:5},
-  wrinkle:{ic:'ti-face-id',       name:'HIFU（ハイフ）・リフト系', eff:'たるみを引き上げ、フェイスラインを小顔に', price:'¥30,000〜80,000', pain:3, effect:5},
-  dry:    {ic:'ti-droplet',       name:'水光注射・スキンブースター', eff:'真皮にうるおいを注入し、ツヤと水光肌へ', price:'¥15,000〜35,000', pain:2, effect:4},
-  spot:   {ic:'ti-sun',           name:'レーザートーニング・ピコ', eff:'メラニンを分解し、シミ・くすみを明るく', price:'¥8,000〜20,000', pain:1, effect:3},
-  acne:   {ic:'ti-flame',         name:'ニキビ管理・LED・ピーリング', eff:'炎症と皮脂を抑え、赤みニキビを鎮静', price:'¥5,000〜15,000', pain:1, effect:3},
-  scar:   {ic:'ti-grain',         name:'ダーマペン・フラクショナル', eff:'肌を再生し、ニキビ跡の凸凹をなめらかに', price:'¥20,000〜50,000', pain:2, effect:4}
-};
+/* 悩み別の施術リスト
+   lv=価格帯の目安（1=手頃 → 5=高め／縦軸の並び順）, pop=韓国で特に人気, kr=韓国発・韓国メーカー製
+   shots=目安ショット数, times=必要回数の目安, d=詳しい説明 */
+var TREATMENTS=[
+  /* ---- 毛穴・イチゴ鼻 ---- */
+  {w:'pore',n:'ハイドラフェイシャル',ic:'ti-bubble',lv:1,pain:1,effect:2,times:'1回でも実感／月1回ペース',
+   d:'水流と吸引で角栓・皮脂・古い角質をまとめて洗い流す、いわば「毛穴の掃除」。針を使わないので痛みもダウンタイムもほぼゼロで、施術直後から化粧ができます。翌日に予定がある渡韓初日や、他の施術の前準備として組み合わせるのが韓国では定番です。根本的に毛穴を小さくする施術ではないため、continuous に受けるか、ダーマペン等と併用するのが前提になります。'},
+  {w:'pore',n:'ケミカルピーリング',ic:'ti-flask-2',lv:1,pain:1,effect:2,times:'2〜4週ごとに継続',
+   d:'AHA・BHA・TCAなどの酸で古い角質を溶かし、詰まった毛穴と肌のごわつきをリセットします。韓国では単体よりも、鎮静パックやLEDとセットの「肌管理コース」に組み込まれていることがほとんど。1回で劇的には変わりませんが、回数を重ねるほど毛穴の開きとくすみが目立ちにくくなります。施術後1週間は日焼け対策を強めに。'},
+  {w:'pore',n:'スキンボトックス',ic:'ti-vaccine',lv:2,pain:2,effect:3,times:'3〜6ヶ月ごとに1回',kr:true,
+   d:'ボトックスをごく薄く希釈し、皮膚の浅い層に数十〜数百ヶ所に分けて散布する打ち方。筋肉を止める通常のボトックスと違い、皮脂分泌と毛穴の開きを抑えて肌のキメを整えるのが目的です。韓国では「スキンボトックス」「ダーマトキシン」等の名前で肌管理メニューに常設されており、日本より手頃に受けられます。表情への影響はほぼありません。'},
+  {w:'pore',n:'ダーマペン',ic:'ti-needle',lv:3,pain:3,effect:4,times:'3〜5回（3〜4週間隔）',
+   d:'極細の針で肌に微細な穴を開け、自己修復力でコラーゲンを作らせる施術。開いた穴から成長因子やエクソソームなどの薬剤を届けられるのが強みで、毛穴・ニキビ跡・肌質を同時に底上げできます。施術当日は赤みが出て、2〜3日はざらつきや粉ふきが続くのが一般的。渡韓最終日より、帰国まで数日余裕がある日程に組むのがおすすめです。'},
+  {w:'pore',n:'ポテンツァ',ic:'ti-circle-dotted',lv:4,pain:3,effect:5,times:'3回〜（1ヶ月間隔）',pop:true,kr:true,
+   d:'韓国のJeisys社が開発した高周波（RF）マイクロニードル。針を刺したうえで先端から高周波を流すため、ダーマペン単体より深く強く働きかけられます。チップの種類を変えることで毛穴・ニキビ・赤み・肌質と狙いを変えられるのが特徴で、日本より格段に安く受けられることから渡韓者に最も選ばれている施術のひとつです。麻酔クリームを使っても痛みはそれなりにあります。'},
+  {w:'pore',n:'ジュベルック',ic:'ti-atom-2',lv:4,pain:2,effect:4,times:'3回（1ヶ月間隔）／持続1〜1.5年',pop:true,kr:true,
+   d:'とうもろこし・サトウキビ由来のPDLLA（生分解性ポリマー）と非架橋ヒアルロン酸を組み合わせた韓国製のコラーゲンブースター。ヒアルロン酸のように体積を足すのではなく、自分のコラーゲンを増やして毛穴と浅いニキビ跡を内側から埋めていきます。効果は3〜4週で出はじめ、2〜3ヶ月でピーク。粉末を溶かす工程が甘いとしこりの原因になるため、扱い慣れた院を選ぶことが重要です。'},
+
+  /* ---- 小顔・たるみ ---- */
+  {w:'wrinkle',n:'輪郭ボトックス',ic:'ti-vaccine',lv:2,pain:2,effect:3,times:'4〜6ヶ月ごとに1回',pop:true,
+   d:'発達したエラの咬筋にボトックスを打ち、筋肉のボリュームを落としてフェイスラインをすっきりさせる施術。骨格ではなく筋肉が原因の顔の張りに効きます。効果が出るまで2〜4週かかり、3〜4ヶ月でピーク、半年ほどで戻るサイクル。韓国では価格がこなれており、製剤（ボツラックス、ナボタなど韓国製）を選べる院も多いのが渡韓のメリットです。'},
+  {w:'wrinkle',n:'シュリンク（HIFU）',ic:'ti-wave-sine',lv:3,pain:3,effect:4,shots:'300／600／900ショット',times:'年1〜2回',pop:true,kr:true,
+   d:'韓国クラシス社製の超音波リフト機器で、渡韓リフトの代名詞。皮膚の土台にあるSMAS筋膜に熱を集中させて引き上げます。ショット数は目安として、300が効果を感じられる最低ライン、600が目の下から顔全体をカバーする標準量、900以上は額・眉間・目まわりまで広げたい場合。ショット数が足りないと熱刺激だけで終わってしまうため、安さだけで選ばないのがポイントです。'},
+  {w:'wrinkle',n:'オンダリフト',ic:'ti-radar',lv:3,pain:2,effect:4,times:'3〜4週ごとに3回→以降は維持',
+   d:'マイクロ波（2.45GHz）で脂肪細胞と皮下組織にアプローチする機器。HIFUや高周波が「引き締める」のに対し、こちらは頬やあご下の脂肪そのものを減らしながら締めるので、たるみに脂肪がついているタイプの顔立ちに向きます。痛みが比較的おだやかで、ダウンタイムもほぼありません。韓国の美容皮膚科では小顔メニューの定番として広く導入されています。'},
+  {w:'wrinkle',n:'リジュラン アイ（I）',ic:'ti-eye',lv:3,pain:3,effect:3,times:'3〜4回（2〜4週間隔）',kr:true,
+   d:'リジュランシリーズの中でもっとも粘度の低い1mlタイプ。まぶたの皮膚は0.5mmほどしかなく、濃い製剤だとしこりや内出血が出やすいため、目元専用に薄く設計されています。目の下の小じわ、ちりめんじわ、皮膚の薄さによるクマの改善が目的。内出血が出ると1〜2週間続くことがあるので、予定のない日程に組むのが安全です。'},
+  {w:'wrinkle',n:'オリジオ',ic:'ti-wave-square',lv:4,pain:2,effect:4,shots:'全顔300〜600ショット',times:'3〜6ヶ月に1回',kr:true,
+   d:'韓国製の6.78MHz高周波（RF）機器。真皮層にムラなく熱を入れて、肌質改善と自然な引き締めを両立させるタイプです。冷却と振動機能で痛みが抑えられており、HIFUの痛みが苦手な人の選択肢になります。全顔で300〜600ショットが目安、持続は約6ヶ月〜1年。当日からメイク・洗顔ができるので、渡韓スケジュールに組み込みやすい施術です。'},
+  {w:'wrinkle',n:'ボルニューマ',ic:'ti-flame',lv:4,pain:2,effect:5,shots:'全顔300〜600ショット',times:'2〜3ヶ月に1回',pop:true,kr:true,
+   d:'オリジオと同じ高周波でも、エネルギーが脂肪層まで届く設計で、より深いところから引き締められる韓国発の機器。独自の冷却振動センサーで痛みがかなり軽減されており、「サーマージは痛くて無理だったけれど、こちらは耐えられた」という声が多い施術です。全顔300〜600ショットが目安で、2〜3ヶ月に1回のペースを重ねると効果が積み上がります。'},
+  {w:'wrinkle',n:'サーマージFLX',ic:'ti-square-rotated',lv:5,pain:3,effect:5,shots:'300／600／900ショット',times:'年1回',
+   d:'高周波でコラーゲンを収縮・再生させる、たるみ治療の王道。ショット数の目安は、300が目元や口元など部分的なケアと初期のエイジング予防、600が顔全体の引き締めを狙う標準量、900は顔の面積が広い場合や首のしわまで一度に扱いたい場合です。効果は2〜6ヶ月かけてピークに達し、およそ1年持続。毎年続けると効果が積み上がるタイプの施術です。'},
+  {w:'wrinkle',n:'ウルセラ',ic:'ti-face-id',lv:5,pain:4,effect:5,shots:'100／300／600ショット',times:'年1回',
+   d:'超音波を筋膜（SMAS）層にピンポイントで届けるリフト施術。最新のウルセラプライムは超音波画像で最大8mmの深さまで見ながら照射できるため、狙いの精度が上がっています。ショット数の目安は、100が目元・口元など部分ケアで持続約6ヶ月、300が全顔でほうれい線や頬のこけまでカバーし持続6ヶ月〜1年、600は首まで広げる本格リフトで1年以上。痛みは強めで、効果は2〜3ヶ月かけて出てきます。'},
+
+  /* ---- ツヤ肌・水光肌 ---- */
+  {w:'dry',n:'LDM・水分管理',ic:'ti-droplet',lv:1,pain:1,effect:2,times:'渡韓のたびに単発でOK',
+   d:'超音波で肌の水分バランスを整え、炎症と赤みを鎮める鎮静メニュー。針も熱も使わないため痛みゼロ・ダウンタイムゼロで、レーザーやダーマペンの後のクールダウンとしてセットで組まれることが多い施術です。単体で劇的な変化を狙うものではありませんが、乾燥や敏感さで肌が揺らいでいるときの立て直しには向いています。'},
+  {w:'dry',n:'水光注射',ic:'ti-droplet-filled',lv:2,pain:2,effect:4,times:'2週間隔で3〜5回→月1回維持',pop:true,kr:true,
+   d:'韓国発祥の、いわゆる「水光肌」を作る注射。9本の極細針がついた機械で、ヒアルロン酸やビタミン、リジュランなどを表皮〜真皮の浅い層に均一に入れていきます。中身を院ごとにカクテルできるのが特徴で、目的に合わせて配合を相談できます。針あとが2〜3日残ることがあり、効果の持続は1〜3ヶ月なので、継続前提の施術と考えてください。'},
+  {w:'dry',n:'リジュラン ヒーラー',ic:'ti-sparkles',lv:3,pain:3,effect:4,times:'3〜4回（2〜4週間隔）',pop:true,kr:true,
+   d:'サケの精巣から抽出したPN（ポリヌクレオチド）を注入し、線維芽細胞を活性化させて自前のコラーゲンとエラスチンを増やす韓国発の再生注射。シリーズの基本形にあたる2ml・PN2%タイプで、顔全体の肌質と弾力の底上げが目的です。ヒアルロン酸のように水分を足すのではなく、肌そのものを作り替える発想。3回以上を3〜4週間隔で受けるのが標準で、効果は6〜12ヶ月持続します。'},
+  {w:'dry',n:'リジュラン HB／HB＋',ic:'ti-sparkles',lv:4,pain:2,effect:4,times:'3〜4回（2〜4週間隔）',kr:true,
+   d:'ヒーラーにヒアルロン酸とリドカイン（麻酔）を加えた2mlタイプ。麻酔入りなので注入時の痛みがヒーラーより明らかに軽く、ヒアルロン酸のおかげでその場で「うるおった感じ」が出るのが特長です。長期的な再生効果はヒーラーと同じ方向。「リジュランは痛いと聞いて怖い」という初回の人や、施術直後の見た目も重視したい渡韓日程に向いています。'},
+  {w:'dry',n:'エクソソーム',ic:'ti-atom',lv:3,pain:2,effect:4,times:'3回前後',kr:true,
+   d:'幹細胞が放出する微小なカプセル（細胞間の伝達物質）を肌に届け、修復と再生のスイッチを入れる施術。韓国のExoCoBio社の製剤が広く使われており、ダーマペンやポテンツァの直後に導入する組み合わせが定番です。単体注入より、針で穴を開けた直後に塗り込むほうが浸透効率が良いとされます。炎症後の赤みや、施術後の回復を早めたいときにも選ばれます。'},
+
+  /* ---- シミ・くすみ ---- */
+  {w:'spot',n:'白玉注射（美白点滴）',ic:'ti-medical-cross',lv:1,pain:1,effect:2,times:'週1回ペースで継続',
+   d:'グルタチオンを主成分とする点滴・注射で、韓国では「白玉注射」の名で美容クリニックの定番メニューになっています。メラニン生成を抑えて肌のトーンを明るくし、抗酸化作用で疲労感にも働くとされるもの。1回で見た目が変わる施術ではなく、継続して受けることが前提です。レーザーと違ってダウンタイムがないため、渡韓中に他の施術と併せて受ける人が多い施術です。'},
+  {w:'spot',n:'レーザートーニング',ic:'ti-sun',lv:1,pain:1,effect:3,times:'5〜10回の継続が前提',pop:true,
+   d:'弱いレーザーを顔全体に低出力で当て、メラニンを少しずつ壊してくすみと薄いシミを均していく施術。1回あたりが安く痛みもほとんどないため、韓国では肌管理コースの土台としてよく組まれます。肝斑にも使える一方、5〜10回の継続が前提で、単発ではほぼ変化が分かりません。「渡韓のたびに通う」使い方が向いています。'},
+  {w:'spot',n:'IPL・ジェントルマックス',ic:'ti-bolt',lv:2,pain:2,effect:3,times:'3〜5回',
+   d:'幅広い波長の光を当てて、シミ・そばかす・赤み・毛穴を一度にまとめてケアする光治療。トーニングより1回あたりの手応えがあり、当てた濃いシミは数日でかさぶたになって剥がれます。ただし肝斑には悪化のリスクがあるため、事前の診断が重要。3〜5回の継続で全体のトーンが底上げされます。'},
+  {w:'spot',n:'ピコトーニング',ic:'ti-grain',lv:3,pain:1,effect:4,times:'5回〜（2〜4週間隔）',pop:true,
+   d:'ピコ秒（1兆分の1秒）単位の超短パルスでメラニンを粉砕するレーザー。熱ではなく衝撃波で壊すため、周囲へのダメージが少なく、従来のトーニングより少ない回数で明るさを感じやすいのが特徴です。痛みは輪ゴムで弾かれる程度で、ダウンタイムもほぼなし。くすみ・薄いシミ・毛穴の黒ずみまで幅広くカバーします。'},
+  {w:'spot',n:'シミ取りレーザー（スポット）',ic:'ti-focus-2',lv:3,pain:3,effect:5,times:'1回＋かさぶたケア約2週間',
+   d:'気になるシミを1つずつピンポイントで焼き切る施術。トーニングと違い、狙ったシミは基本的に1回で処理できるのが最大の利点です。ただし施術後は必ずかさぶたになり、剥がれるまで約1〜2週間、その後も数ヶ月は炎症後色素沈着のリスクがあります。渡韓直後に人に会う予定がある日程には向きません。テープ保護と徹底した日焼け対策が前提の施術です。'},
+
+  /* ---- ニキビ・赤み ---- */
+  {w:'acne',n:'ニキビ管理（圧出＋LED）',ic:'ti-first-aid-kit',lv:1,pain:2,effect:3,times:'2〜4週ごとに継続',pop:true,
+   d:'蒸しタオルやスチームで毛穴をゆるめてから、専門のスタッフが1つずつ面皰を圧出し、その後LEDや鎮静パックで炎症を抑える韓国式の「ニキビ管理」。自己流で潰すのと違って傷跡が残りにくく、価格も手頃なので、韓国では中高生から通う定番メニューです。1回で肌の見た目がかなり変わる即効性がある一方、体質を変えるものではないので継続が前提になります。'},
+  {w:'acne',n:'ケミカルピーリング',ic:'ti-flask-2',lv:1,pain:1,effect:2,times:'2〜4週ごとに継続',
+   d:'サリチル酸やグリコール酸で角質を溶かし、毛穴の詰まりを取ってニキビのできにくい肌に整えます。皮脂の分泌が多く、白ニキビ・黒ニキビが繰り返しできるタイプに向いた施術。炎症が強い赤ニキビには刺激になることがあるため、その場合は鎮静系のメニューが先です。韓国では圧出やLEDとセットのコースになっていることがほとんどです。'},
+  {w:'acne',n:'血管レーザー（赤み治療）',ic:'ti-heartbeat',lv:3,pain:2,effect:4,times:'3〜5回',
+   d:'ヘモグロビンに反応する波長のレーザーで、拡張した毛細血管そのものを閉じる施術。ニキビが治ったあとに残る「赤み」や、頬の赤ら顔に対して、鎮静ケアでは届かないところに働きかけます。当日は一時的に赤みが強まりますが、翌日にはほぼ引くのが一般的。3〜5回続けると、肌全体のトーンが落ち着いて見えるようになります。'},
+  {w:'acne',n:'アグネス',ic:'ti-needle-thread',lv:4,pain:3,effect:4,times:'3〜5回',kr:true,
+   d:'韓国発の絶縁針デバイスで、繰り返しニキビができる皮脂腺そのものを1つずつ高周波で焼いて破壊する施術。表面を傷つけずに原因を潰しにいくため、「同じ場所に何度もできる」タイプのニキビに対する根本治療として選ばれます。麻酔をしても痛みはあり、施術後は数日かさぶたが出ます。効果は永続的とされる一方、対象は炎症を起こしている箇所に限られます。'},
+
+  /* ---- ニキビ跡・凸凹 ---- */
+  {w:'scar',n:'ダーマペン＋成長因子',ic:'ti-needle',lv:3,pain:3,effect:4,times:'5回〜（1ヶ月間隔）',
+   d:'微細な針で肌に穴を開け、そこから成長因子やエクソソームを浸透させて、凹んだニキビ跡を下から持ち上げていく施術。1回では変化が読みにくく、5回以上を1ヶ月間隔で重ねるのが前提です。深いアイスピック型の跡には力不足なことがあり、その場合はフラクショナルCO2やポテンツァとの併用が検討されます。施術後2〜3日は赤みとざらつきが出ます。'},
+  {w:'scar',n:'リジュラン S（スカー）',ic:'ti-sparkles',lv:4,pain:3,effect:4,times:'3〜4回（2〜4週間隔）',kr:true,
+   d:'リジュランシリーズの中で最も高濃度・高粘度の1mlタイプ。陥凹したニキビ跡に対して、物理的に持ち上げる力と、PNによる組織再生の両方で働きかけます。ヒーラーが「顔全体の底上げ」なのに対して、こちらは凹んだ箇所を狙って入れるのが使い方。粘度が高いぶん注入時の痛みは強めですが、跡の改善という一点では最も直接的なリジュランです。'},
+  {w:'scar',n:'ポテンツァ',ic:'ti-circle-dotted',lv:4,pain:3,effect:5,times:'3〜5回',pop:true,kr:true,
+   d:'針を刺してから先端に高周波を流す韓国製のRFマイクロニードル。ニキビ跡に対しては、線維化して硬くなった組織を熱で壊しながらコラーゲン再生を促すため、ダーマペン単体より深い凹みに届きます。チップとエネルギー設定を変えることで、活動中のニキビと跡の両方を同時に扱えるのも渡韓者に選ばれる理由。麻酔クリーム前提の痛みがあります。'},
+  {w:'scar',n:'ジュベルック',ic:'ti-atom-2',lv:4,pain:2,effect:4,times:'3回（1ヶ月間隔）／持続1〜1.5年',pop:true,kr:true,
+   d:'PDLLAが自分のコラーゲンを増やし、浅い凹みを内側から埋めていく韓国製ブースター。削るのではなく足す発想なので、ダウンタイムが軽いのが利点です。効果は3〜4週で出はじめ2〜3ヶ月でピーク、持続は1〜1.5年。深いクレーターには不向きで、浅く広い凸凹や毛穴混じりの跡に向きます。溶解が不十分だとしこりのリスクがあるため院選びが重要です。'},
+  {w:'scar',n:'フラクショナルCO2',ic:'ti-grid-dots',lv:5,pain:4,effect:5,times:'3〜5回（ダウンタイム有）',
+   d:'炭酸ガスレーザーで肌に微細な熱の穴を無数に開け、その修復過程で凹凸を作り替える施術。ニキビ跡治療の中で最も攻めた選択肢で、深いクレーターにも届きます。その代わりダウンタイムが重く、1週間ほど赤み・かさぶた・ヒリつきが続き、その後も数ヶ月は色素沈着に注意が必要です。渡韓最終日や、帰国後すぐ人に会う予定がある日程には絶対に組まないでください。'}
+];
+
+/* リジュランシリーズの違い（リジュランが一覧に出たときだけ表示） */
+var REJURAN_TYPES=[
+  {n:'ヒーラー',spec:'2ml・PN2%',u:'顔全体の肌質と弾力の底上げ。シリーズの基本形。'},
+  {n:'HB／HB＋',spec:'2ml・ヒアルロン酸＋リドカイン入り',u:'痛みが軽く、その場でうるおいも出る。初めての人向け。'},
+  {n:'アイ（I）',spec:'1ml・最も低粘度',u:'0.5mmしかない目元の皮膚専用。小じわ・薄さによるクマに。'},
+  {n:'S（スカー）',spec:'1ml・最も高濃度／高粘度',u:'陥凹したニキビ跡を持ち上げる。狙い撃ちで使う。'}
+];
+
 /* ☆5段階の星を生成 */
 function stars(n){var s='';for(var i=1;i<=5;i++)s+='<span class="'+(i<=n?'st-fill':'st-empty')+'">★</span>';return s;}
-/* 施術メニューを最大3件まで返す */
-function clinicMenu(c){
-  var order=['pore','wrinkle','dry','spot','acne','scar'];
-  var ws=order.filter(function(w){return c.worry.indexOf(w)>-1;});
-  return ws.slice(0,3).map(function(w){return {w:w,m:MENU[w]};});
-}
 
 /* ===== state ===== */
-var sel={area:[],type:null,concern:[],support:[],budget:200000};
+var sel={area:[],type:null,concern:[],support:[]};
 
 document.getElementById('hs-count').textContent=CLINICS.length;
 
-function toggleArea(el){
-  var a=el.dataset.a;
+function toggleArea(a){
   var i=sel.area.indexOf(a);
-  if(i>-1){sel.area.splice(i,1);el.classList.remove('on');}
-  else{sel.area.push(a);el.classList.add('on');}
+  if(i>-1){sel.area.splice(i,1);}else{sel.area.push(a);}
   renderMap();
   render();
+  renderTreatments();
 }
 
 /* エリア情報：ソウル駅からのアクセス時間と街の特徴 */
 var AREA_INFO=[
   {n:'明洞',sub:'中区・江北エリア',
    time:'ソウル駅から約5分',
-   route:'地下鉄4号線で2駅・乗り換えなし（約1,550ウォン）',
    d:'免税店・コスメショップ・ホテルが密集する観光の中心地。空港鉄道が停まるソウル駅から目と鼻の先で、弾丸日程や初渡韓でも動きやすいのが最大の強み。日本語が通じる店やクリニックが多く、施術後の買い物もそのまま徒歩圏で完結します。'},
   {n:'江南',sub:'江南区・漢江南エリア',
    time:'ソウル駅から約30〜40分',
-   route:'4号線→舎堂で2号線乗り換え、または市庁経由で2号線（乗り換え1回）',
    d:'韓国美容医療の本場。江南大路沿いに大型院・高級院が集中し、最新機器や専門メニューの選択肢が最も豊富なエリアです。落ち着いた街並みでカフェやセレクトショップも多く、ダウンタイム中でもゆったり過ごせます。'}
 ];
 function renderMap(){
-  var none=sel.area.length===0;
   var html='<div class="area-info">'+AREA_INFO.map(function(a){
-    var on=none||sel.area.indexOf(a.n)>-1;
-    return '<div class="ai-card'+(on?' on':'')+'" style="cursor:pointer" onclick="quickArea(\''+a.n+'\')">'
+    var on=sel.area.indexOf(a.n)>-1;
+    return '<div class="ai-card'+(on?' on':'')+'" role="button" tabindex="0" onclick="toggleArea(\''+a.n+'\')">'
+      +'<span class="check"><i class="ti ti-check"></i></span>'
       +'<div class="ai-top"><span class="ai-name">'+a.n+'</span><span class="ai-sub">'+a.sub+'</span></div>'
       +'<div class="ai-time"><i class="ti ti-train"></i>'+a.time+'</div>'
-      +'<div class="ai-route"><i class="ti ti-route"></i> '+a.route+'</div>'
       +'<p class="ai-desc">'+a.d+'</p>'
       +'</div>';
   }).join('')+'</div>';
   document.getElementById('area-info-wrap').innerHTML=html;
-}
-function quickArea(a){
-  var el=document.querySelector('#area-chips .chip[data-a="'+a+'"]');
-  if(el) toggleArea(el);
 }
 
 function toggleType(el){
@@ -533,20 +628,75 @@ function toggleChip(el,group){
   if(i>-1){arr.splice(i,1);el.classList.remove('on');}
   else{arr.push(key);el.classList.add('on');}
   render();
-}
-function setBudget(v){
-  sel.budget=parseInt(v,10);
-  document.getElementById('budget-val').textContent=
-    sel.budget>=200000?'上限なし':'¥'+sel.budget.toLocaleString()+'まで';
-  render();
+  if(group==='concern') renderTreatments();
 }
 function resetFinder(){
-  sel={area:[],type:null,concern:[],support:[],budget:200000};
+  sel={area:[],type:null,concern:[],support:[]};
   document.querySelectorAll('.type-card,.chip').forEach(function(e){e.classList.remove('on');});
-  document.getElementById('budget').value=200000;
-  document.getElementById('budget-val').textContent='上限なし';
   renderMap();
   render();
+  renderTreatments();
+}
+
+/* ===== 悩み別の施術一覧（価格の低い順・クリックで詳細） ===== */
+function renderTreatments(){
+  var box=document.getElementById('treatment-wrap');
+  var picked=sel.concern;
+  if(!picked.length){
+    box.innerHTML='<div class="tr-empty"><i class="ti ti-hand-click"></i>'
+      +'上の問診票で<b>「いまの肌悩み」</b>を選ぶと、その悩みに効く施術だけがここに並びます。<br>'
+      +'施術名をタップすると、詳しい説明が開きます。';
+    box.innerHTML+='</div>';
+    return;
+  }
+  var list=TREATMENTS.filter(function(t){return picked.indexOf(t.w)>-1;})
+                     .slice().sort(function(a,b){return a.lv-b.lv || a.pain-b.pain;});
+  var rows=list.map(function(t,k){
+    var badges=(t.pop?'<span class="tr-badge pop"><i class="ti ti-flame"></i>韓国で人気</span>':'')
+              +(t.kr?'<span class="tr-badge kr">韓国発</span>':'');
+    var shots=t.shots?'<span class="tr-shots"><i class="ti ti-target-arrow"></i>'+t.shots+'</span>':'';
+    return '<div class="tr-row" id="tr-'+k+'">'
+      +'<div class="tr-dot"></div>'
+      +'<button class="tr-toggle" type="button" onclick="toggleTr('+k+')" aria-expanded="false">'
+      +'<span class="tr-ic"><i class="ti '+t.ic+'"></i></span>'
+      +'<span class="tr-main">'
+      +'<span class="tr-for">'+WORRY_LBL[t.w]+'</span>'
+      +'<span class="tr-title"><span class="tr-name">'+t.n+'</span>'+badges+'</span>'
+      +'<span class="tr-meta">'
+      +'<span class="star-row"><span class="star-label">😣 痛み</span>'+stars(t.pain)+'</span>'
+      +'<span class="star-row"><span class="star-label">✨ 効果</span>'+stars(t.effect)+'</span>'
+      +'<span class="tr-times"><i class="ti ti-repeat"></i>'+t.times+'</span>'
+      +shots
+      +'</span></span>'
+      +'<span class="tr-caret"><i class="ti ti-chevron-down"></i></span>'
+      +'</button>'
+      +'<div class="tr-detail"><p>'+t.d+'</p></div>'
+      +'</div>';
+  }).join('');
+
+  var rej='';
+  if(list.some(function(t){return t.n.indexOf('リジュラン')===0;})){
+    rej='<div class="rej-box"><h4><i class="ti ti-list-details"></i>リジュランは4種類あります</h4>'
+      +'<p class="rej-lead">どれもサケ由来のPN（ポリヌクレオチド）で肌を再生させる韓国発の注射ですが、濃度と粘度が違い、打つ場所と目的で使い分けます。カウンセリングで「どのリジュランか」を必ず確認してください。</p>'
+      +'<div class="rej-list">'+REJURAN_TYPES.map(function(r){
+        return '<div class="rej-item"><span class="rej-n">'+r.n+'</span>'
+          +'<span class="rej-spec">'+r.spec+'</span>'
+          +'<span class="rej-u">'+r.u+'</span></div>';
+      }).join('')+'</div></div>';
+  }
+
+  box.innerHTML='<div class="tr-layout">'
+    +'<div class="tr-axis"><span class="ax-label ax-top">安い</span>'
+    +'<span class="ax-line"></span><span class="ax-label ax-bottom">高い</span></div>'
+    +'<div class="tr-list">'+rows+'</div></div>'
+    +rej
+    +'<p class="tr-note">※ 上にいくほど手頃、下にいくほど高額な施術です。具体的な料金はショット数・薬剤・機器のグレード、院やキャンペーンによって大きく変わるため、あえて金額は載せていません。「韓国発」は韓国のメーカー製もしくは韓国発祥の施術、「韓国で人気」は現地で施術数が多く渡韓者にもよく選ばれているものを指します。痛み・効果の星、必要回数、ショット数はいずれも一般的な目安で、適正量は肌の状態と目的によって変わります。必ず現地の医師の診断を受けてください。</p>';
+}
+function toggleTr(k){
+  var row=document.getElementById('tr-'+k);
+  if(!row) return;
+  var open=row.classList.toggle('open');
+  row.querySelector('.tr-toggle').setAttribute('aria-expanded',open?'true':'false');
 }
 
 /* ===== scoring & filter ===== */
@@ -554,7 +704,6 @@ function matchList(){
   return CLINICS.filter(function(c){
     if(sel.area.length && sel.area.indexOf(c.area)===-1) return false;
     if(sel.type && c.type!==sel.type) return false;
-    if(sel.budget<200000 && c.price>sel.budget) return false;
     // support are AND conditions (掛け合わせ)
     if(sel.support.indexOf('sleep')>-1 && !c.sleep) return false;
     if(sel.support.indexOf('sun')>-1 && !c.sun) return false;
@@ -579,10 +728,10 @@ function render(){
   document.getElementById('match-count').textContent=matched.length;
 
   var box=document.getElementById('results');
-  var hasFilter=sel.area.length||sel.type||sel.concern.length||sel.support.length||sel.budget<200000;
+  var hasFilter=sel.area.length||sel.type||sel.concern.length||sel.support.length;
 
   if(matched.length===0){
-    box.innerHTML='<div class="empty"><i class="ti ti-mood-search"></i>条件に合うクリニックが見つかりませんでした。<br>予算を上げるか、サポート条件をひとつ外してみてください。</div>';
+    box.innerHTML='<div class="empty"><i class="ti ti-mood-search"></i>条件に合うクリニックが見つかりませんでした。<br>サポート条件をひとつ外してみてください。</div>';
     return;
   }
 
@@ -595,69 +744,47 @@ function render(){
   var html=lead;
   show.forEach(function(o,idx){
     var c=o.c;
-    var rankLabel=hasFilter?(idx===0?'最有力':'第'+(idx+1)+'候補'):'';
-    var rankCls=hasFilter&&idx===0?'kcard-rank best':'kcard-rank';
-    var rankHtml=hasFilter?'<span class="'+rankCls+'">'+(idx===0?'★ ':'')+rankLabel+'</span>':'';
+    var rankLabel=hasFilter?(idx===0?'★ 最有力':'第'+(idx+1)+'候補'):'';
+    var rankHtml=hasFilter?'<span class="'+(idx===0?'kcard-rank best':'kcard-rank')+'">'+rankLabel+'</span>':'';
     var typeBadge='<span class="type-badge '+c.type+'">'+(c.type==='factory'?'🏭 工場型':'💎 上質型')+'</span>';
 
-    // matched worry pills
-    var POP_LBL={jp:'🇯🇵 日本人に人気',kr:'🇰🇷 韓国人に人気',both:'🇯🇵🇰🇷 日韓ともに人気'};
-    var popHtml='<span class="t-pill">'+POP_LBL[c.pop]+'</span>';
-
+    var POP_LBL={jp:'🇯🇵 日本人に人気',kr:'🇰🇷 韓国人に人気',both:'🇯🇵🇰🇷 日韓で人気'};
     var wpills=c.worry.map(function(w){
       var on=sel.concern.indexOf(w)>-1;
       return '<span class="t-pill" style="'+(on?'background:var(--rouge);color:#fff':'')+'">'+WORRY_LBL[w]+'</span>';
-    }).join(' ');
+    }).join('');
 
-    // 右パネル：主な施術と効果
-    var menuHtml='<div class="menu-head"><i class="ti ti-stethoscope"></i> 主な施術と効果</div>';
-    clinicMenu(c).forEach(function(item){
-      var m=item.m;
-      menuHtml+='<div class="menu-item"><div class="menu-ic"><i class="ti '+m.ic+'"></i></div>'
-        + '<div class="menu-txt"><span class="for">'+WORRY_LBL[item.w]+'</span>'
-        + '<h5>'+m.name+'</h5><p>'+m.eff+'</p>'
-        + '<div class="menu-stars"><span class="star-row"><span class="star-label">😣 痛み</span>'+stars(m.pain)+'</span>'
-        + '<span class="star-row"><span class="star-label">✨ 効果</span>'+stars(m.effect)+'</span></div>'
-        + '<p class="menu-price"><i class="ti ti-tag"></i> 目安 <b>'+m.price+'</b>／1回</p></div></div>';
-    });
-
-    var typeIc=c.type==='factory'?'ti-building-factory-2':'ti-diamond';
-    var thumbHtml='<div class="kcard-thumb '+c.type+'">'
-      + '<i class="ti '+typeIc+' thumb-ic"></i>'
-      + '<span class="thumb-label">'+(c.type==='factory'?'工場型クリニック':'上質・高品質型クリニック')+'</span>'
-      + (c.u?'<a class="thumb-photo-link" href="'+c.u+'" target="_blank" rel="noopener"><i class="ti ti-photo"></i>院内写真を見る</a>':'')
+    var specLine='<div class="spec-line">'
+      + '<span class="sp">'+POP_LBL[c.pop]+'</span>'
+      + '<span class="sp '+(c.sleep?'on':'off')+'">'+(c.sleep?'✓':'−')+' 睡眠麻酔</span>'
+      + '<span class="sp '+(c.sun?'on':'off')+'">'+(c.sun?'✓':'−')+' 日曜診療</span>'
+      + '<span class="sp '+(c.jp?'on':'off')+'">'+(c.jp?'✓':'−')+' 日本語対応</span>'
       + '</div>';
 
     html+='<div class="kcard" style="animation-delay:'+(idx*0.06)+'s">'
       + rankHtml
-      + '<div class="kcard-cols"><div class="kcard-left">'
-      + thumbHtml
-      + '<div class="kcard-top"><div style="flex:1"><h3>'+c.n+'</h3>'
-      + '<span class="area"><i class="ti ti-map-pin"></i> '+c.area+'（'+c.areaNote+'）</span></div>'
-      + typeBadge+'</div>'
+      + '<div class="kcard-head"><div style="flex:1;min-width:0"><h3>'+c.n+'</h3>'
       + '<p class="kcard-desc">'+c.d+'</p>'
-      + '<dl class="spec-table">'
-      + '<div class="spec-row"><dt><i class="ti ti-flag"></i>人気層</dt><dd>'+popHtml+'</dd></div>'
-      + '<div class="spec-row"><dt><i class="ti ti-zzz"></i>睡眠麻酔</dt><dd>'+(c.sleep?yes('対応可'):no('非対応'))+'</dd></div>'
-      + '<div class="spec-row"><dt><i class="ti ti-calendar-event"></i>日曜営業</dt><dd>'+(c.sun?yes('日曜も診療'):no('日曜定休'))+'</dd></div>'
-      + '<div class="spec-row"><dt><i class="ti ti-sparkles"></i>得意な悩み</dt><dd>'+wpills+'</dd></div>'
-      + '</dl>'
+      + '<span class="area"><i class="ti ti-map-pin"></i> '+c.area+'（'+c.areaNote+'）</span>'
+      + '<span class="hours"><i class="ti ti-clock"></i> '+c.hours+'</span></div>'
+      + typeBadge+'</div>'
+      + specLine
+      + '<div class="worry-line"><span class="wl-label">得意な悩み</span>'+wpills+'</div>'
       + '<div class="kcard-foot">'
       + (c.u?'<a class="btn-hp" href="'+c.u+'" target="_blank" rel="noopener"><i class="ti ti-external-link"></i> '+c.ut+'</a>':'')
       + '<a class="btn-map" href="'+c.map+'" target="_blank" rel="noopener"><i class="ti ti-map-2"></i> 地図で見る</a>'
-      + '</div></div>'
-      + '<div class="kcard-right">'+menuHtml+'</div>'
       + '</div></div>';
   });
 
   if(hasFilter && matched.length>show.length){
-    html+='<p style="text-align:center;font-size:12px;color:var(--ink-faint);margin-top:4px">ほか '+(matched.length-show.length)+' 院が条件に該当します。さらに条件を足すと絞り込めます。</p>';
+    html+='<p class="results-note">ほか '+(matched.length-show.length)+' 院が条件に該当します。さらに条件を足すと絞り込めます。</p>';
   }
   box.innerHTML=html;
 }
 
 renderMap();
 render();
+renderTreatments();
 </script>
 </body>
 </html>
