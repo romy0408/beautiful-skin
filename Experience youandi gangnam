@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOU&I皮膚科 江南店 体験記｜渡韓美容クリニックのカルテ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+:root{
+  --ink:#2A2329;          /* charcoal text */
+  --ink-soft:#6B5E66;
+  --ink-faint:#A89BA3;
+  --paper:#FBF7F4;        /* warm paper */
+  --paper-2:#F4ECE8;
+  --rouge:#C2456A;        /* primary rouge */
+  --rouge-deep:#9A2F4F;
+  --rouge-soft:#F7E4EA;
+  --gold:#B08A4F;         /* seal / accent gold */
+  --line:rgba(42,35,41,0.10);
+  --line-soft:rgba(42,35,41,0.06);
+  --shadow:0 6px 26px rgba(120,70,90,0.10);
+  --r:18px;
+  --r-sm:11px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Zen Kaku Gothic New',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+
+/* ====== ambient paper background ====== */
+.bg-field{position:fixed;inset:0;z-index:-1;background:var(--paper);overflow:hidden}
+.bg-field::before{content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 12% 0%, #FBE8EE 0%, transparent 55%),
+    radial-gradient(ellipse 50% 36% at 100% 22%, #F3EBF2 0%, transparent 55%),
+    radial-gradient(ellipse 70% 45% at 50% 108%, #FAEAE2 0%, transparent 60%);
+  opacity:.85}
+.bg-field::after{content:'';position:absolute;inset:0;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg width='42' height='42' viewBox='0 0 42 42' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C2456A' fill-opacity='0.05'%3E%3Ccircle cx='21' cy='21' r='1.2'/%3E%3C/g%3E%3C/svg%3E")}
+
+/* ====== top utility bar ====== */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0 14px;border-bottom:1px solid var(--line-soft)}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand .mark{font-family:'Zen Old Mincho',serif;font-weight:900;font-size:20px;letter-spacing:.04em;color:var(--ink)}
+.brand .mark em{font-style:normal;color:var(--rouge)}
+.brand .romaji{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-faint)}
+.topbar .seal{font-size:10px;letter-spacing:.2em;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:4px 11px;white-space:nowrap}
+@media(max-width:560px){.topbar .seal{display:none}}
+
+/* ====== hero ====== */
+.hero{padding:54px 0 40px;position:relative}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--rouge);margin-bottom:22px}
+.hero-eyebrow::before{content:'';width:26px;height:1px;background:var(--rouge);opacity:.6}
+.hero h1{font-family:'Zen Old Mincho',serif;font-weight:700;font-size:clamp(30px,6vw,52px);line-height:1.28;letter-spacing:.01em;margin-bottom:22px}
+.hero h1 .vert{color:var(--rouge)}
+.hero h1 .sm{font-size:.5em;display:block;color:var(--ink-soft);letter-spacing:.06em;margin-top:14px;font-weight:500}
+.hero-lead{font-size:15px;color:var(--ink-soft);max-width:560px;line-height:1.95}
+.hero-stats{display:flex;gap:28px;margin-top:30px;flex-wrap:wrap}
+.hstat{display:flex;flex-direction:column}
+.hstat b{font-family:'Zen Old Mincho',serif;font-size:26px;color:var(--rouge-deep);line-height:1}
+.hstat span{font-size:11px;color:var(--ink-faint);margin-top:6px;letter-spacing:.04em}
+.hstat .div{width:1px;align-self:stretch;background:var(--line)}
+
+/* ====== section frame ====== */
+.section{padding:46px 0}
+.section-tag{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.section-tag .no{font-family:'Zen Old Mincho',serif;font-size:13px;color:var(--gold);letter-spacing:.1em;font-weight:700}
+.section-tag .ln{flex:1;height:1px;background:var(--line)}
+.section-tag .ja{font-size:11px;letter-spacing:.2em;color:var(--ink-faint)}
+.section-title{font-family:'Zen Old Mincho',serif;font-size:clamp(22px,4vw,30px);font-weight:700;margin-bottom:10px;letter-spacing:.02em}
+.section-sub{font-size:13.5px;color:var(--ink-soft);max-width:620px;margin-bottom:30px;line-height:1.85}
+
+/* ====== KARTE FINDER (core tool) ====== */
+.karte{background:rgba(255,255,255,0.78);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);backdrop-filter:blur(10px);overflow:hidden}
+.karte-head{background:linear-gradient(110deg,var(--rouge) 0%,var(--rouge-deep) 100%);color:#fff;padding:20px 24px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden}
+.karte-head::after{content:'問診';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:'Zen Old Mincho',serif;font-size:54px;font-weight:900;color:rgba(255,255,255,0.10);letter-spacing:.1em}
+.karte-head .ic{font-size:24px}
+.karte-head h3{font-family:'Zen Old Mincho',serif;font-size:18px;font-weight:700;letter-spacing:.04em}
+.karte-head p{font-size:11.5px;opacity:.82;margin-top:2px}
+.karte-body{padding:8px 24px 24px}
+
+.q-block{padding:22px 0;border-bottom:1px dashed var(--line)}
+.q-block:last-of-type{border-bottom:none}
+.q-label{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;margin-bottom:14px;color:var(--ink)}
+.q-label .q-no{width:22px;height:22px;border-radius:50%;background:var(--rouge-soft);color:var(--rouge-deep);font-size:11px;display:flex;align-items:center;justify-content:center;font-family:'Zen Old Mincho',serif;font-weight:700;flex-shrink:0}
+.q-hint{font-size:11px;color:var(--ink-faint);font-weight:400;margin-left:4px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .18s;user-select:none}
+.chip:hover{border-color:var(--rouge);color:var(--rouge)}
+.chip.on{background:var(--rouge);border-color:var(--rouge);color:#fff;font-weight:700;box-shadow:0 3px 10px rgba(194,69,106,0.25)}
+.chip .ti{font-size:14px;margin-right:5px;vertical-align:-1px}
+
+/* type cards (axis 1) */
+.type-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.type-card{border:1.5px solid var(--line);border-radius:var(--r-sm);padding:16px 16px 14px;cursor:pointer;background:#fff;transition:all .18s;position:relative}
+.type-card:hover{border-color:var(--rouge);transform:translateY(-2px)}
+.type-card.on{border-color:var(--rouge);background:var(--rouge-soft);box-shadow:0 4px 14px rgba(194,69,106,0.16)}
+.type-card .tc-ic{font-size:22px;color:var(--rouge);margin-bottom:8px}
+.type-card h4{font-size:14px;font-weight:700;margin-bottom:5px;font-family:'Zen Old Mincho',serif}
+.type-card p{font-size:11.5px;color:var(--ink-soft);line-height:1.65}
+.type-card .check{position:absolute;top:12px;right:12px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent}
+.type-card.on .check{background:var(--rouge);border-color:var(--rouge);color:#fff}
+
+/* budget slider */
+.budget-wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.budget-wrap input[type=range]{flex:1;min-width:200px;accent-color:var(--rouge);height:4px}
+.budget-val{font-family:'Zen Old Mincho',serif;font-size:20px;font-weight:700;color:var(--rouge-deep);min-width:128px;text-align:center;background:var(--paper-2);border-radius:var(--r-sm);padding:7px 12px}
+
+/* karte footer / result count */
+.karte-foot{background:var(--paper-2);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.foot-count{font-size:13px;color:var(--ink-soft)}
+.foot-count b{font-family:'Zen Old Mincho',serif;font-size:22px;color:var(--rouge-deep);margin:0 3px}
+.btn-reset{font-size:12px;color:var(--ink-faint);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.btn-reset:hover{color:var(--rouge)}
+
+/* ====== results: KARTE cards ====== */
+.results{margin-top:30px;display:flex;flex-direction:column;gap:18px}
+.result-lead{font-size:13px;color:var(--ink-soft);margin-bottom:4px}
+.result-lead b{color:var(--rouge-deep)}
+.kcard{background:rgba(255,255,255,0.92);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;position:relative;animation:rise .4s ease backwards}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.kcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:18px 20px 14px;border-bottom:1px solid var(--line-soft)}
+.kcard-rank{position:absolute;top:0;left:0;background:var(--ink);color:var(--paper);font-family:'Zen Old Mincho',serif;font-size:13px;font-weight:700;padding:5px 13px 6px;border-radius:0 0 var(--r-sm) 0;letter-spacing:.05em}
+.kcard-rank.best{background:linear-gradient(120deg,var(--gold),#caa66a)}
+.kcard h3{font-family:'Zen Old Mincho',serif;font-size:18px;font-weight:700;margin:14px 0 4px;letter-spacing:.02em;padding-left:2px}
+.kcard .area{font-size:11.5px;color:var(--ink-faint);display:flex;align-items:center;gap:4px}
+.type-badge{font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+.type-badge.factory{background:#E7F1EC;color:#2E7D5B}
+.type-badge.premium{background:#EFE7F3;color:#7A4A93}
+.kcard-desc{padding:12px 20px 4px;font-size:13px;color:var(--ink-soft);line-height:1.8}
+
+/* spec table — the "5 second" karte spec */
+.spec-table{margin:12px 20px 18px;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+.spec-row{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid var(--line-soft);font-size:12.5px}
+.spec-row:last-child{border-bottom:none}
+.spec-row dt{background:var(--paper-2);padding:9px 12px;color:var(--ink-soft);font-weight:700;display:flex;align-items:center;gap:5px}
+.spec-row dd{padding:9px 13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.spec-yes{color:#2E7D5B;font-weight:700;display:inline-flex;align-items:center;gap:3px}
+.spec-no{color:var(--ink-faint);display:inline-flex;align-items:center;gap:3px}
+.pricepill{font-family:'Zen Old Mincho',serif;font-weight:700;color:var(--rouge-deep)}
+.t-pill{font-size:11px;padding:2px 9px;border-radius:999px;background:var(--rouge-soft);color:var(--rouge-deep)}
+
+.kcard-foot{display:flex;gap:10px;flex-wrap:wrap;padding:0 20px 18px;align-items:center}
+.btn-hp{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;text-decoration:none;padding:9px 18px;border-radius:999px;color:#fff;background:linear-gradient(120deg,var(--rouge),var(--rouge-deep));box-shadow:0 3px 12px rgba(194,69,106,0.28);transition:transform .15s}
+.btn-hp:hover{transform:translateY(-1px)}
+.btn-map{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;text-decoration:none;color:var(--gold);font-weight:700}
+.btn-map:hover{opacity:.7}
+
+.empty{text-align:center;padding:40px 20px;color:var(--ink-soft);font-size:13.5px;border:1px dashed var(--line);border-radius:var(--r);background:rgba(255,255,255,0.5)}
+.empty .ti{font-size:30px;color:var(--ink-faint);display:block;margin-bottom:10px}
+
+/* ====== article nav cards ====== */
+.art-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.art-card{display:block;text-decoration:none;color:inherit;background:rgba(255,255,255,0.85);border:1px solid var(--line);border-radius:var(--r);padding:24px 22px 22px;transition:all .2s;position:relative;overflow:hidden}
+.art-card::before{content:attr(data-kanji);position:absolute;right:-6px;bottom:-18px;font-family:'Zen Old Mincho',serif;font-size:80px;font-weight:900;color:var(--rouge);opacity:.05;line-height:1;pointer-events:none}
+.art-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--rouge)}
+.art-card .ac-ic{width:46px;height:46px;border-radius:13px;background:var(--rouge-soft);color:var(--rouge);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.art-card .ac-kicker{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.art-card h4{font-family:'Zen Old Mincho',serif;font-size:16px;font-weight:700;margin-bottom:8px;letter-spacing:.02em}
+.art-card p{font-size:12.5px;color:var(--ink-soft);line-height:1.75;margin-bottom:14px}
+.art-card .ac-go{font-size:12px;font-weight:700;color:var(--rouge);display:inline-flex;align-items:center;gap:4px}
+
+/* ====== footer ====== */
+.foot{margin-top:50px;background:var(--ink);color:rgba(251,247,244,0.6);padding:44px 0 30px}
+.foot .brand .mark{color:#fff}.foot .brand .mark em{color:var(--rouge-soft)}
+.foot .brand .romaji{color:rgba(255,255,255,0.3)}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0 24px}
+.foot-block{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:15px 17px}
+.foot-block h5{font-size:12px;font-weight:700;color:rgba(255,255,255,0.78);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.foot-block p{font-size:11px;color:rgba(255,255,255,0.42);line-height:1.8}
+.foot-copy{font-size:10.5px;color:rgba(255,255,255,0.28);text-align:center;border-top:1px solid rgba(255,255,255,0.08);padding-top:18px;line-height:1.8}
+
+@media(max-width:640px){
+  .type-cards{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .kcard-top{flex-direction:column}
+  .spec-row{grid-template-columns:84px 1fr}
+  .hero-stats{gap:18px}
+  .hstat .div{display:none}
+}
+/* ====== global nav ====== */
+.topbar{position:relative}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{font-size:13px;color:var(--ink-soft);text-decoration:none;padding:8px 13px;border-radius:999px;transition:all .16s;white-space:nowrap;letter-spacing:.02em}
+.nav a:hover{color:var(--rouge);background:var(--rouge-soft)}
+.nav a.active{color:var(--rouge-deep);font-weight:700}
+.nav a.cta{background:var(--rouge);color:#fff;font-weight:700;margin-left:6px}
+.nav a.cta:hover{background:var(--rouge-deep);color:#fff}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:40px;height:38px;cursor:pointer;font-size:20px;color:var(--ink);align-items:center;justify-content:center}
+@media(max-width:860px){
+  .topbar .seal{display:none}
+  .nav-toggle{display:flex}
+  .nav{position:absolute;top:calc(100% + 8px);right:0;left:0;flex-direction:column;align-items:stretch;gap:2px;
+    background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:14px;
+    padding:8px;box-shadow:var(--shadow);z-index:50;display:none}
+  .nav.open{display:flex;animation:rise .2s ease}
+  .nav a{padding:12px 14px;border-radius:10px;font-size:14px}
+  .nav a.cta{margin-left:0;margin-top:4px;text-align:center}
+}
+</style>
+<style>
+/* ===== subpage extras ===== */
+.page-hero{padding:46px 0 30px}
+.page-hero .crumb{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:16px}
+.page-hero .crumb a{color:var(--ink-faint);text-decoration:none}
+.page-hero .crumb a:hover{color:var(--rouge)}
+.page-hero h1{font-family:'Zen Old Mincho',serif;font-weight:700;font-size:clamp(26px,5vw,40px);line-height:1.3;margin-bottom:14px;letter-spacing:.02em}
+.page-hero h1 em{font-style:normal;color:var(--rouge)}
+.page-hero p{font-size:14.5px;color:var(--ink-soft);max-width:620px;line-height:1.9}
+.post-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding:10px 0 20px}
+.post{display:flex;flex-direction:column;background:rgba(255,255,255,0.88);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-decoration:none;color:inherit;transition:all .2s}
+.post:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--rouge)}
+.post-thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:40px;color:#fff;position:relative;overflow:hidden}
+.post-thumb::after{content:attr(data-kanji);position:absolute;right:-8px;bottom:-22px;font-family:'Zen Old Mincho',serif;font-size:100px;font-weight:900;color:rgba(255,255,255,0.16);line-height:1}
+.tg-a{background:linear-gradient(125deg,#C2456A,#9A2F4F)}
+.tg-b{background:linear-gradient(125deg,#B08A4F,#8a6c3a)}
+.tg-c{background:linear-gradient(125deg,#7A4A93,#5a3470)}
+.tg-d{background:linear-gradient(125deg,#2E7D5B,#1f5d42)}
+.post-body{padding:18px 18px 20px;flex:1;display:flex;flex-direction:column}
+.post-cat{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:9px;display:flex;align-items:center;gap:7px}
+.post-cat .date{color:var(--ink-faint);letter-spacing:.04em}
+.post h3{font-family:'Zen Old Mincho',serif;font-size:16.5px;font-weight:700;line-height:1.5;margin-bottom:9px}
+.post p{font-size:12.5px;color:var(--ink-soft);line-height:1.75;flex:1}
+.post .go{font-size:12px;font-weight:700;color:var(--rouge);margin-top:14px;display:inline-flex;align-items:center;gap:4px}
+.tags-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 24px}
+.tagf{font-size:12.5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:default}
+.tagf.on{background:var(--rouge);border-color:var(--rouge);color:#fff;font-weight:700}
+.soon{background:rgba(255,255,255,0.6);border:1px dashed var(--line);border-radius:var(--r);padding:30px 24px;text-align:center;color:var(--ink-soft);font-size:13.5px;margin-top:6px}
+.soon .ti{font-size:30px;color:var(--ink-faint);display:block;margin-bottom:10px}
+.backhome{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--rouge);text-decoration:none;margin:8px 0 0}
+</style>
+<style>
+/* ===== article-specific extras ===== */
+.byline{display:flex;align-items:center;gap:10px;margin:-6px 0 26px;font-size:12px;color:var(--ink-faint)}
+.byline .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-faint)}
+.a-section{padding:36px 0 0}
+.a-section h2{font-family:'Zen Old Mincho',serif;font-size:clamp(19px,3.6vw,24px);font-weight:700;letter-spacing:.02em;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.a-section h2 .no{font-size:12px;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:3px 10px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;letter-spacing:.06em;flex-shrink:0}
+.a-section p{font-size:14px;color:var(--ink-soft);line-height:1.95;margin-bottom:14px}
+.a-section p:last-child{margin-bottom:0}
+
+.summary-card{background:rgba(255,255,255,0.85);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;margin:6px 0 8px}
+.summary-head{background:linear-gradient(110deg,var(--rouge) 0%,var(--rouge-deep) 100%);color:#fff;padding:16px 22px;font-size:13px;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:8px}
+.summary-body{padding:6px 0}
+.menu-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;width:100%}
+.menu-list li{font-size:12.5px;color:var(--ink);display:flex;align-items:flex-start;gap:7px;line-height:1.6}
+.menu-list li .mn{font-family:'Zen Old Mincho',serif;font-size:10.5px;color:var(--gold);font-weight:700;background:var(--paper-2);border-radius:4px;padding:1px 6px;flex-shrink:0;margin-top:2px}
+
+.treat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:6px 0 4px}
+.treat-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 17px 15px;position:relative}
+.treat-card .t-no{font-family:'Zen Old Mincho',serif;font-size:11px;color:var(--gold);font-weight:700;margin-bottom:6px;display:block}
+.treat-card h4{font-family:'Zen Old Mincho',serif;font-size:14.5px;font-weight:700;margin-bottom:6px;letter-spacing:.02em}
+.treat-card p{font-size:12px;color:var(--ink-soft);line-height:1.7;margin:0}
+
+.note-box{background:var(--rouge-soft);border-left:4px solid var(--rouge);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:18px 20px;margin:18px 0}
+.note-box .nb-tag{font-size:11px;font-weight:700;color:var(--rouge-deep);letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.note-box p{font-size:13.5px;color:var(--ink);line-height:1.9;margin:0}
+.note-box p+p{margin-top:10px}
+
+.gold-box{background:var(--paper-2);border-left:4px solid var(--gold);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:18px 20px;margin:18px 0}
+.gold-box .nb-tag{font-size:11px;font-weight:700;color:#8a6c3a;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.gold-box p{font-size:13.5px;color:var(--ink);line-height:1.9;margin:0}
+.gold-box p+p{margin-top:10px}
+
+/* 当日の流れ ステップ */
+.flow{margin:8px 0 4px;position:relative;padding-left:6px}
+.flow-step{display:flex;gap:15px;padding:0 0 20px;position:relative}
+.flow-step:last-child{padding-bottom:0}
+.flow-step::before{content:'';position:absolute;left:15px;top:34px;bottom:0;width:1px;background:var(--line)}
+.flow-step:last-child::before{display:none}
+.flow-num{width:31px;height:31px;border-radius:50%;background:var(--rouge-soft);color:var(--rouge-deep);display:flex;align-items:center;justify-content:center;font-family:'Zen Old Mincho',serif;font-size:13px;font-weight:700;flex-shrink:0;z-index:1;border:1px solid rgba(194,69,106,0.18)}
+.flow-txt{flex:1;padding-top:2px}
+.flow-txt h4{font-size:14px;font-weight:700;margin-bottom:5px;letter-spacing:.01em}
+.flow-txt p{font-size:13px;color:var(--ink-soft);line-height:1.85;margin:0}
+
+/* 良かった / 気になった */
+.verdict-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0 4px}
+.verdict{border-radius:var(--r-sm);padding:17px 18px;border:1px solid var(--line);background:#fff}
+.verdict.good{background:#F1F7F3;border-color:#CBE3D6}
+.verdict.bad{background:var(--paper-2)}
+.verdict h4{font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.verdict.good h4{color:#2E7D5B}
+.verdict.bad h4{color:var(--rouge-deep)}
+.verdict ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.verdict li{font-size:12.5px;color:var(--ink-soft);line-height:1.75;display:flex;gap:7px;align-items:flex-start}
+.verdict li::before{content:'—';color:var(--ink-faint);flex-shrink:0}
+@media(max-width:640px){.verdict-grid{grid-template-columns:1fr}}
+
+.chips.static .chip{cursor:default}
+.chips.static .chip:hover{border-color:var(--line);color:var(--ink-soft)}
+
+.a-foot-note{font-size:11.5px;color:var(--ink-faint);border-top:1px dashed var(--line);padding-top:16px;margin-top:36px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="bg-field"></div>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">
+      <a href="index.html" style="text-decoration:none;color:inherit"><span class="mark">渡韓美容<em>カルテ</em></span></a>
+      <span class="romaji">tokan karte</span>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="index.html#finder">クリニックを探す</a>
+      <a href="experience.html" class="active">体験記事</a>
+      <a href="homecare.html">ホームケア</a>
+      <a href="news.html">最新ニュース</a>
+      <a href="about.html">このサイトについて</a>
+      <a href="index.html#finder" class="cta">問診をはじめる</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="メニューを開く" onclick="toggleNav()"><i class="ti ti-menu-2"></i></button>
+  </div>
+</div>
+
+<header class="wrap page-hero">
+  <p class="crumb"><a href="index.html">ホーム</a> ／ <a href="experience.html">体験記事</a> ／ YOU＆I江南店</p>
+  <h1>YOU＆I江南店で、<em>ニキビ・エラ・たるみ</em>を<br>まとめてケアしてきた日の記録。</h1>
+  <p>今回向かったのは江南にあるYOU＆I皮膚科。ニキビとニキビ跡、口横のたるみ、そしてエラの張りが気になっていて、1回の来院で悩みを一気に片づけるつもりで施術を組みました。良かった点も、正直しんどかった点も、盛らずに書き残しておきます。</p>
+</header>
+
+<div class="byline"><i class="ti ti-map-pin" style="color:var(--rouge)"></i> YOU＆I皮膚科 江南店<span class="dot"></span>施術体験記<span class="dot"></span>個人の感想です</div>
+
+<section class="wrap" style="padding-bottom:10px">
+
+  <div class="summary-card">
+    <div class="summary-head"><i class="ti ti-clipboard-heart"></i> 5秒でわかる今回のカルテ</div>
+    <div class="summary-body">
+      <dl class="spec-table" style="margin:14px 20px 18px;border:1px solid var(--line)">
+        <div class="spec-row"><dt><i class="ti ti-building-hospital"></i>クリニック</dt><dd>YOU＆I皮膚科 江南店</dd></div>
+        <div class="spec-row"><dt><i class="ti ti-sparkles"></i>気になっていた悩み</dt><dd>ニキビ／ニキビ跡／口横のたるみ／エラ</dd></div>
+        <div class="spec-row"><dt><i class="ti ti-list-check"></i>受けた施術</dt><dd>
+          <ul class="menu-list">
+            <li><span class="mn">01</span>エンジェルピーリング</li>
+            <li><span class="mn">02</span>ネオビーム</li>
+            <li><span class="mn">03</span>ソノケア</li>
+            <li><span class="mn">04</span>ダーマVレーザー</li>
+            <li><span class="mn">05</span>オリジオX600ショット</li>
+            <li><span class="mn">06</span>リジュランHB 2cc（頬のみ）</li>
+            <li><span class="mn">07</span>エラボト 50ユニット（ドイツ産）</li>
+          </ul>
+        </dd></div>
+        <div class="spec-row"><dt><i class="ti ti-clock"></i>所要時間</dt><dd>混雑のため合計 約1時間30分</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="chips static" style="margin:18px 0 4px">
+    <span class="chip on"><i class="ti ti-flame"></i>ニキビ</span>
+    <span class="chip on"><i class="ti ti-grain"></i>ニキビ跡</span>
+    <span class="chip on"><i class="ti ti-face-id"></i>口横のたるみ</span>
+    <span class="chip on"><i class="ti ti-square"></i>エラ</span>
+  </div>
+
+  <div class="a-section">
+    <h2><span class="no">其ノ一</span>今回の悩みとクリニック選び</h2>
+    <p>ここ最近ずっと気になっていたのが、ニキビとニキビ跡、そして口横のたるみとエラの張り。単発の悩みというより、肌質の底上げと輪郭の印象を同時に整えたくて、江南のYOU＆I皮膚科でまとめてカウンセリングをお願いしました。</p>
+    <p>カウンセリングでは悩みを一通り伝え、肌のコンディション系（毛穴・ニキビ・ニキビ跡）と、輪郭・たるみ系（エラ・口横）を分けて、それぞれに合う施術を組んでもらう形で当日のメニューが決まりました。</p>
+  </div>
+
+  <div class="a-section">
+    <h2><span class="no">其ノ二</span>受けた施術一覧（全7種）</h2>
+    <p>今回組んでもらったのはこちらの7種。肌のケアと輪郭のケアを一気に詰め込んだので、それなりにボリュームのある内容になりました。</p>
+    <div class="treat-grid">
+      <div class="treat-card"><span class="t-no">01</span><h4>エンジェルピーリング</h4><p>毛穴づまりや古い角質を優しく除去するピーリング。ニキビ・ニキビ跡ケアのベースとして。</p></div>
+      <div class="treat-card"><span class="t-no">02</span><h4>ネオビーム</h4><p>ニキビの赤みや炎症を鎮めるための光照射ケア。肌のトーンを落ち着かせる目的。</p></div>
+      <div class="treat-card"><span class="t-no">03</span><h4>ソノケア</h4><p>超音波で美容成分を肌の深部まで届ける導入ケア。ピーリング後の鎮静・栄養補給に。</p></div>
+      <div class="treat-card"><span class="t-no">04</span><h4>ダーマVレーザー</h4><p>毛穴の引き締めとハリ感アップを狙ったレーザー。ニキビ跡の凹凸ケアも兼ねて。</p></div>
+      <div class="treat-card"><span class="t-no">05</span><h4>オリジオX600ショット</h4><p>高周波（RF）でたるみを引き締めるリフト系施術。口横のたるみ対策として600ショット照射。</p></div>
+      <div class="treat-card"><span class="t-no">06</span><h4>リジュランHB 2cc（頬のみ）</h4><p>肌の再生を促す注射。今回は頬のみに、通常より少ない量で注入（詳細は其ノ四）。</p></div>
+      <div class="treat-card"><span class="t-no">07</span><h4>エラボト 50ユニット（ドイツ産）</h4><p>エラの張りを和らげるボトックス。今回はあえて価格が高めのドイツ産を選択（詳細は其ノ五）。</p></div>
+    </div>
+  </div>
+
+  <div class="a-section">
+    <h2><span class="no">其ノ三</span>当日の流れ：メイクオフから帰るまで</h2>
+    <p>日本のクリニックとはかなり勝手が違ったので、初めて行く方のために当日の流れをそのまま残しておきます。<strong>基本的に「自分でやる」場面が多い</strong>のが特徴でした。</p>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">壱</div>
+        <div class="flow-txt">
+          <h4>まずは自分でメイクオフ</h4>
+          <p>施術前に鏡の前へ案内され、そこで自分でメイクを落とします。スタッフの方がクレンジングしてくれるスタイルではないので、慣れていないと少し戸惑うかもしれません。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">弐</div>
+        <div class="flow-txt">
+          <h4>メイクを落としてから施術室へ</h4>
+          <p>顔をリセットした状態で、そのまま施術室に案内されます。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">参</div>
+        <div class="flow-txt">
+          <h4>施術ごとに部屋を移動</h4>
+          <p>施術によって使う機械が違うため、1つの部屋で完結せず、いろいろな部屋に順番に通されます。今回は7種類受けたので、そのぶん移動も多めでした。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">四</div>
+        <div class="flow-txt">
+          <h4>荷物はベッド横のロッカーへ</h4>
+          <p>各施術室のベッドの横にロッカーがあり、そこに荷物を入れて自分で鍵をかけてから横になります。部屋を移動するたびにこの流れになるので、荷物は最小限にしておくとラクだと思います。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">五</div>
+        <div class="flow-txt">
+          <h4>終わったら自分で出口へ</h4>
+          <p>すべての施術が終わったあと、改めて声をかけられるわけではなく、自分で出口まで歩いていって帰る方式でした。「これで本当に終わり？帰っていいの？」と最後まで確信が持てないまま退店することに。ここは事前に知っておきたかったポイントです。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="a-section">
+    <h2><span class="no">其ノ四</span>正直レビュー：リジュランは、半量＋麻酔切れがきつかった</h2>
+    <p>リジュランはいつも頬に4ccで受けていて、毎回ちゃんと効果を感じられていた施術です。ただ今回は予算の都合で、思い切って半分の2ccに減らしてお願いしました。</p>
+    <div class="note-box">
+      <div class="nb-tag"><i class="ti ti-alert-triangle"></i>今回いちばん正直に書きたかったポイント</div>
+      <p><strong>効果について：</strong>結果から言うと、2ccだといつものような「入れた実感」がほぼありませんでした。肌の調子が明らかに良くなる感覚がなく、正直「これなら受けなくても変わらなかったかも」と思うくらい。次回はやっぱり4ccで受けようと思います。</p>
+      <p><strong>痛みについて：</strong>そしてこの日は激痛でした。というのも、<strong>麻酔クリームを塗ってから1時間以上経ったあとにリジュランを打った</strong>ため、打つ頃には麻酔がすっかり切れていたんです。混雑で待ち時間が延びた影響がそのまま痛みに直結した形でした。効果は薄いのに痛みだけ最大、という一番もったいないパターンです。</p>
+    </div>
+    <p>もし同じように施術を複数組む場合は、<strong>麻酔を塗ってからどれくらいで注射をするのか</strong>を先に確認しておくと安心だと思います。待たされそうなときは、その場で一声かけてみるのも手かもしれません。</p>
+  </div>
+
+  <div class="a-section">
+    <h2><span class="no">其ノ五</span>エラボトは、ドイツ産にして正解だった</h2>
+    <p>エラボトックスは以前、韓国製のものを受けたことがあるのですが、効果の持続が思ったより短くて「あれ、もう戻ってきた？」となった経験がありました。</p>
+    <div class="gold-box">
+      <div class="nb-tag"><i class="ti ti-coin"></i>選び方のポイント</div>
+      <p>今回は同じ失敗を繰り返したくなかったので、値段は少し高くなるけれど持続力に定評のあるドイツ産の製剤を50ユニット選択しました。</p>
+      <p><strong>結論、ドイツ産にして本当に良かったです。</strong>韓国製のときのような「すぐ効果が切れた」という感覚がなく、価格差のぶんはしっかり納得できる仕上がりでした。エラボトに関しては、多少高くても持続重視で選ぶのが正解だと感じています。</p>
+    </div>
+  </div>
+
+  <div class="a-section">
+    <h2><span class="no">其ノ六</span>混雑と接客について、正直なところ</h2>
+    <p>この日はクリニックがかなり混んでいて、カウンセリングから会計まで含めると全体で1時間半ほどかかりました。施術数が多かったこともありますが、待ち時間の影響が大きかった印象です。</p>
+    <p>そして正直に言うと、<strong>江南店の接客はあまりおすすめできません。</strong>メイクオフも部屋の移動も基本は自分まかせで、最後は声かけもなく自分で帰るスタイル。丁寧に案内してもらえる安心感を求めている方だと、少し物足りなく感じると思います。麻酔が切れたまま注射に進んでしまったのも、この流れの延長線上にある気がしています。</p>
+    <div class="verdict-grid">
+      <div class="verdict good">
+        <h4><i class="ti ti-thumb-up"></i> 良かったところ</h4>
+        <ul>
+          <li>ピーリング〜レーザー系の肌ケアは満足度が高かった</li>
+          <li>エラボトをドイツ産にしたのは正解。持続力に納得できた</li>
+          <li>1回の来院で肌と輪郭の悩みをまとめてケアできた</li>
+        </ul>
+      </div>
+      <div class="verdict bad">
+        <h4><i class="ti ti-alert-circle"></i> 気になったところ</h4>
+        <ul>
+          <li>麻酔が切れた状態でリジュランを打つことになった</li>
+          <li>リジュランを半量にしたら効果を感じられなかった</li>
+          <li>終了の案内がなく、帰っていいのか分からなかった</li>
+          <li>接客はあっさりめ。丁寧なサポートを求める人には不向き</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="a-section">
+    <h2><span class="no">其ノ七</span>まとめ</h2>
+    <p>肌のケア（エンジェルピーリング・ネオビーム・ソノケア・ダーマVレーザー）と輪郭のケア（オリジオX600・リジュランHB・エラボト）をまとめて受けた1日でした。ピーリング系のケアとドイツ産エラボトは満足度が高かった一方、リジュランは量を減らしたうえに麻酔まで切れていて、今回いちばんの反省点になりました。</p>
+    <p>接客や院内の流れは「自分でどんどん動く」スタイル。慣れている方には効率的かもしれませんが、初めての渡韓で丁寧に案内してほしい方には、正直あまりおすすめできません。</p>
+    <p>効果や痛みの感じ方には個人差があります。あくまで今回の私自身の体験として、次に渡韓する人の参考になればうれしいです。</p>
+  </div>
+
+  <p class="a-foot-note">※本記事は個人の体験に基づく感想であり、効果・痛み・料金・接客対応には個人差があります。施術を検討される際は、必ずクリニックでの診察・カウンセリングを受けたうえでご判断ください。</p>
+
+  <a class="backhome" href="experience.html" style="margin-top:26px"><i class="ti ti-arrow-left"></i> 体験記事の一覧にもどる</a>
+</section>
+<footer class="foot">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">渡韓美容<em>カルテ</em></span>
+      <span class="romaji">tokan karte</span>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-block">
+        <h5><i class="ti ti-info-circle"></i> 情報の正確性について</h5>
+        <p>掲載されているクリニック・施術・料金は公開情報と渡韓経験をもとにした参考情報です。料金・営業時間・メニュー・サポート体制は予告なく変更される場合があります。必ず各クリニック・公式サイトにてご確認ください。</p>
+      </div>
+      <div class="foot-block">
+        <h5><i class="ti ti-stethoscope"></i> 医療行為ではありません</h5>
+        <p>本サイトは美容医療に関する一般的な情報提供を目的としており、医療診断・治療の代替ではありません。施術は必ず有資格の医師にご相談のうえ、ご自身の判断と責任でお決めください。効果・リスクには個人差があります。</p>
+      </div>
+    </div>
+    <p class="foot-copy">© 2025 渡韓美容クリニックのカルテ　本サイトの情報を利用したことによる損害について、当サイトは一切の責任を負いかねます。</p>
+  </div>
+</footer>
+
+<script>
+function toggleNav(){
+  var n=document.getElementById('nav');
+  var open=n.classList.toggle('open');
+  document.getElementById('nav-toggle').innerHTML=open?'<i class="ti ti-x"></i>':'<i class="ti ti-menu-2"></i>';
+}
+document.querySelectorAll('#nav a').forEach(function(a){
+  a.addEventListener('click',function(){
+    var n=document.getElementById('nav');
+    if(n.classList.contains('open')){n.classList.remove('open');document.getElementById('nav-toggle').innerHTML='<i class="ti ti-menu-2"></i>';}
+  });
+});
+</script>
+</body>
+</html>
