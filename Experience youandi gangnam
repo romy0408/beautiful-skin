@@ -243,11 +243,29 @@ body{
 /* ===== article-specific extras ===== */
 .byline{display:flex;align-items:center;gap:10px;margin:-6px 0 26px;font-size:12px;color:var(--ink-faint)}
 .byline .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-faint)}
-.a-section{padding:36px 0 0}
+.a-section{padding:36px 0 0;scroll-margin-top:20px}
 .a-section h2{font-family:'Zen Old Mincho',serif;font-size:clamp(19px,3.6vw,24px);font-weight:700;letter-spacing:.02em;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .a-section h2 .no{font-size:12px;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:3px 10px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;letter-spacing:.06em;flex-shrink:0}
 .a-section p{font-size:14px;color:var(--ink-soft);line-height:1.95;margin-bottom:14px}
 .a-section p:last-child{margin-bottom:0}
+
+/* ===== 目次 ===== */
+.toc{background:rgba(255,255,255,0.8);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px 18px;margin:4px 0 22px;position:relative;overflow:hidden}
+.toc::before{content:'目次';position:absolute;right:-4px;bottom:-16px;font-family:'Zen Old Mincho',serif;font-size:66px;font-weight:900;color:var(--rouge);opacity:.05;line-height:1;pointer-events:none}
+.toc-head{display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.toc-head .ttl{font-family:'Zen Old Mincho',serif;font-size:15px;font-weight:700;letter-spacing:.06em}
+.toc-head .ic{color:var(--rouge)}
+.toc-head .en{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+.toc-head .ln{flex:1;height:1px;background:var(--line)}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 22px}
+.toc li{border-bottom:1px dashed var(--line-soft)}
+.toc li:last-child{border-bottom:none}
+.toc a{display:flex;align-items:center;gap:10px;padding:10px 2px;text-decoration:none;color:var(--ink);font-size:13.5px;transition:color .16s;line-height:1.5}
+.toc a:hover{color:var(--rouge)}
+.toc a .tno{font-family:'Zen Old Mincho',serif;font-size:11px;color:var(--gold);font-weight:700;flex-shrink:0;width:38px;white-space:nowrap}
+.toc a .arw{margin-left:auto;color:var(--ink-faint);font-size:13px;flex-shrink:0}
+.toc a:hover .arw{color:var(--rouge)}
+@media(max-width:640px){.toc ol{grid-template-columns:1fr;gap:0}.toc li:last-child{border-bottom:none}.toc li{border-bottom:1px dashed var(--line-soft)}}
 
 .summary-card{background:rgba(255,255,255,0.85);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;margin:6px 0 8px}
 .summary-head{background:linear-gradient(110deg,var(--rouge) 0%,var(--rouge-deep) 100%);color:#fff;padding:16px 22px;font-size:13px;font-weight:700;letter-spacing:.04em;display:flex;align-items:center;gap:8px}
@@ -296,9 +314,6 @@ body{
 .verdict li::before{content:'—';color:var(--ink-faint);flex-shrink:0}
 @media(max-width:640px){.verdict-grid{grid-template-columns:1fr}}
 
-.chips.static .chip{cursor:default}
-.chips.static .chip:hover{border-color:var(--line);color:var(--ink-soft)}
-
 .a-foot-note{font-size:11.5px;color:var(--ink-faint);border-top:1px dashed var(--line);padding-top:16px;margin-top:36px;line-height:1.8}
 </style>
 </head>
@@ -333,6 +348,25 @@ body{
 
 <section class="wrap" style="padding-bottom:10px">
 
+  <!-- ===== 目次 ===== -->
+  <nav class="toc" aria-label="目次">
+    <div class="toc-head">
+      <span class="ic"><i class="ti ti-list-search"></i></span>
+      <span class="ttl">目次</span>
+      <span class="en">contents</span>
+      <span class="ln"></span>
+    </div>
+    <ol>
+      <li><a href="#s1"><span class="tno">其ノ一</span>今回の悩みとクリニック選び<i class="ti ti-chevron-right arw"></i></a></li>
+      <li><a href="#s2"><span class="tno">其ノ二</span>受けた施術一覧（全7種）<i class="ti ti-chevron-right arw"></i></a></li>
+      <li><a href="#s3"><span class="tno">其ノ三</span>当日の流れ：受付から終了まで<i class="ti ti-chevron-right arw"></i></a></li>
+      <li><a href="#s4"><span class="tno">其ノ四</span>正直レビュー：リジュランの話<i class="ti ti-chevron-right arw"></i></a></li>
+      <li><a href="#s5"><span class="tno">其ノ五</span>エラボトはドイツ産にして正解<i class="ti ti-chevron-right arw"></i></a></li>
+      <li><a href="#s6"><span class="tno">其ノ六</span>混雑と接客について、正直なところ<i class="ti ti-chevron-right arw"></i></a></li>
+      <li><a href="#s7"><span class="tno">其ノ七</span>まとめ<i class="ti ti-chevron-right arw"></i></a></li>
+    </ol>
+  </nav>
+
   <div class="summary-card">
     <div class="summary-head"><i class="ti ti-clipboard-heart"></i> 5秒でわかる今回のカルテ</div>
     <div class="summary-body">
@@ -355,20 +389,13 @@ body{
     </div>
   </div>
 
-  <div class="chips static" style="margin:18px 0 4px">
-    <span class="chip on"><i class="ti ti-flame"></i>ニキビ</span>
-    <span class="chip on"><i class="ti ti-grain"></i>ニキビ跡</span>
-    <span class="chip on"><i class="ti ti-face-id"></i>口横のたるみ</span>
-    <span class="chip on"><i class="ti ti-square"></i>エラ</span>
-  </div>
-
-  <div class="a-section">
+  <div class="a-section" id="s1">
     <h2><span class="no">其ノ一</span>今回の悩みとクリニック選び</h2>
     <p>ここ最近ずっと気になっていたのが、ニキビとニキビ跡、そして口横のたるみとエラの張り。単発の悩みというより、肌質の底上げと輪郭の印象を同時に整えたくて、江南のYOU＆I皮膚科でまとめてカウンセリングをお願いしました。</p>
     <p>カウンセリングでは悩みを一通り伝え、肌のコンディション系（毛穴・ニキビ・ニキビ跡）と、輪郭・たるみ系（エラ・口横）を分けて、それぞれに合う施術を組んでもらう形で当日のメニューが決まりました。</p>
   </div>
 
-  <div class="a-section">
+  <div class="a-section" id="s2">
     <h2><span class="no">其ノ二</span>受けた施術一覧（全7種）</h2>
     <p>今回組んでもらったのはこちらの7種。肌のケアと輪郭のケアを一気に詰め込んだので、それなりにボリュームのある内容になりました。</p>
     <div class="treat-grid">
@@ -382,49 +409,63 @@ body{
     </div>
   </div>
 
-  <div class="a-section">
-    <h2><span class="no">其ノ三</span>当日の流れ：メイクオフから帰るまで</h2>
-    <p>日本のクリニックとはかなり勝手が違ったので、初めて行く方のために当日の流れをそのまま残しておきます。<strong>基本的に「自分でやる」場面が多い</strong>のが特徴でした。</p>
+  <div class="a-section" id="s3">
+    <h2><span class="no">其ノ三</span>当日の流れ：受付から終了まで</h2>
+    <p>日本のクリニックとはかなり勝手が違ったので、初めて行く方のために当日の流れをそのまま残しておきます。<strong>肌診断が無料で受けられて、その結果を見ながら相談できる</strong>のは良かったポイントです。</p>
     <div class="flow">
       <div class="flow-step">
         <div class="flow-num">壱</div>
         <div class="flow-txt">
-          <h4>まずは自分でメイクオフ</h4>
-          <p>施術前に鏡の前へ案内され、そこで自分でメイクを落とします。スタッフの方がクレンジングしてくれるスタイルではないので、慣れていないと少し戸惑うかもしれません。</p>
+          <h4>受付</h4>
+          <p>まずは受付をすませます。この日は混雑していたので、ここから待ち時間が発生しました。</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">弐</div>
         <div class="flow-txt">
-          <h4>メイクを落としてから施術室へ</h4>
-          <p>顔をリセットした状態で、そのまま施術室に案内されます。</p>
+          <h4>無料で肌診断</h4>
+          <p>専用の機械で肌の状態を診断してもらえます。しかもこれが無料。今の肌がデータで見えるので、なんとなくの悩みが具体的になります。</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">参</div>
         <div class="flow-txt">
-          <h4>施術ごとに部屋を移動</h4>
-          <p>施術によって使う機械が違うため、1つの部屋で完結せず、いろいろな部屋に順番に通されます。今回は7種類受けたので、そのぶん移動も多めでした。</p>
+          <h4>カウンセラーと施術相談</h4>
+          <p>肌診断の結果を一緒に見ながら、気になっている悩みを伝えます。予算を確認しながら「この予算ならこの施術」という形で具体的に組み立ててもらえるので、想定より高額になる心配が少なく相談しやすかったです。</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">四</div>
         <div class="flow-txt">
-          <h4>荷物はベッド横のロッカーへ</h4>
-          <p>各施術室のベッドの横にロッカーがあり、そこに荷物を入れて自分で鍵をかけてから横になります。部屋を移動するたびにこの流れになるので、荷物は最小限にしておくとラクだと思います。</p>
+          <h4>メイク落とし</h4>
+          <p>施術内容が決まったら、鏡の前へ案内されて自分でメイクを落とします。スタッフの方がクレンジングしてくれるスタイルではないので、慣れていないと少し戸惑うかもしれません。</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">五</div>
         <div class="flow-txt">
-          <h4>終わったら自分で出口へ</h4>
+          <h4>部屋に案内されて荷物を預ける</h4>
+          <p>施術室に通されます。ベッドの横にロッカーがあり、そこに荷物を入れて自分で鍵をかけてから横になる方式でした。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">六</div>
+        <div class="flow-txt">
+          <h4>施術内容によって部屋を移動</h4>
+          <p>施術によって使う機械が違うため、1つの部屋で完結せず、いろいろな部屋に順番に通されます。今回は7種類受けたので、そのぶん移動も多めでした。</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">七</div>
+        <div class="flow-txt">
+          <h4>終了</h4>
           <p>すべての施術が終わったあと、改めて声をかけられるわけではなく、自分で出口まで歩いていって帰る方式でした。「これで本当に終わり？帰っていいの？」と最後まで確信が持てないまま退店することに。ここは事前に知っておきたかったポイントです。</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="a-section">
+  <div class="a-section" id="s4">
     <h2><span class="no">其ノ四</span>正直レビュー：リジュランは、半量＋麻酔切れがきつかった</h2>
     <p>リジュランはいつも頬に4ccで受けていて、毎回ちゃんと効果を感じられていた施術です。ただ今回は予算の都合で、思い切って半分の2ccに減らしてお願いしました。</p>
     <div class="note-box">
@@ -435,7 +476,7 @@ body{
     <p>もし同じように施術を複数組む場合は、<strong>麻酔を塗ってからどれくらいで注射をするのか</strong>を先に確認しておくと安心だと思います。待たされそうなときは、その場で一声かけてみるのも手かもしれません。</p>
   </div>
 
-  <div class="a-section">
+  <div class="a-section" id="s5">
     <h2><span class="no">其ノ五</span>エラボトは、ドイツ産にして正解だった</h2>
     <p>エラボトックスは以前、韓国製のものを受けたことがあるのですが、効果の持続が思ったより短くて「あれ、もう戻ってきた？」となった経験がありました。</p>
     <div class="gold-box">
@@ -445,7 +486,7 @@ body{
     </div>
   </div>
 
-  <div class="a-section">
+  <div class="a-section" id="s6">
     <h2><span class="no">其ノ六</span>混雑と接客について、正直なところ</h2>
     <p>この日はクリニックがかなり混んでいて、カウンセリングから会計まで含めると全体で1時間半ほどかかりました。施術数が多かったこともありますが、待ち時間の影響が大きかった印象です。</p>
     <p>そして正直に言うと、<strong>江南店の接客はあまりおすすめできません。</strong>メイクオフも部屋の移動も基本は自分まかせで、最後は声かけもなく自分で帰るスタイル。丁寧に案内してもらえる安心感を求めている方だと、少し物足りなく感じると思います。麻酔が切れたまま注射に進んでしまったのも、この流れの延長線上にある気がしています。</p>
@@ -453,9 +494,10 @@ body{
       <div class="verdict good">
         <h4><i class="ti ti-thumb-up"></i> 良かったところ</h4>
         <ul>
+          <li>肌診断が無料。結果を見ながら相談できる</li>
+          <li>予算を確認しながら施術を組み立ててもらえた</li>
           <li>ピーリング〜レーザー系の肌ケアは満足度が高かった</li>
           <li>エラボトをドイツ産にしたのは正解。持続力に納得できた</li>
-          <li>1回の来院で肌と輪郭の悩みをまとめてケアできた</li>
         </ul>
       </div>
       <div class="verdict bad">
@@ -470,9 +512,9 @@ body{
     </div>
   </div>
 
-  <div class="a-section">
+  <div class="a-section" id="s7">
     <h2><span class="no">其ノ七</span>まとめ</h2>
-    <p>肌のケア（エンジェルピーリング・ネオビーム・ソノケア・ダーマVレーザー）と輪郭のケア（オリジオX600・リジュランHB・エラボト）をまとめて受けた1日でした。ピーリング系のケアとドイツ産エラボトは満足度が高かった一方、リジュランは量を減らしたうえに麻酔まで切れていて、今回いちばんの反省点になりました。</p>
+    <p>肌のケア（エンジェルピーリング・ネオビーム・ソノケア・ダーマVレーザー）と輪郭のケア（オリジオX600・リジュランHB・エラボト）をまとめて受けた1日でした。無料の肌診断を見ながら予算内で組み立ててもらえる流れは良く、ピーリング系のケアとドイツ産エラボトは満足度が高かった一方、リジュランは量を減らしたうえに麻酔まで切れていて、今回いちばんの反省点になりました。</p>
     <p>接客や院内の流れは「自分でどんどん動く」スタイル。慣れている方には効率的かもしれませんが、初めての渡韓で丁寧に案内してほしい方には、正直あまりおすすめできません。</p>
     <p>効果や痛みの感じ方には個人差があります。あくまで今回の私自身の体験として、次に渡韓する人の参考になればうれしいです。</p>
   </div>
