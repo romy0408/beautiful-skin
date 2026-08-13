@@ -243,6 +243,16 @@ body{
 /* ===== article-specific extras ===== */
 .byline{display:flex;align-items:center;gap:10px;margin:-6px 0 26px;font-size:12px;color:var(--ink-faint)}
 .byline .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-faint)}
+.page-hero{text-align:center}
+.page-hero p{margin-left:auto;margin-right:auto}
+.byline{justify-content:center;flex-wrap:wrap;gap:8px 10px;margin:-2px 0 26px}
+.btag{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;letter-spacing:.02em}
+.btag .ti{font-size:13px}
+.btag.t-place{background:var(--rouge-soft);color:var(--rouge-deep)}
+.btag.t-cat{background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line)}
+.bdate{font-size:11px;color:var(--ink-faint);display:inline-flex;align-items:center;gap:4px}
+.bdate .ti{font-size:12px;color:var(--gold)}
+.bdate.upd .ti{color:var(--rouge)}
 .byline .date{display:inline-flex;align-items:center;gap:4px}
 .byline .date .ti{font-size:13px;color:var(--gold)}
 .byline .date.upd .ti{color:var(--rouge)}
@@ -277,6 +287,39 @@ body{
 .menu-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;width:100%}
 .menu-list li{font-size:12.5px;color:var(--ink);display:flex;align-items:flex-start;gap:7px;line-height:1.6}
 .menu-list li .mn{font-family:'Zen Old Mincho',serif;font-size:10.5px;color:var(--gold);font-weight:700;background:var(--paper-2);border-radius:4px;padding:1px 6px;flex-shrink:0;margin-top:2px}
+
+
+/* ====== 目的タグ ====== */
+.mtag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;letter-spacing:.02em;flex-shrink:0}
+.mtag.t-acne{background:#FBE7EC;color:#A8324F}
+.mtag.t-pore{background:#F6EEDF;color:#8A6A32}
+.mtag.t-glow{background:#E7F1F7;color:#2B6CA3}
+.mtag.t-lift{background:#EDE8F5;color:#5C4A93}
+.menu-list li{justify-content:space-between}
+.menu-list li .mtxt{flex:1;min-width:0}
+
+/* ====== 目的別の施術一覧 ====== */
+.purpose-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px auto 4px;max-width:700px}
+.purpose-col{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.pc-head{padding:13px 10px 11px;text-align:center;border-bottom:1px solid var(--line-soft)}
+.pc-head.h-skin{background:linear-gradient(180deg,#FDF1F4,#fff)}
+.pc-head.h-glow{background:linear-gradient(180deg,#EFF6FB,#fff)}
+.pc-head.h-lift{background:linear-gradient(180deg,#F2EEF9,#fff)}
+.pc-sym{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 7px;border:1.5px solid}
+.pc-sym svg{width:18px;height:18px;display:block}
+.pc-sym.s-skin{background:#FBE7EC;border-color:rgba(168,50,79,.28);color:#A8324F}
+.pc-sym.s-glow{background:#E7F1F7;border-color:rgba(43,108,163,.28);color:#2B6CA3}
+.pc-sym.s-lift{background:#EDE8F5;border-color:rgba(92,74,147,.28);color:#5C4A93}
+.pc-purpose{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px}
+.pc-title{font-family:'Zen Old Mincho',serif;font-size:13.5px;font-weight:700;line-height:1.45;letter-spacing:0}
+.pc-sub{font-size:10.5px;color:var(--ink-faint);line-height:1.6;margin-top:5px}
+.pc-body{padding:12px 13px 14px;display:flex;flex-direction:column;gap:9px;flex:1}
+.pc-item{border-bottom:1px dashed var(--line);padding-bottom:9px}
+.pc-item:last-child{border-bottom:none;padding-bottom:0}
+.pc-item .pi-no{font-family:'Zen Old Mincho',serif;font-size:10px;color:var(--gold);font-weight:700;background:var(--paper-2);border-radius:4px;padding:1px 6px;margin-right:6px}
+.pc-item h4{font-family:'Zen Old Mincho',serif;font-size:13px;font-weight:700;display:inline;letter-spacing:0}
+.pc-item p{font-size:11px;color:var(--ink-soft);line-height:1.75;margin:6px 0 0}
+@media(max-width:700px){.purpose-grid{grid-template-columns:1fr;max-width:420px}.pc-sym{width:46px;height:46px}.pc-sym svg{width:23px;height:23px}}
 
 .treat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:6px 0 4px}
 .treat-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 17px 15px;position:relative}
@@ -347,7 +390,7 @@ body{
   <p>今回向かったのは江南にあるYOU＆I皮膚科。ニキビとニキビ跡、口横のたるみ、そしてエラの張りが気になっていて、1回の来院で悩みを一気に片づけるつもりで施術を組みました。良かった点も、正直しんどかった点も、盛らずに書き残しておきます。</p>
 </header>
 
-<div class="byline"><i class="ti ti-map-pin" style="color:var(--rouge)"></i> YOU＆I皮膚科 江南店<span class="dot"></span>施術体験記<span class="dot"></span>個人の感想です<span class="dot"></span><span class="date"><i class="ti ti-pencil-plus"></i>公開 2026.08.12</span><span class="dot"></span><span class="date upd"><i class="ti ti-refresh"></i>最終更新 2026.08.13</span></div>
+<div class="byline"><span class="btag t-place"><i class="ti ti-map-pin"></i>YOU＆I皮膚科 江南店</span><span class="btag t-cat">施術体験記</span><span class="bdate"><i class="ti ti-pencil-plus"></i>公開 2026.08.12</span><span class="bdate upd"><i class="ti ti-refresh"></i>最終更新 2026.08.13</span></div>
 
 <section class="wrap" style="padding-bottom:10px">
 
@@ -378,13 +421,13 @@ body{
         <div class="spec-row"><dt><i class="ti ti-sparkles"></i>気になっていた悩み</dt><dd>ニキビ／ニキビ跡／口横のたるみ／エラ</dd></div>
         <div class="spec-row"><dt><i class="ti ti-list-check"></i>受けた施術</dt><dd>
           <ul class="menu-list">
-            <li><span class="mn">01</span>エンジェルピーリング</li>
-            <li><span class="mn">02</span>ネオビーム</li>
-            <li><span class="mn">03</span>ソノケア</li>
-            <li><span class="mn">04</span>ダーマVレーザー</li>
-            <li><span class="mn">05</span>オリジオX600ショット</li>
-            <li><span class="mn">06</span>リジュランHB 2cc（頬のみ）</li>
-            <li><span class="mn">07</span>エラボト 50ユニット（ドイツ産）</li>
+            <li><span class="mn">01</span><span class="mtxt">エンジェルピーリング</span><span class="mtag t-pore">毛穴・角質</span></li>
+            <li><span class="mn">02</span><span class="mtxt">ネオビーム</span><span class="mtag t-acne">ニキビ・赤み</span></li>
+            <li><span class="mn">03</span><span class="mtxt">ソノケア</span><span class="mtag t-glow">鎮静・導入</span></li>
+            <li><span class="mn">04</span><span class="mtxt">ダーマVレーザー</span><span class="mtag t-pore">毛穴・凹凸</span></li>
+            <li><span class="mn">05</span><span class="mtxt">オリジオX600ショット</span><span class="mtag t-lift">小顔・たるみ</span></li>
+            <li><span class="mn">06</span><span class="mtxt">リジュランHB 2cc（頬のみ）</span><span class="mtag t-glow">ツヤ・再生</span></li>
+            <li><span class="mn">07</span><span class="mtxt">エラボト 50ユニット（ドイツ産）</span><span class="mtag t-lift">エラ・小顔</span></li>
           </ul>
         </dd></div>
         <div class="spec-row"><dt><i class="ti ti-clock"></i>所要時間</dt><dd>混雑のため合計 約1時間30分</dd></div>
@@ -400,15 +443,53 @@ body{
 
   <div class="a-section" id="s2">
     <h2><span class="no">其ノ二</span>受けた施術一覧（全7種）</h2>
-    <p>今回組んでもらったのはこちらの7種。肌のケアと輪郭のケアを一気に詰め込んだので、それなりにボリュームのある内容になりました。</p>
-    <div class="treat-grid">
-      <div class="treat-card"><span class="t-no">01</span><h4>エンジェルピーリング</h4><p>毛穴づまりや古い角質を優しく除去するピーリング。ニキビ・ニキビ跡ケアのベースとして。</p></div>
-      <div class="treat-card"><span class="t-no">02</span><h4>ネオビーム</h4><p>ニキビの赤みや炎症を鎮めるための光照射ケア。肌のトーンを落ち着かせる目的。</p></div>
-      <div class="treat-card"><span class="t-no">03</span><h4>ソノケア</h4><p>超音波で美容成分を肌の深部まで届ける導入ケア。ピーリング後の鎮静・栄養補給に。</p></div>
-      <div class="treat-card"><span class="t-no">04</span><h4>ダーマVレーザー</h4><p>毛穴の引き締めとハリ感アップを狙ったレーザー。ニキビ跡の凹凸ケアも兼ねて。</p></div>
-      <div class="treat-card"><span class="t-no">05</span><h4>オリジオX600ショット</h4><p>高周波（RF）でたるみを引き締めるリフト系施術。口横のたるみ対策として600ショット照射。</p></div>
-      <div class="treat-card"><span class="t-no">06</span><h4>リジュランHB 2cc（頬のみ）</h4><p>肌の再生を促す注射。今回は頬のみに、通常より少ない量で注入（詳細は其ノ四）。</p></div>
-      <div class="treat-card"><span class="t-no">07</span><h4>エラボト 50ユニット（ドイツ産）</h4><p>エラの張りを和らげるボトックス。今回はあえて価格が高めのドイツ産を選択（詳細は其ノ五）。</p></div>
+    <p>今回組んでもらったのはこちらの7種。ばらばらに見えますが、<strong>「ニキビ・毛穴」「ツヤ・再生」「輪郭」の3つの目的</strong>に分かれています。どの施術が何のためだったのか、目的ごとに並べ直しました。</p>
+    <div class="purpose-grid">
+
+      <div class="purpose-col">
+        <div class="pc-head h-skin">
+          <span class="pc-sym s-skin"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.3" cy="9.6" r="5.7" fill="currentColor" opacity=".9"/><circle cx="7.3" cy="7.6" r="1.55" fill="#fff" opacity=".8"/><circle cx="17.2" cy="14.6" r="3.7" fill="currentColor" opacity=".55"/><circle cx="16" cy="13.3" r="1.05" fill="#fff" opacity=".75"/><circle cx="9.6" cy="18.4" r="2.4" fill="currentColor" opacity=".35"/><circle cx="8.8" cy="17.6" r=".75" fill="#fff" opacity=".7"/></svg></span>
+          <div class="pc-purpose">Purpose 01</div>
+          <div class="pc-title">ニキビ・毛穴を整える</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-item"><span class="pi-no">01</span><h4>エンジェルピーリング</h4>
+            <p>毛穴づまりや古い角質を優しく除去するピーリング。この日の土台づくりとして最初に。</p></div>
+          <div class="pc-item"><span class="pi-no">02</span><h4>ネオビーム</h4>
+            <p>ニキビの赤みや炎症を鎮める光照射。肌のトーンを落ち着かせる目的。</p></div>
+          <div class="pc-item"><span class="pi-no">04</span><h4>ダーマVレーザー</h4>
+            <p>毛穴の引き締めとハリ感アップ。ニキビ跡の凹凸ケアも兼ねて。</p></div>
+        </div>
+      </div>
+
+      <div class="purpose-col">
+        <div class="pc-head h-glow">
+          <span class="pc-sym s-glow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2.6l2.05 5.35L18.4 10l-5.35 2.05L11 17.4l-2.05-5.35L3.6 10l5.35-2.05z" fill="currentColor"/><path d="M18.2 14.6l.85 2.2 2.2.85-2.2.85-.85 2.2-.85-2.2-2.2-.85 2.2-.85z" fill="currentColor" opacity=".6"/></svg></span>
+          <div class="pc-purpose">Purpose 02</div>
+          <div class="pc-title">ツヤと再生を足す</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-item"><span class="pi-no">03</span><h4>ソノケア</h4>
+            <p>超音波で美容成分を深部まで届ける導入ケア。ピーリング後の鎮静・栄養補給に。</p></div>
+          <div class="pc-item"><span class="pi-no">06</span><h4>リジュランHB 2cc（頬のみ）</h4>
+            <p>肌の再生を促す注射。今回は頬のみ、通常より少ない量で注入（詳細は其ノ四）。</p></div>
+        </div>
+      </div>
+
+      <div class="purpose-col">
+        <div class="pc-head h-lift">
+          <span class="pc-sym s-lift"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 13.5 12 7l6.5 6.5"/><path d="M5.5 18.5 12 12l6.5 6.5"/></svg></span>
+          <div class="pc-purpose">Purpose 03</div>
+          <div class="pc-title">輪郭を引き上げる</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-item"><span class="pi-no">05</span><h4>オリジオX600ショット</h4>
+            <p>高周波（RF）でたるみを引き締めるリフト系施術。口横のたるみ対策として600ショット照射。</p></div>
+          <div class="pc-item"><span class="pi-no">07</span><h4>エラボト 50ユニット（ドイツ産）</h4>
+            <p>エラの張りを和らげるボトックス。あえて価格が高めのドイツ産を選択（詳細は其ノ五）。</p></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
