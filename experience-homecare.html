@@ -198,6 +198,15 @@ body{
 .nav a.cta{background:var(--rouge);color:#fff;font-weight:700;margin-left:6px}
 .nav a.cta:hover{background:var(--rouge-deep);color:#fff}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:40px;height:38px;cursor:pointer;font-size:20px;color:var(--ink);align-items:center;justify-content:center}
+.brand{flex-shrink:0}
+.brand .mark{white-space:nowrap}
+@media(max-width:1080px){
+  .nav a{font-size:12px;padding:7px 9px}
+  .brand .romaji{display:none}
+}
+@media(max-width:960px){
+  .nav a{font-size:11.5px;padding:6px 7px;letter-spacing:0}
+}
 @media(max-width:860px){
   .topbar .seal{display:none}
   .nav-toggle{display:flex}
@@ -244,6 +253,16 @@ body{
 /* ===== article-specific extras ===== */
 .byline{display:flex;align-items:center;gap:10px;margin:-6px 0 26px;font-size:12px;color:var(--ink-faint)}
 .byline .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-faint)}
+.page-hero{text-align:center}
+.page-hero p{margin-left:auto;margin-right:auto}
+.byline{justify-content:center;flex-wrap:wrap;gap:8px 10px;margin:-2px 0 26px}
+.btag{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;letter-spacing:.02em}
+.btag .ti{font-size:13px}
+.btag.t-place{background:var(--rouge-soft);color:var(--rouge-deep)}
+.btag.t-cat{background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line)}
+.bdate{font-size:11px;color:var(--ink-faint);display:inline-flex;align-items:center;gap:4px}
+.bdate .ti{font-size:12px;color:var(--gold)}
+.bdate.upd .ti{color:var(--rouge)}
 .byline .date{display:inline-flex;align-items:center;gap:4px}
 .byline .date .ti{font-size:13px;color:var(--gold)}
 .byline .date.upd .ti{color:var(--rouge)}
@@ -370,6 +389,7 @@ body{
     </div>
     <nav class="nav" id="nav">
       <a href="index.html#finder">クリニックを探す</a>
+      <a href="campaign.html">今月のキャンペーン</a>
       <a href="experience.html" class="active">体験記事</a>
       <a href="news.html">最新ニュース</a>
       <a href="about.html">このサイトについて</a>
@@ -386,7 +406,7 @@ body{
 </header>
 
 <div class="wrap">
-  <div class="byline"><i class="ti ti-flask" style="color:var(--rouge)"></i> 施術後ホームケア<span class="dot"></span>現地調達レポート<span class="dot"></span>個人の感想です<span class="dot"></span><span class="date"><i class="ti ti-pencil-plus"></i>公開 2026.08.12</span><span class="dot"></span><span class="date upd"><i class="ti ti-refresh"></i>最終更新 2026.08.13</span></div>
+  <div class="byline"><span class="btag t-place"><i class="ti ti-flask"></i>施術後ホームケア</span><span class="btag t-cat">現地調達レポート</span><span class="bdate"><i class="ti ti-pencil-plus"></i>公開 2026.08.12</span><span class="bdate upd"><i class="ti ti-refresh"></i>最終更新 2026.08.13</span></div>
 </div>
 
 <section class="wrap" style="padding-bottom:10px">

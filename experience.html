@@ -197,6 +197,15 @@ body{
 .nav a.cta{background:var(--rouge);color:#fff;font-weight:700;margin-left:6px}
 .nav a.cta:hover{background:var(--rouge-deep);color:#fff}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:40px;height:38px;cursor:pointer;font-size:20px;color:var(--ink);align-items:center;justify-content:center}
+.brand{flex-shrink:0}
+.brand .mark{white-space:nowrap}
+@media(max-width:1080px){
+  .nav a{font-size:12px;padding:7px 9px}
+  .brand .romaji{display:none}
+}
+@media(max-width:960px){
+  .nav a{font-size:11.5px;padding:6px 7px;letter-spacing:0}
+}
 @media(max-width:860px){
   .topbar .seal{display:none}
   .nav-toggle{display:flex}
@@ -265,6 +274,7 @@ body{
     </div>
     <nav class="nav" id="nav">
       <a href="index.html#finder">クリニックを探す</a>
+      <a href="campaign.html">今月のキャンペーン</a>
       <a href="experience.html" class="active">体験記事</a>
       <a href="news.html">最新ニュース</a>
       <a href="about.html">このサイトについて</a>

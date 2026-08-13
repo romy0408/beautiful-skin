@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>このサイトについて｜渡韓美容クリニックのカルテ</title>
+<title>今月のキャンペーン｜渡韓美容クリニックのカルテ</title>
+<meta name="description" content="掲載している韓国・ソウルの美容皮膚科の今月のキャンペーンチラシを一覧で。施術名で検索すれば、その施術がキャンペーン対象になっている院がすぐ見つかります。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -241,12 +242,90 @@ body{
 .post h3{font-family:'Zen Old Mincho',serif;font-size:16.5px;font-weight:700;line-height:1.5;margin-bottom:9px}
 .post p{font-size:12.5px;color:var(--ink-soft);line-height:1.75;flex:1}
 .post .go{font-size:12px;font-weight:700;color:var(--rouge);margin-top:14px;display:inline-flex;align-items:center;gap:4px}
-.tags-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 24px}
-.tagf{font-size:12.5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:default}
+.list-controls{display:flex;flex-wrap:wrap;gap:18px 26px;align-items:flex-start;margin:6px 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line-soft)}
+.ctrl-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ctrl-label{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;white-space:nowrap}
+.tags-row{display:flex;gap:8px;flex-wrap:wrap}
+.sortf{font-size:12.5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .16s;user-select:none;display:inline-flex;align-items:center;gap:5px}
+.sortf:hover{border-color:var(--rouge);color:var(--rouge)}
+.sortf.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+.sortf .ti{font-size:14px}
+.list-count{font-size:12px;color:var(--ink-faint);margin:0 0 14px}
+.list-count b{color:var(--rouge-deep);font-family:'Zen Old Mincho',serif;font-size:14px}
+.post-dates{font-size:10.5px;color:var(--ink-faint);letter-spacing:.02em;line-height:1.7;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line-soft);display:flex;flex-wrap:wrap;gap:3px 12px}
+.post-dates span{display:inline-flex;align-items:center;gap:4px}
+.post-dates .ti{font-size:12px;color:var(--gold)}
+.post-dates .upd .ti{color:var(--rouge)}
+.tagf{font-size:12.5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .16s;user-select:none}
+.tagf:hover{border-color:var(--rouge);color:var(--rouge)}
 .tagf.on{background:var(--rouge);border-color:var(--rouge);color:#fff;font-weight:700}
 .soon{background:rgba(255,255,255,0.6);border:1px dashed var(--line);border-radius:var(--r);padding:30px 24px;text-align:center;color:var(--ink-soft);font-size:13.5px;margin-top:6px}
 .soon .ti{font-size:30px;color:var(--ink-faint);display:block;margin-bottom:10px}
 .backhome{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--rouge);text-decoration:none;margin:8px 0 0}
+
+/* ====== キャンペーンページ ====== */
+.page-hero{text-align:center}
+.page-hero p{margin-left:auto;margin-right:auto}
+.month-badge{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(120deg,var(--rouge),var(--rouge-deep));color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;padding:7px 18px;border-radius:999px;margin-bottom:16px;box-shadow:0 4px 14px rgba(194,69,106,.25)}
+.month-badge .ti{font-size:15px}
+
+.search-box{max-width:620px;margin:0 auto 14px;position:relative}
+.search-box input{width:100%;font-family:inherit;font-size:15px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:15px 46px 15px 48px;outline:none;transition:border-color .18s,box-shadow .18s}
+.search-box input:focus{border-color:var(--rouge);box-shadow:0 4px 18px rgba(194,69,106,.14)}
+.search-box input::placeholder{color:var(--ink-faint)}
+.search-box .s-ic{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--rouge);font-size:19px;pointer-events:none}
+.search-box .s-clear{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:var(--ink-faint);font-size:18px;cursor:pointer;display:none;background:none;border:0;padding:4px}
+.search-box .s-clear:hover{color:var(--rouge)}
+.search-box.filled .s-clear{display:block}
+
+.quick-row{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:700px;margin:0 auto 8px}
+.quick-label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;width:100%;text-align:center;margin-bottom:2px}
+.qchip{font-size:12px;padding:6px 13px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .16s;user-select:none}
+.qchip:hover{border-color:var(--rouge);color:var(--rouge)}
+.qchip.on{background:var(--rouge);border-color:var(--rouge);color:#fff;font-weight:700}
+
+.hit-line{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:20px 0 4px}
+.hit-line b{color:var(--rouge-deep);font-family:'Zen Old Mincho',serif;font-size:15px}
+.hit-line .q{color:var(--rouge-deep);font-weight:700}
+
+.camp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding:18px 0 10px}
+.camp{background:rgba(255,255,255,0.9);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:all .2s}
+.camp:hover{box-shadow:var(--shadow);border-color:var(--rouge)}
+.camp-flyer{position:relative;background:var(--paper-2);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+.camp-flyer img{width:100%;height:100%;object-fit:cover;display:block}
+.camp-flyer .ph{text-align:center;color:var(--ink-faint);padding:20px}
+.camp-flyer .ph .ti{font-size:34px;display:block;margin-bottom:9px;opacity:.55}
+.camp-flyer .ph span{font-size:11.5px;line-height:1.8}
+.camp-flyer.empty{cursor:default;background:repeating-linear-gradient(135deg,var(--paper-2),var(--paper-2) 12px,rgba(255,255,255,.6) 12px,rgba(255,255,255,.6) 24px)}
+.camp-zoom{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.9);color:var(--rouge-deep);font-size:10.5px;font-weight:700;border-radius:999px;padding:4px 11px;display:flex;align-items:center;gap:4px}
+.camp-body{padding:16px 17px 16px;flex:1;display:flex;flex-direction:column}
+.camp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:9px;margin-bottom:5px}
+.camp h3{font-family:'Zen Old Mincho',serif;font-size:15.5px;font-weight:700;line-height:1.45;letter-spacing:.02em}
+.camp .area{font-size:11px;color:var(--ink-faint);display:flex;align-items:center;gap:4px;line-height:1.6}
+.camp-menus{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line)}
+.camp-menus .m-label{font-size:10px;color:var(--ink-faint);width:100%;letter-spacing:.08em;margin-bottom:2px}
+.mchip{font-size:11px;padding:3px 10px;border-radius:999px;background:var(--rouge-soft);color:var(--rouge-deep);font-weight:700}
+.mchip.hit{background:var(--rouge);color:#fff;box-shadow:0 2px 8px rgba(194,69,106,.3)}
+.mchip.none{background:var(--paper-2);color:var(--ink-faint);font-weight:400}
+.camp-foot{margin-top:auto;padding-top:13px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.camp-foot a{font-size:12px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.camp-foot .l-hp{color:var(--rouge)}
+.camp-foot .l-map{color:var(--gold)}
+
+.no-hit{text-align:center;padding:44px 22px;border:1px dashed var(--line);border-radius:var(--r);background:rgba(255,255,255,.55);color:var(--ink-soft);font-size:13.5px;line-height:2}
+.no-hit .ti{font-size:32px;color:var(--ink-faint);display:block;margin-bottom:10px}
+.no-hit b{color:var(--rouge-deep)}
+
+.howto{margin-top:26px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;font-size:11.5px;color:var(--ink-faint);line-height:1.9}
+.howto b{color:var(--ink-soft)}
+.howto code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#fff;border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:11px;color:var(--rouge-deep)}
+
+/* ライトボックス */
+.lb{position:fixed;inset:0;background:rgba(30,22,28,.86);display:none;align-items:center;justify-content:center;z-index:100;padding:28px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.lb-close{position:absolute;top:18px;right:22px;background:none;border:0;color:#fff;font-size:30px;cursor:pointer;line-height:1}
+.lb-cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:rgba(255,255,255,.85);font-size:12.5px}
 </style>
 </head>
 <body>
@@ -260,10 +339,10 @@ body{
     </div>
     <nav class="nav" id="nav">
       <a href="index.html#finder">クリニックを探す</a>
-      <a href="campaign.html">今月のキャンペーン</a>
+      <a href="campaign.html" class="active">今月のキャンペーン</a>
       <a href="experience.html">体験記事</a>
       <a href="news.html">最新ニュース</a>
-      <a href="about.html" class="active">このサイトについて</a>
+      <a href="about.html">このサイトについて</a>
       <a href="index.html#finder" class="cta">問診をはじめる</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="メニューを開く" onclick="toggleNav()"><i class="ti ti-menu-2"></i></button>
@@ -271,38 +350,41 @@ body{
 </div>
 
 <header class="wrap page-hero">
-  <p class="crumb"><a href="index.html">ホーム</a> ／ このサイトについて</p>
-  <h1>「<em>カルテ</em>」という、選び方。</h1>
-  <p>おすすめを並べるだけのまとめではなく、あなたの予算・悩み・重視する条件から、行くべき韓国皮膚科を2〜3院に絞り込む。そんなツールでありたいと考えています。</p>
+  <p class="crumb"><a href="index.html">ホーム</a> ／ 今月のキャンペーン</p>
+  <div class="month-badge"><i class="ti ti-calendar-star"></i><span id="month-label">今月のキャンペーン</span></div>
+  <h1>今月の<em>キャンペーン</em>を、<br>チラシのまま見比べる。</h1>
+  <p>掲載している美容皮膚科が配布している今月のチラシを一覧にしました。受けたい施術が決まっているなら、施術名で検索すれば、それがキャンペーン対象になっている院だけを絞り込めます。</p>
 </header>
-<section class="wrap" style="padding-bottom:20px">
-  <div class="art-grid">
-    <div class="art-card" data-kanji="軸">
-      <div class="ac-ic"><i class="ti ti-adjustments-horizontal"></i></div>
-      <div class="ac-kicker">Concept</div>
-      <h4>3つの検索軸で絞る</h4>
-      <p>①クリニックのスタイル（工場型／上質高品質型）②お悩み・施術 ③設備・サポート（通訳常駐・睡眠麻酔）。掛け合わせるほど、あなたに合う一院が見えてきます。</p>
-    </div>
-    <div class="art-card" data-kanji="験">
-      <div class="ac-ic"><i class="ti ti-user-heart"></i></div>
-      <div class="ac-kicker">Real</div>
-      <h4>リアルな渡韓経験がベース</h4>
-      <p>実際に足を運んだ経験と知識をもとに記事を整理。スペック表で5秒でわかる比較から、現地での言葉まで、本当に役立つ情報だけを。</p>
-    </div>
-    <div class="art-card" data-kanji="信">
-      <div class="ac-ic"><i class="ti ti-shield-check"></i></div>
-      <div class="ac-kicker">Honest</div>
-      <h4>盛らない、急かさない</h4>
-      <p>効果や安さだけを強調しません。ダウンタイムやリスク、向き不向きも正直に。あなた自身が納得して選べることを大切にしています。</p>
-    </div>
+
+<section class="wrap" style="padding-bottom:30px">
+
+  <div class="search-box" id="search-box">
+    <i class="ti ti-search s-ic"></i>
+    <input type="search" id="q" placeholder="施術名で検索（例：ポテンツァ、水光注射、シュリンク）" oninput="onSearch()" autocomplete="off">
+    <button class="s-clear" onclick="clearSearch()" aria-label="検索をクリア"><i class="ti ti-x"></i></button>
   </div>
-  <div class="soon" style="margin-top:24px">
-    <i class="ti ti-mail"></i>
-    お問い合わせ・掲載に関するご相談ページは準備中です。
+
+  <div class="quick-row" id="quick-row">
+    <span class="quick-label">よく検索される施術</span>
   </div>
-  <a class="backhome" href="index.html#finder" style="margin-top:24px"><i class="ti ti-arrow-left"></i> クリニック診断をはじめる</a>
+
+  <p class="hit-line" id="hit-line"></p>
+
+  <div class="camp-grid" id="camp-grid"></div>
+
+  <div class="howto">
+    <b>チラシと施術名の登録方法</b><br>
+    このページの <code>CAMPAIGNS</code> の各院に、チラシ画像のファイル名を <code>flyer:'ppeum_myeongdong_2608.jpg'</code> のように、キャンペーン対象の施術名を <code>menus:['ポテンツァ','水光注射']</code> のように書き足すと、そのままチラシ一覧と検索に反映されます。画像はこのHTMLと同じ場所（リポジトリ直下）に置いてください。<code>menus</code> が空の院は「情報準備中」として最後にまとめて表示され、検索結果には出ません。
+  </div>
+
+  <a class="backhome" href="index.html#finder"><i class="ti ti-arrow-left"></i> クリニック診断にもどる</a>
 </section>
 
+<div class="lb" id="lb" onclick="closeLb()">
+  <button class="lb-close" aria-label="閉じる">&times;</button>
+  <img id="lb-img" src="" alt="">
+  <p class="lb-cap" id="lb-cap"></p>
+</div>
 <footer class="foot">
   <div class="wrap">
     <div class="brand">
@@ -323,7 +405,148 @@ body{
   </div>
 </footer>
 
+
 <script>
+/* =========================================================
+   今月のキャンペーン
+   ---------------------------------------------------------
+   各院に flyer（チラシ画像のファイル名）と menus（キャンペーン
+   対象の施術名）を書き足すと、一覧と検索にそのまま反映されます。
+     例) flyer:'ppeum_myeongdong_2608.jpg',
+         menus:['ポテンツァ','水光注射','レーザートーニング']
+   menus が空の院は「情報準備中」として末尾に表示されます。
+   ========================================================= */
+var CAMPAIGNS=[
+  {n:'プムグローバル 明洞店',area:'明洞',areaNote:'明洞駅8番出口 徒歩1分',type:'factory',tag:'ポテンツァ',flyer:'',menus:[],u:'https://link.inpock.co.kr/ppeum_jp',ut:'公式（日本語）',map:'https://maps.google.com/?q=프름글로벌+명동점+서울'},
+  {n:'リエンジャン 明洞店',area:'明洞',areaNote:'明洞エリア',type:'factory',tag:'メガ院',flyer:'',menus:[],u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝+명동점+서울'},
+  {n:'YOU&I皮膚科 明洞店',area:'明洞',areaNote:'明洞駅4番出口前',type:'factory',tag:'水光肌',flyer:'',menus:[],u:'https://ameblo.jp/skinuni114/',ut:'公式ブログ',map:'https://maps.google.com/?q=유앤아이피부과+명동점+서울'},
+  {n:'明洞MUSEクリニック',area:'明洞',areaNote:'明洞駅5番出口 徒歩3分',type:'premium',tag:'トーニング',flyer:'',menus:[],u:'https://ameblo.jp/musemdjp/',ut:'公式ブログ',map:'https://maps.google.com/?q=뮤즈클리닉+명동+서울'},
+  {n:'リーダース皮膚科 明洞',area:'明洞',areaNote:'会賢駅1番出口 直結',type:'premium',tag:'ニキビ',flyer:'',menus:[],u:'https://japan.leaders-md.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리더스피부과+명동점+서울'},
+  {n:'Abijouクリニック 明洞',area:'明洞',areaNote:'乙支路入口駅6番出口',type:'premium',tag:'ダブロ',flyer:'',menus:[],u:'https://abijouclinic.com/jpn/',ut:'公式（日本語）',map:'https://maps.google.com/?q=아비쥬클리닉+명동+서울'},
+  {n:'WIZ&美',area:'明洞',areaNote:'乙支路入口駅6番出口 徒歩3分',type:'premium',tag:'個室',flyer:'',menus:[],u:'https://www.konest.com/contents/clinic_mise_detail.html?id=5384',ut:'コネスト詳細',map:'https://maps.google.com/?q=위즈앤미+명동+서울'},
+  {n:'リエンジャン 江南本店',area:'江南',areaNote:'江南大路沿いタワー内',type:'factory',tag:'メガ院',flyer:'',menus:[],u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝+강남본점+서울'},
+  {n:'プムグローバル 江南店',area:'江南',areaNote:'江南エリア',type:'factory',tag:'ポテンツァ',flyer:'',menus:[],u:'https://link.inpock.co.kr/ppeum_jp',ut:'公式（日本語）',map:'https://maps.google.com/?q=프름글로벌+강남점+서울'},
+  {n:'シャインビーム 江南店',area:'江南',areaNote:'江南駅11番出口 徒歩2分',type:'factory',tag:'ポテンツァ',flyer:'',menus:[],u:'https://gangnam.shinebeam.co.kr/ja',ut:'公式（日本語）',map:'https://maps.google.com/?q=샤인빔+강남점+서울'},
+  {n:'YOU&I皮膚科 江南店',area:'江南',areaNote:'江南駅エリア',type:'factory',tag:'水光肌',flyer:'',menus:[],u:'https://ameblo.jp/skinuni114/',ut:'公式ブログ',map:'https://maps.google.com/?q=유앤아이피부과+강남점+서울'},
+  {n:'ラミチェ皮膚科',area:'江南',areaNote:'蚕室・江南駅から約15分',type:'premium',tag:'レーザー',flyer:'',menus:[],u:'https://www.konest.com/contents/clinic_mise_detail.html?id=30798',ut:'予約ページ',map:'https://maps.google.com/?q=라미체피부과+서울'},
+  {n:'Seye Clinic',area:'江南',areaNote:'新ノニョン駅7番出口 徒歩1分',type:'premium',tag:'最新機器',flyer:'',menus:[],u:'https://seyeclinic.com/ja',ut:'公式（日本語）',map:'https://maps.google.com/?q=세이에클리닉+강남+서울'},
+  {n:'チョンダムオラクル皮膚科',area:'江南',areaNote:'清潭洞',type:'premium',tag:'再生医療',flyer:'',menus:[],u:'https://www.konest.com/contents/clinic_mise_detail.html?id=7140',ut:'予約ページ',map:'https://maps.google.com/?q=청담오라클피부과+서울'},
+  {n:'LIENJANG BLACK 江南',area:'江南',areaNote:'江南エリア',type:'premium',tag:'個室',flyer:'',menus:[],u:'https://jplienjang.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리엔쟝블랙+강남+서울'},
+  {n:'RE:BERRY 明洞',area:'明洞',areaNote:'明洞駅8番出口 徒歩2分',type:'factory',tag:'ニキビ特化',flyer:'',menus:[],u:'https://myeongdongskinclinicreberry.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=리베리클리닉+명동+서울'},
+  {n:'ドクタープチ医院 明洞店',area:'明洞',areaNote:'明洞駅10番出口 徒歩1分',type:'factory',tag:'チタニウムリフト',flyer:'',menus:[],u:'https://tribeau.jp/clinics/5066',ut:'予約ページ',map:'https://maps.google.com/?q=닥터쁘띠의원+명동점+서울'},
+  {n:'アルムダウン・ミタム医院',area:'明洞',areaNote:'明洞駅 徒歩1分',type:'premium',tag:'糸リフト',flyer:'',menus:[],u:'https://mitamjp.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=아름다운미탐의원+명동+서울'},
+  {n:'江南アルムダウンナラ皮膚科',area:'江南',areaNote:'江南駅1番出口 徒歩1分',type:'premium',tag:'ニキビ・跡',flyer:'',menus:[],u:'https://www.anaclijapan.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=강남아름다운나라피부과+서울'},
+  {n:'K-cell Clinic 狎鴎亭',area:'江南',areaNote:'狎鴎亭駅4番出口',type:'premium',tag:'リフトレーザー',flyer:'',menus:[],u:'https://kcellclinicjp.com/',ut:'公式（日本語）',map:'https://maps.google.com/?q=케이셀클리닉+압구정+서울'}
+];
+
+/* 検索チップに出す施術名（好きに入れ替えてOK） */
+var QUICK=['ポテンツァ','水光注射','シュリンク','リジュラン','ダーマペン','ボトックス','レーザートーニング','ジュベルック'];
+
+var TYPE_LBL={factory:'🏭 工場型',premium:'💎 上質型'};
+var query='';
+
+function norm(t){return (t||'').toLowerCase().replace(/[\s　]/g,'');}
+
+function monthLabel(){
+  var d=new Date();
+  return d.getFullYear()+'年'+(d.getMonth()+1)+'月のキャンペーン';
+}
+
+function matches(c,q){
+  if(!q) return true;
+  if(!c.menus.length) return false;
+  if(norm(c.n).indexOf(q)>-1) return true;
+  return c.menus.some(function(m){return norm(m).indexOf(q)>-1;});
+}
+
+function card(c){
+  var flyer = c.flyer
+    ? '<div class="camp-flyer" onclick="openLb(\''+c.flyer+'\',\''+c.n+'\')">'
+        +'<img src="'+c.flyer+'" alt="'+c.n+' の今月のキャンペーンチラシ" loading="lazy">'
+        +'<span class="camp-zoom"><i class="ti ti-zoom-in"></i>拡大</span></div>'
+    : '<div class="camp-flyer empty"><div class="ph"><i class="ti ti-photo-off"></i>'
+        +'<span>チラシ準備中<br>入手しだい掲載します</span></div></div>';
+
+  var menus = c.menus.length
+    ? c.menus.map(function(m){
+        var hit=query && norm(m).indexOf(query)>-1;
+        return '<span class="mchip'+(hit?' hit':'')+'">'+m+'</span>';
+      }).join('')
+    : '<span class="mchip none">情報準備中</span>';
+
+  return '<article class="camp">'
+    + flyer
+    + '<div class="camp-body">'
+    + '<div class="camp-top"><div style="flex:1;min-width:0"><h3>'+c.n+'</h3>'
+    + '<span class="area"><i class="ti ti-map-pin"></i> '+c.area+'（'+c.areaNote+'）</span></div>'
+    + '<span class="type-badge '+c.type+'">'+TYPE_LBL[c.type]+'</span></div>'
+    + '<div class="camp-menus"><span class="m-label">今月のキャンペーン対象</span>'+menus+'</div>'
+    + '<div class="camp-foot">'
+    + (c.u?'<a class="l-hp" href="'+c.u+'" target="_blank" rel="noopener"><i class="ti ti-external-link"></i>'+c.ut+'</a>':'')
+    + '<a class="l-map" href="'+c.map+'" target="_blank" rel="noopener"><i class="ti ti-map-2"></i>地図で見る</a>'
+    + '</div></div></article>';
+}
+
+function render(){
+  var grid=document.getElementById('camp-grid');
+  var line=document.getElementById('hit-line');
+  var withData=CAMPAIGNS.filter(function(c){return c.menus.length;});
+  var pending=CAMPAIGNS.filter(function(c){return !c.menus.length;});
+
+  if(query){
+    var hits=withData.filter(function(c){return matches(c,query);});
+    if(!hits.length){
+      line.innerHTML='';
+      grid.innerHTML='<div class="no-hit" style="grid-column:1/-1"><i class="ti ti-mood-search"></i>'
+        +'「<b>'+document.getElementById('q').value+'</b>」を今月のキャンペーンに含む院は見つかりませんでした。<br>'
+        +'施術名を短く入れると当たりやすくなります（例：「リジュランHB」→「リジュラン」）。</div>';
+      return;
+    }
+    line.innerHTML='「<span class="q">'+document.getElementById('q').value+'</span>」がキャンペーン対象の院 <b>'+hits.length+'</b> 院';
+    grid.innerHTML=hits.map(card).join('');
+    return;
+  }
+
+  line.innerHTML='今月チラシを掲載中の院 <b>'+withData.length+'</b> 院'
+    + (pending.length?'　（情報準備中 '+pending.length+' 院）':'');
+  grid.innerHTML=withData.concat(pending).map(card).join('');
+}
+
+function onSearch(){
+  var el=document.getElementById('q');
+  query=norm(el.value);
+  document.getElementById('search-box').classList.toggle('filled', !!el.value);
+  document.querySelectorAll('.qchip').forEach(function(ch){
+    ch.classList.toggle('on', norm(ch.textContent)===query && !!query);
+  });
+  render();
+}
+function clearSearch(){
+  document.getElementById('q').value=''; onSearch();
+}
+function setQuick(t){
+  document.getElementById('q').value=t; onSearch();
+  document.getElementById('camp-grid').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function openLb(src,name){
+  document.getElementById('lb-img').src=src;
+  document.getElementById('lb-cap').textContent=name+' の今月のチラシ';
+  document.getElementById('lb').classList.add('on');
+}
+function closeLb(){document.getElementById('lb').classList.remove('on');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+
+/* init */
+document.getElementById('month-label').textContent=monthLabel();
+var qr=document.getElementById('quick-row');
+QUICK.forEach(function(t){
+  var el=document.createElement('span');
+  el.className='qchip'; el.textContent=t;
+  el.onclick=function(){setQuick(t);};
+  qr.appendChild(el);
+});
+render();
+
 function toggleNav(){
   var n=document.getElementById('nav');
   var open=n.classList.toggle('open');
