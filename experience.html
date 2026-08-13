@@ -232,8 +232,22 @@ body{
 .post h3{font-family:'Zen Old Mincho',serif;font-size:16.5px;font-weight:700;line-height:1.5;margin-bottom:9px}
 .post p{font-size:12.5px;color:var(--ink-soft);line-height:1.75;flex:1}
 .post .go{font-size:12px;font-weight:700;color:var(--rouge);margin-top:14px;display:inline-flex;align-items:center;gap:4px}
-.tags-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 24px}
-.tagf{font-size:12.5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:default}
+.list-controls{display:flex;flex-wrap:wrap;gap:18px 26px;align-items:flex-start;margin:6px 0 22px;padding-bottom:18px;border-bottom:1px solid var(--line-soft)}
+.ctrl-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ctrl-label{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-weight:700;white-space:nowrap}
+.tags-row{display:flex;gap:8px;flex-wrap:wrap}
+.sortf{font-size:12.5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .16s;user-select:none;display:inline-flex;align-items:center;gap:5px}
+.sortf:hover{border-color:var(--rouge);color:var(--rouge)}
+.sortf.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+.sortf .ti{font-size:14px}
+.list-count{font-size:12px;color:var(--ink-faint);margin:0 0 14px}
+.list-count b{color:var(--rouge-deep);font-family:'Zen Old Mincho',serif;font-size:14px}
+.post-dates{font-size:10.5px;color:var(--ink-faint);letter-spacing:.02em;line-height:1.7;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line-soft);display:flex;flex-wrap:wrap;gap:3px 12px}
+.post-dates span{display:inline-flex;align-items:center;gap:4px}
+.post-dates .ti{font-size:12px;color:var(--gold)}
+.post-dates .upd .ti{color:var(--rouge)}
+.tagf{font-size:12.5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .16s;user-select:none}
+.tagf:hover{border-color:var(--rouge);color:var(--rouge)}
 .tagf.on{background:var(--rouge);border-color:var(--rouge);color:#fff;font-weight:700}
 .soon{background:rgba(255,255,255,0.6);border:1px dashed var(--line);border-radius:var(--r);padding:30px 24px;text-align:center;color:var(--ink-soft);font-size:13.5px;margin-top:6px}
 .soon .ti{font-size:30px;color:var(--ink-faint);display:block;margin-bottom:10px}
@@ -266,26 +280,45 @@ body{
   <p>スケジュール・動線・現地での言葉まで。実際に行った人のリアルな記録から、あなたの渡韓を具体的にイメージできる記事を集めました。</p>
 </header>
 <section class="wrap" style="padding-bottom:30px">
-  <div class="tags-row">
-    <span class="tagf on">すべて</span><span class="tagf">施術体験記</span><span class="tagf">ホームケア</span>
+  <div class="list-controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Category</span>
+      <div class="tags-row" id="tags-row">
+        <span class="tagf on" data-tag="all" onclick="setTag(this)">すべて</span>
+        <span class="tagf" data-tag="diary" onclick="setTag(this)">施術体験記</span>
+        <span class="tagf" data-tag="homecare" onclick="setTag(this)">ホームケア</span>
+      </div>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Sort</span>
+      <div class="tags-row" id="sort-row">
+        <span class="sortf on" data-sort="pop" onclick="setSort(this)"><i class="ti ti-flame"></i>人気順</span>
+        <span class="sortf" data-sort="new" onclick="setSort(this)"><i class="ti ti-arrow-down"></i>新しい順</span>
+        <span class="sortf" data-sort="old" onclick="setSort(this)"><i class="ti ti-arrow-up"></i>古い順</span>
+        <span class="sortf" data-sort="upd" onclick="setSort(this)"><i class="ti ti-refresh"></i>更新順</span>
+      </div>
+    </div>
   </div>
+  <p class="list-count">表示中の記事 <b id="post-count">0</b> 本</p>
   <div class="post-grid">
-  <a class="post" href="experience-youandi-gangnam.html">
+  <a class="post" href="experience-youandi-gangnam.html" data-tag="diary" data-pop="2" data-date="2026-08-12" data-updated="2026-08-13">
     <div class="post-thumb tg-a" data-kanji="験"><i class="ti ti-notebook"></i></div>
     <div class="post-body">
       <div class="post-cat">Diary</div>
       <h3>【体験記】YOU＆I江南店で、ニキビ・エラ・たるみをまとめてケア</h3>
       <p>エンジェルピーリング、ネオビーム、オリジオX600、リジュランHB、エラボトなど計7施術を1日で。リジュランを半量にした結果や、エラボトをドイツ産にした理由まで、盛らずに正直にレポートします。</p>
       <span class="go">続きを読む <i class="ti ti-arrow-right"></i></span>
+      <div class="post-dates"></div>
     </div>
   </a>
-  <a class="post" href="experience-homecare.html">
+  <a class="post" href="experience-homecare.html" data-tag="homecare" data-pop="1" data-date="2026-08-12" data-updated="2026-08-13">
     <div class="post-thumb tg-b" data-kanji="肌"><i class="ti ti-flask"></i></div>
     <div class="post-body">
       <div class="post-cat">Homecare</div>
       <h3>施術後のホームケア完全ガイド｜現地調達の再生クリーム3選</h3>
       <p>ケア次第で施術の仕上がりは変わります。施術後ケアの基本ルール4つと、江南の薬局で「施術後ならこれ」と即答されたPDRNクリームなど、現地で買える3本を正直にレポート。</p>
       <span class="go">続きを読む <i class="ti ti-arrow-right"></i></span>
+      <div class="post-dates"></div>
     </div>
   </a>
   </div>
@@ -324,6 +357,45 @@ document.querySelectorAll('#nav a').forEach(function(a){
     if(n.classList.contains('open')){n.classList.remove('open');document.getElementById('nav-toggle').innerHTML='<i class="ti ti-menu-2"></i>';}
   });
 });
+</script>
+
+<script>
+/* ===== 記事一覧：カテゴリ絞り込み＋並び替え ===== */
+var listState={tag:'all',sort:'pop'};
+function fmtDate(d){var p=d.split('-');return p[0]+'.'+p[1]+'.'+p[2];}
+function renderPosts(){
+  var grid=document.querySelector('.post-grid');
+  var posts=Array.prototype.slice.call(grid.querySelectorAll('.post'));
+  posts.forEach(function(el){
+    var box=el.querySelector('.post-dates');
+    if(box && !box.innerHTML){
+      box.innerHTML='<span><i class="ti ti-pencil-plus"></i>公開 '+fmtDate(el.dataset.date)+'</span>'
+        +'<span class="upd"><i class="ti ti-refresh"></i>最終更新 '+fmtDate(el.dataset.updated)+'</span>';
+    }
+  });
+  var shown=posts.filter(function(el){
+    var ok=(listState.tag==='all'||el.dataset.tag===listState.tag);
+    el.style.display=ok?'':'none';
+    return ok;
+  });
+  shown.sort(function(a,b){
+    if(listState.sort==='pop') return (+b.dataset.pop)-(+a.dataset.pop);
+    if(listState.sort==='new') return b.dataset.date.localeCompare(a.dataset.date) || (+b.dataset.pop)-(+a.dataset.pop);
+    if(listState.sort==='old') return a.dataset.date.localeCompare(b.dataset.date) || (+b.dataset.pop)-(+a.dataset.pop);
+    return b.dataset.updated.localeCompare(a.dataset.updated) || (+b.dataset.pop)-(+a.dataset.pop);
+  });
+  shown.forEach(function(el){grid.appendChild(el);});
+  document.getElementById('post-count').textContent=shown.length;
+}
+function setTag(el){
+  document.querySelectorAll('#tags-row .tagf').forEach(function(e){e.classList.remove('on');});
+  el.classList.add('on'); listState.tag=el.dataset.tag; renderPosts();
+}
+function setSort(el){
+  document.querySelectorAll('#sort-row .sortf').forEach(function(e){e.classList.remove('on');});
+  el.classList.add('on'); listState.sort=el.dataset.sort; renderPosts();
+}
+renderPosts();
 </script>
 </body>
 </html>

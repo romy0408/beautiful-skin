@@ -244,6 +244,10 @@ body{
 /* ===== article-specific extras ===== */
 .byline{display:flex;align-items:center;gap:10px;margin:-6px 0 26px;font-size:12px;color:var(--ink-faint)}
 .byline .dot{width:4px;height:4px;border-radius:50%;background:var(--ink-faint)}
+.byline .date{display:inline-flex;align-items:center;gap:4px}
+.byline .date .ti{font-size:13px;color:var(--gold)}
+.byline .date.upd .ti{color:var(--rouge)}
+@media(max-width:560px){.byline{flex-wrap:wrap;gap:5px 8px}}
 .a-section{padding:36px 0 0;scroll-margin-top:20px}
 .a-section h2{font-family:'Zen Old Mincho',serif;font-size:clamp(19px,3.6vw,24px);font-weight:700;letter-spacing:.02em;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .a-section h2 .no{font-size:12px;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:3px 10px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;letter-spacing:.06em;flex-shrink:0}
@@ -382,7 +386,7 @@ body{
 </header>
 
 <div class="wrap">
-  <div class="byline"><i class="ti ti-flask" style="color:var(--rouge)"></i> 施術後ホームケア<span class="dot"></span>現地調達レポート<span class="dot"></span>個人の感想です</div>
+  <div class="byline"><i class="ti ti-flask" style="color:var(--rouge)"></i> 施術後ホームケア<span class="dot"></span>現地調達レポート<span class="dot"></span>個人の感想です<span class="dot"></span><span class="date"><i class="ti ti-pencil-plus"></i>公開 2026.08.12</span><span class="dot"></span><span class="date upd"><i class="ti ti-refresh"></i>最終更新 2026.08.13</span></div>
 </div>
 
 <section class="wrap" style="padding-bottom:10px">
