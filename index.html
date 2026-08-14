@@ -10,20 +10,23 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
 <style>
 :root{
-  --ink:#2A2329;          /* charcoal text */
-  --ink-soft:#6B5E66;
-  --ink-faint:#A89BA3;
-  --paper:#FBF7F4;        /* warm paper */
-  --paper-2:#F4ECE8;
-  --rouge:#C2456A;        /* primary rouge */
-  --rouge-deep:#9A2F4F;
-  --rouge-soft:#F7E4EA;
-  --gold:#B08A4F;         /* seal / accent gold */
-  --line:rgba(42,35,41,0.10);
-  --line-soft:rgba(42,35,41,0.06);
-  --shadow:0 6px 26px rgba(120,70,90,0.10);
-  --r:18px;
-  --r-sm:11px;
+  --ink:#2B2724;          /* charcoal text */
+  --ink-soft:#6E6560;
+  --ink-faint:#A79E97;
+  --paper:#FAF8F5;        /* warm greige paper */
+  --paper-2:#F2EEE9;
+  --rouge:#A65C6C;        /* muted rose */
+  --rouge-deep:#7E3F50;
+  --rouge-soft:#F3EAEA;
+  --gold:#A98B5E;         /* champagne gold accent */
+  --gold-soft:#EDE5D8;
+  --line:rgba(43,39,36,0.10);
+  --line-soft:rgba(43,39,36,0.055);
+  --shadow:0 12px 40px rgba(70,55,45,0.07);
+  --shadow-sm:0 4px 18px rgba(70,55,45,0.05);
+  --r:12px;
+  --r-sm:8px;
+  --header-h:66px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -40,12 +43,12 @@ body{
 .bg-field{position:fixed;inset:0;z-index:-1;background:var(--paper);overflow:hidden}
 .bg-field::before{content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 60% 40% at 12% 0%, #FBE8EE 0%, transparent 55%),
-    radial-gradient(ellipse 50% 36% at 100% 22%, #F3EBF2 0%, transparent 55%),
-    radial-gradient(ellipse 70% 45% at 50% 108%, #FAEAE2 0%, transparent 60%);
-  opacity:.85}
-.bg-field::after{content:'';position:absolute;inset:0;opacity:.4;
-  background-image:url("data:image/svg+xml,%3Csvg width='42' height='42' viewBox='0 0 42 42' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C2456A' fill-opacity='0.05'%3E%3Ccircle cx='21' cy='21' r='1.2'/%3E%3C/g%3E%3C/svg%3E")}
+    radial-gradient(ellipse 70% 45% at 10% -5%, #F6EFE8 0%, transparent 60%),
+    radial-gradient(ellipse 55% 40% at 100% 18%, #F2EDEC 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 108%, #F5F0E9 0%, transparent 65%);
+  opacity:.9}
+.bg-field::after{content:'';position:absolute;inset:0;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23A98B5E' fill-opacity='0.045'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/svg%3E")}
 
 /* ====== top utility bar ====== */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0 14px;border-bottom:1px solid var(--line-soft)}
@@ -82,7 +85,7 @@ body{
 /* ====== KARTE FINDER (core tool) ====== */
 .karte{background:rgba(255,255,255,0.78);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);backdrop-filter:blur(10px);overflow:hidden}
 .karte-head{background:linear-gradient(110deg,var(--rouge) 0%,var(--rouge-deep) 100%);color:#fff;padding:20px 24px;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden}
-.karte-head::after{content:'問診';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:'Zen Old Mincho',serif;font-size:54px;font-weight:900;color:rgba(255,255,255,0.10);letter-spacing:.1em}
+.karte-head::after{content:'KARTE';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-family:'Zen Old Mincho',serif;font-size:54px;font-weight:900;color:rgba(255,255,255,0.10);letter-spacing:.1em}
 .karte-head .ic{font-size:24px}
 .karte-head h3{font-family:'Zen Old Mincho',serif;font-size:18px;font-weight:700;letter-spacing:.04em}
 .karte-head p{font-size:11.5px;opacity:.82;margin-top:2px}
@@ -300,11 +303,219 @@ body{
   .nav a{padding:12px 14px;border-radius:10px;font-size:14px}
   .nav a.cta{margin-left:0;margin-top:4px;text-align:center}
 }
+
+/* ==========================================================
+   REFINEMENT LAYER — ホテルライクで上品な佇まいへ
+   ========================================================== */
+
+/* --- 固定ヘッダー --- */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,248,245,0.72);
+  backdrop-filter:saturate(150%) blur(16px);
+  -webkit-backdrop-filter:saturate(150%) blur(16px);
+  border-bottom:1px solid transparent;
+  transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.site-header .topbar{border-bottom:none;padding:19px 0 17px;transition:padding .28s ease}
+.site-header.scrolled{
+  background:rgba(250,248,245,0.94);
+  border-bottom-color:var(--line-soft);
+  box-shadow:0 1px 24px rgba(70,55,45,0.05);
+}
+.site-header.scrolled .topbar{padding:11px 0 10px}
+.site-header.scrolled .brand .mark{font-size:17px}
+.brand .mark{transition:font-size .28s ease}
+/* アンカー移動時にヘッダーへ潜り込まないように */
+section[id],#finder,#treatments{scroll-margin-top:calc(var(--header-h) + 14px)}
+
+/* --- タイポグラフィの余白と品位 --- */
+body{letter-spacing:.015em}
+.hero{padding:64px 20px 58px}
+.hero-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.72fr);gap:clamp(24px,4.5vw,56px);align-items:start}
+.hero-copy{min-width:0}
+.hero-visual{position:relative;margin:0}
+.hv-frame{position:relative;border-radius:2px;box-shadow:0 26px 60px rgba(70,55,45,0.14)}
+.hv-frame::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:2px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.35);
+  background:linear-gradient(190deg,rgba(255,255,255,0) 55%,rgba(120,100,85,0.10) 100%)}
+.hv-frame::before{content:'';position:absolute;top:-14px;right:-14px;bottom:14px;left:14px;
+  border:1px solid rgba(169,139,94,0.42);border-radius:2px;z-index:-1}
+.hero-visual img{display:block;width:100%;height:auto;border-radius:2px;
+  aspect-ratio:3/4;object-fit:cover;object-position:center 22%}
+/* 見出しの高さに合わせて写真の頭を揃える */
+.hero-visual{margin-top:46px}
+.hero-visual figcaption{margin-top:14px;text-align:right;font-size:9.5px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--ink-faint)}
+@media(max-width:1000px){.hero-visual{margin-top:34px}}
+@media(max-width:720px){
+  .hero-inner{grid-template-columns:1fr;gap:30px}
+  .hero-visual{max-width:400px;margin:0 auto}
+  .hv-frame::before{top:-10px;right:-10px;bottom:10px;left:10px}
+  .hero-visual figcaption{text-align:center}
+}
+.hero-eyebrow{letter-spacing:.28em;color:var(--gold);margin-bottom:26px;font-size:10.5px}
+.hero-eyebrow::before{width:34px;background:var(--gold);opacity:.55}
+.hero h1{font-weight:500;letter-spacing:.045em;line-height:1.46;font-size:clamp(27px,3.6vw,42px)}
+.hero h1 .vert{color:var(--rouge-deep);font-weight:700}
+.hero h1 .sm{font-size:.36em;letter-spacing:.14em;margin-top:22px;color:var(--ink-faint);font-weight:400}
+.hero-lead{font-size:14px;line-height:2.1;color:var(--ink-soft);max-width:600px}
+.hero-stats{margin-top:40px;padding-top:26px;border-top:1px solid var(--line-soft);gap:36px}
+.hstat b{font-weight:500;letter-spacing:.02em;color:var(--ink)}
+.hstat span{letter-spacing:.14em;font-size:10px}
+.hero-stats .div{width:1px;align-self:stretch;background:var(--line-soft)}
+@media(max-width:640px){.hero-stats .div{display:none}}
+
+.section{padding:64px 20px}
+.section-tag{gap:16px;margin-bottom:14px}
+.section-tag .ja{letter-spacing:.32em;font-size:10px;color:var(--gold)}
+.section-tag .ln{background:var(--line-soft)}
+.section-title{font-weight:500;letter-spacing:.06em;font-size:clamp(21px,3.4vw,28px);margin-bottom:20px;padding-bottom:18px;position:relative}
+.section-title::after{content:'';position:absolute;left:0;bottom:0;width:36px;height:1px;background:var(--gold);opacity:.55}
+.section-sub{font-size:13px;line-height:2;color:var(--ink-soft)}
+
+/* --- カルテ（問診票） --- */
+.karte{background:rgba(255,255,255,0.86);box-shadow:var(--shadow);border-color:var(--line-soft)}
+.karte-head{background:var(--ink);padding:22px 26px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.karte-head::after{color:rgba(255,255,255,0.06);font-size:34px;letter-spacing:.34em;font-weight:400;right:24px}
+.karte-head .ic{color:var(--gold-soft)}
+.karte-head h3{font-weight:500;letter-spacing:.12em;font-size:16px}
+.karte-head p{font-size:11px;letter-spacing:.08em;opacity:.6;margin-top:4px}
+.karte-body{padding:6px 26px 26px}
+.q-block{padding:26px 0;border-bottom:1px solid var(--line-soft)}
+.q-label{letter-spacing:.08em;font-weight:500;font-size:13px;margin-bottom:16px;gap:0;align-items:baseline}
+.q-label .q-no{width:auto;height:auto;border-radius:0;background:transparent;border:none;
+  font-family:'Zen Old Mincho',serif;font-size:11px;font-weight:400;letter-spacing:.16em;
+  color:var(--gold);display:inline-block;margin-right:12px;position:relative;padding-right:14px}
+.q-label .q-no::after{content:'';position:absolute;right:0;top:50%;width:7px;height:1px;background:rgba(169,139,94,0.5)}
+.q-en{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
+  font-weight:400;margin-right:12px}
+.q-hint{letter-spacing:.04em;margin-left:12px}
+.karte-foot{background:rgba(242,238,233,0.7);border-top-color:var(--line-soft);padding:17px 26px}
+.foot-count{letter-spacing:.06em;font-size:12px}
+.foot-count b{font-weight:500;color:var(--ink)}
+
+/* --- 選択要素：主張を抑えた上質な当たり --- */
+.chip{background:rgba(255,255,255,0.7);letter-spacing:.04em;font-size:12.5px;padding:9px 17px;transition:all .22s ease}
+.chip:hover{border-color:var(--rouge);color:var(--rouge-deep);background:#fff}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:500;box-shadow:none}
+.type-card,.ai-card{border-width:1px;border-color:var(--line);background:rgba(255,255,255,0.75);transition:all .22s ease}
+.type-card:hover,.ai-card:hover{transform:none;border-color:var(--gold);box-shadow:var(--shadow-sm);background:#fff}
+.type-card.on,.ai-card.on{border-color:var(--ink);background:#fff;box-shadow:var(--shadow-sm)}
+.type-card .check,.ai-card .check{border-color:var(--line)}
+.type-card.on .check,.ai-card.on .check{background:var(--ink);border-color:var(--ink)}
+.type-card h4,.ai-card .ai-name{font-weight:500;letter-spacing:.06em}
+.type-card .tc-ic{color:var(--gold)}
+.ai-card.on .ai-name{color:var(--ink)}
+.ai-card .ai-time{color:var(--ink-soft);font-weight:400;letter-spacing:.04em;background:var(--paper)}
+.ai-card .ai-time .ti{color:var(--gold)}
+.ai-card.on .ai-time{border-color:var(--line);background:#fff}
+
+/* --- 結果カード --- */
+.results{gap:16px;margin-top:34px}
+.kcard{background:rgba(255,255,255,0.9);border-color:var(--line-soft);box-shadow:var(--shadow-sm);padding:20px 22px 18px}
+.kcard:hover{box-shadow:var(--shadow)}
+.kcard h3{font-weight:500;letter-spacing:.06em;font-size:16.5px}
+.kcard-rank{background:transparent;border:1px solid var(--line);color:var(--ink-soft);font-weight:400;letter-spacing:.14em;padding:4px 12px;font-size:10px}
+.kcard-rank.best{background:transparent;border-color:var(--gold);color:var(--gold)}
+.type-badge{font-weight:400;letter-spacing:.08em;background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line-soft)}
+.type-badge.factory,.type-badge.premium{background:var(--paper-2);color:var(--ink-soft)}
+.sp{background:transparent;letter-spacing:.04em}
+.sp.on{background:transparent;border-color:rgba(169,139,94,0.4);color:var(--gold);font-weight:400}
+.t-pill{background:var(--paper-2);color:var(--ink-soft);letter-spacing:.04em}
+.btn-hp{background:var(--ink);color:#fff;font-weight:400;letter-spacing:.1em;box-shadow:none;padding:9px 20px;border-radius:999px;transition:background .22s ease}
+.btn-hp:hover{background:var(--rouge-deep);transform:none}
+.btn-map{color:var(--ink-soft);font-weight:400;letter-spacing:.08em;border-bottom:1px solid var(--line);padding-bottom:1px}
+.btn-map:hover{color:var(--gold);opacity:1}
+.result-lead{letter-spacing:.06em}
+.result-lead b{color:var(--ink);font-weight:500}
+
+/* --- 施術リスト --- */
+.tr-row{background:rgba(255,255,255,0.82);border-color:var(--line-soft);transition:all .22s ease}
+.tr-row:hover{border-color:var(--gold);box-shadow:var(--shadow-sm)}
+.tr-row.open{border-color:var(--ink);box-shadow:var(--shadow-sm);background:#fff}
+.tr-dot{border-color:var(--gold)}
+.tr-ic{background:var(--paper-2);color:var(--gold);border-radius:8px}
+.tr-for{color:var(--ink-faint);letter-spacing:.16em;font-size:9.5px}
+.tr-name{font-weight:500;letter-spacing:.05em}
+.tr-badge{font-weight:400;letter-spacing:.06em}
+.tr-badge.pop{background:var(--rouge-deep);color:#fff}
+.tr-badge.kr{background:var(--gold-soft);color:#7C6438}
+.tr-shots{font-weight:400;background:var(--paper-2);color:var(--ink-soft)}
+.tr-shots .ti{color:var(--gold)}
+.ax-top{color:var(--ink-faint)}
+.ax-bottom{color:var(--gold)}
+.ax-line{background:linear-gradient(180deg,#E4DED6,var(--gold));width:3px}
+.ax-line::after{border-top-color:var(--gold);border-left-width:7px;border-right-width:7px;border-top-width:11px;bottom:-10px}
+.ax-label{letter-spacing:.14em}
+.st-fill{color:var(--gold)}
+.st-empty{color:#E5E0DA}
+.tr-detail p{border-top-style:solid;border-top-color:var(--line-soft);line-height:2.1}
+.tr-row.open .tr-caret{color:var(--ink)}
+
+/* --- 悩みタブ --- */
+.tr-tabs{gap:0;border-bottom:1px solid var(--line);padding-bottom:0;margin-bottom:22px}
+.tr-tab{background:transparent;border:none;border-bottom:2px solid transparent;border-radius:0;padding:11px 18px 12px;font-weight:400;letter-spacing:.08em;color:var(--ink-faint);transition:all .22s ease}
+.tr-tab:hover{color:var(--ink);border-bottom-color:var(--line)}
+.tr-tab.on{background:transparent;color:var(--ink);font-weight:500;border-bottom-color:var(--gold);box-shadow:none}
+.tr-tab.on .ti{color:var(--gold)}
+.tr-tabs-lead{letter-spacing:.16em;font-size:10.5px;text-transform:uppercase}
+.tr-head h3{font-weight:500;letter-spacing:.07em}
+.tr-head h3 .ti{color:var(--gold)}
+.tr-head{margin-bottom:20px}
+.tr-note{background:transparent;border:none;border-top:1px solid var(--line-soft);border-radius:0;padding:16px 0 0;line-height:2}
+.tr-note b{color:var(--ink-soft);font-weight:500}
+.tr-empty,.empty{border-style:solid;border-color:var(--line-soft);background:rgba(255,255,255,0.5);padding:48px 24px;letter-spacing:.04em}
+.tr-empty b,.empty b{color:var(--ink);font-weight:500}
+.rej-box{border-left-color:var(--gold);background:rgba(255,255,255,0.7)}
+.rej-box h4{font-weight:500;letter-spacing:.06em}
+.rej-box h4 .ti{color:var(--gold)}
+.rej-n{color:var(--ink);font-weight:500}
+.rej-item{border-top-style:solid;border-top-color:var(--line-soft)}
+
+/* --- ナビゲーション --- */
+.nav a{letter-spacing:.08em;font-size:12.5px;border-radius:0;padding:8px 14px;position:relative;color:var(--ink-soft)}
+.nav a::after{content:'';position:absolute;left:14px;right:14px;bottom:2px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform .26s ease}
+.nav a:hover{background:transparent;color:var(--ink)}
+.nav a:hover::after{transform:scaleX(1)}
+.nav a.active{color:var(--ink);font-weight:500}
+.nav a.active::after{transform:scaleX(1)}
+.brand .mark{font-weight:500;letter-spacing:.1em}
+.brand .mark em{color:var(--rouge-deep)}
+.brand .romaji{letter-spacing:.4em;color:var(--ink-faint)}
+.topbar .seal{border-color:var(--line);color:var(--gold);letter-spacing:.24em}
+.nav-toggle{border-color:var(--line);border-radius:4px;color:var(--ink-soft)}
+
+/* --- 記事カード・フッター --- */
+.art-card{background:rgba(255,255,255,0.8);border-color:var(--line-soft);padding:28px 26px 26px}
+.art-card::before{color:var(--gold);opacity:.06}
+.art-card:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:var(--shadow)}
+.art-card .ac-ic{background:var(--paper-2);color:var(--gold);border-radius:10px}
+.art-card .ac-kicker{letter-spacing:.24em}
+.art-card h4{font-weight:500;letter-spacing:.06em}
+.art-card .ac-go{color:var(--ink);font-weight:400;letter-spacing:.08em}
+.foot{margin-top:70px;padding:56px 0 34px}
+.foot-block{border-radius:8px;background:rgba(255,255,255,0.035)}
+.foot-block h5{font-weight:500;letter-spacing:.06em}
+.foot-copy{letter-spacing:.06em}
+
+@media(max-width:860px){
+  .hero{padding:52px 20px 46px}
+  .section{padding:48px 20px}
+  .karte-body,.karte-head,.karte-foot{padding-left:18px;padding-right:18px}
+  .tr-tab{padding:10px 12px;font-size:12px}
+}
+@media(max-width:560px){
+  .q-label{flex-wrap:wrap;row-gap:6px}
+  .q-hint{flex-basis:100%;margin-left:0}
+  .hero h1{letter-spacing:.03em}
+}
 </style>
 </head>
 <body>
 <div class="bg-field"></div>
 
+<header class="site-header" id="site-header">
 <div class="wrap">
   <div class="topbar">
     <div class="brand">
@@ -322,14 +533,25 @@ body{
     <button class="nav-toggle" id="nav-toggle" aria-label="メニューを開く" onclick="toggleNav()"><i class="ti ti-menu-2"></i></button>
   </div>
 </div>
+</header>
 
 <!-- ===== HERO ===== -->
-<header class="wrap hero">
-  <span class="hero-eyebrow">渡韓美容クリニックのカルテ</span>
-  <h1>あなたの<span class="vert">予算</span>と<span class="vert">悩み</span>で、<br>行くべき韓国皮膚科を<br>みつける。
-    <span class="sm">おすすめを並べるだけのまとめは、もう卒業。</span>
-  </h1>
-  <p class="hero-lead">掲載するのは、すべて日本人通訳が常駐する安心のクリニックだけ。「工場型」で安く弾丸ルートか、「上質型」で丁寧なカウンセリングか。睡眠麻酔の可否、日曜営業、日本人/韓国人どちらに人気か——リアルな渡韓経験をもとに、条件を掛け合わせて“私に合う一院”を診断します。</p>
+<section class="wrap hero">
+ <div class="hero-inner">
+  <div class="hero-copy">
+    <span class="hero-eyebrow">渡韓美容クリニックのカルテ</span>
+    <h1>韓国美容皮膚科を<br><span class="vert">場所</span>と<span class="vert">お悩み</span>から<br>みつけよう
+      <span class="sm">おすすめを並べるだけのまとめは、もう卒業。</span>
+    </h1>
+    <p class="hero-lead">掲載するのは、すべて日本人通訳が常駐する安心のクリニックだけ。「工場型」で安く弾丸ルートか、「上質型」で丁寧なカウンセリングか。睡眠麻酔の可否、日曜営業、日本人/韓国人どちらに人気か——リアルな渡韓経験をもとに、条件を掛け合わせて“私に合う一院”をご提案します。</p>
+  </div>
+  <figure class="hero-visual">
+    <div class="hv-frame">
+      <img src="hero-model.webp" alt="韓国の美容皮膚科で肌管理を受けた、透明感のある肌の女性" width="820" height="1230" fetchpriority="high">
+    </div>
+    <figcaption>Skin Management in Seoul</figcaption>
+  </figure>
+ </div>
   <div class="hero-stats">
     <div class="hstat"><b id="hs-count">15</b><span>掲載クリニック</span></div>
     <div class="div"></div>
@@ -337,7 +559,7 @@ body{
     <div class="div"></div>
     <div class="hstat"><b>2</b><span>主要エリア（明洞・江南）</span></div>
   </div>
-</header>
+</section>
 
 <!-- ===== KARTE FINDER ===== -->
 <section class="wrap section" id="finder">
@@ -354,13 +576,13 @@ body{
 
       <!-- AXIS 0: area -->
       <div class="q-block">
-        <div class="q-label"><span class="q-no">零</span>エリア<span class="q-hint">カードをタップして選択（未選択なら両方）</span></div>
+        <div class="q-label"><span class="q-no">01</span><span class="q-en">Area</span>エリア<span class="q-hint">カードをタップして選択（未選択なら両方）</span></div>
         <div id="area-info-wrap" style="margin-top:16px"></div>
       </div>
 
       <!-- AXIS 1: type -->
       <div class="q-block">
-        <div class="q-label"><span class="q-no">壱</span>クリニックのスタイル<span class="q-hint">どちらの体験を重視？</span></div>
+        <div class="q-label"><span class="q-no">02</span><span class="q-en">Style</span>クリニックのスタイル<span class="q-hint">どちらの体験を重視？</span></div>
         <div class="type-cards" id="type-cards">
           <div class="type-card" data-type="factory" onclick="toggleType(this)">
             <span class="check"><i class="ti ti-check"></i></span>
@@ -379,7 +601,7 @@ body{
 
       <!-- AXIS 2: concern -->
       <div class="q-block">
-        <div class="q-label"><span class="q-no">弐</span>いまの肌悩み<span class="q-hint">複数選択OK</span></div>
+        <div class="q-label"><span class="q-no">03</span><span class="q-en">Concern</span>いまの肌悩み<span class="q-hint">複数選択OK</span></div>
         <div class="chips" id="concern-chips">
           <span class="chip" data-c="pore" onclick="toggleChip(this,'concern')"><i class="ti ti-circle-dotted"></i>毛穴・イチゴ鼻</span>
           <span class="chip" data-c="wrinkle" onclick="toggleChip(this,'concern')"><i class="ti ti-face-id"></i>小顔・たるみ</span>
@@ -392,7 +614,7 @@ body{
 
       <!-- AXIS 3: support / facility -->
       <div class="q-block">
-        <div class="q-label"><span class="q-no">参</span>その他<span class="q-hint">掛け合わせ条件・複数OK</span></div>
+        <div class="q-label"><span class="q-no">04</span><span class="q-en">Options</span>その他<span class="q-hint">掛け合わせ条件・複数OK</span></div>
         <div class="chips" id="support-chips">
           <span class="chip" data-s="sleep" onclick="toggleChip(this,'support')"><i class="ti ti-zzz"></i>睡眠麻酔が可能</span>
           <span class="chip" data-s="sun" onclick="toggleChip(this,'support')"><i class="ti ti-calendar-event"></i>日曜も営業</span>
@@ -808,7 +1030,7 @@ function render(){
     var POP_LBL={jp:'🇯🇵 日本人に人気',kr:'🇰🇷 韓国人に人気',both:'🇯🇵🇰🇷 日韓で人気'};
     var wpills=c.worry.map(function(w){
       var on=sel.concern.indexOf(w)>-1;
-      return '<span class="t-pill" style="'+(on?'background:var(--rouge);color:#fff':'')+'">'+WORRY_LBL[w]+'</span>';
+      return '<span class="t-pill" style="'+(on?'background:var(--rouge-deep);color:#fff':'')+'">'+WORRY_LBL[w]+'</span>';
     }).join('');
 
     var specLine='<div class="spec-line">'
@@ -838,6 +1060,24 @@ function render(){
   }
   box.innerHTML=html;
 }
+
+/* ===== 固定ヘッダー：スクロールで引き締める ===== */
+(function(){
+  var hd=document.getElementById('site-header');
+  if(!hd) return;
+  var ticking=false;
+  function onScroll(){
+    if(ticking) return;
+    ticking=true;
+    requestAnimationFrame(function(){
+      if(window.scrollY>12) hd.classList.add('scrolled');
+      else hd.classList.remove('scrolled');
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
 
 renderMap();
 render();
