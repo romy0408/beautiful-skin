@@ -216,6 +216,18 @@ body{
 .rej-spec{color:var(--ink-faint);font-size:11px}
 .rej-u{color:var(--ink-soft);line-height:1.7}
 
+/* 悩み別タブ */
+.tr-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.tr-tab{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--ink-soft);background:rgba(255,255,255,0.8);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;transition:all .18s;line-height:1}
+.tr-tab .ti{font-size:15px;color:var(--ink-faint);transition:color .18s}
+.tr-tab:hover{border-color:var(--rouge);color:var(--rouge-deep)}
+.tr-tab.on{background:linear-gradient(120deg,var(--rouge),var(--rouge-deep));border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(194,69,106,0.22)}
+.tr-tab.on .ti{color:#fff}
+.tr-tabs-lead{font-size:11.5px;color:var(--ink-faint);letter-spacing:.06em;margin-bottom:8px}
+.tr-head{margin-bottom:14px}
+.tr-head h3{font-family:'Zen Old Mincho',serif;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px}
+.tr-head h3 .ti{color:var(--rouge)}
+.tr-head p{font-size:12px;color:var(--ink-soft);margin-top:5px;line-height:1.8}
 .tr-empty{text-align:center;padding:34px 20px;color:var(--ink-soft);font-size:13px;line-height:2;border:1px dashed var(--line);border-radius:var(--r);background:rgba(255,255,255,0.55)}
 .tr-empty b{color:var(--rouge-deep)}
 .tr-empty .ti{font-size:28px;color:var(--ink-faint);display:block;margin-bottom:8px}
@@ -329,7 +341,7 @@ body{
 
 <!-- ===== KARTE FINDER ===== -->
 <section class="wrap section" id="finder">
-  <div class="section-tag"><span class="no">其ノ一</span><span class="ln"></span><span class="ja">CLINIC FINDER</span></div>
+  <div class="section-tag"><span class="ln"></span><span class="ja">CLINIC FINDER</span></div>
   <h2 class="section-title">クリニックを問診で絞り込む</h2>
   <p class="section-sub">下のエリア・タイプ・悩みなどを選ぶだけ。条件を掛け合わせるほど、あなたにぴったりの一院に近づきます。空欄のままでも構いません。</p>
 
@@ -402,9 +414,9 @@ body{
 
 <!-- ===== TREATMENT BY CONCERN ===== -->
 <section class="wrap section" id="treatments">
-  <div class="section-tag"><span class="no">其ノ二</span><span class="ln"></span><span class="ja">TREATMENT MENU</span></div>
-  <h2 class="section-title">肌悩み別・受けるべき施術</h2>
-  <p class="section-sub">問診票で選んだ肌悩みに効く施術だけを、手頃なものから順に縦に並べます。施術名をタップすると詳しい説明が開きます。</p>
+  <div class="section-tag"><span class="ln"></span><span class="ja">TREATMENT MENU</span></div>
+  <h2 class="section-title">肌悩み別・おすすめの施術</h2>
+  <p class="section-sub">問診票で選んだ肌悩みごとに、おすすめの施術を手頃なものから順にご紹介します。複数選んだ場合は上のタブで悩みを切り替えられます。施術名をタップすると詳しい説明が開きます。</p>
   <div id="treatment-wrap"></div>
 </section>
 
@@ -490,6 +502,15 @@ var CLINICS=[
 ];
 
 var WORRY_LBL={pore:'毛穴・イチゴ鼻',wrinkle:'小顔・たるみ',dry:'ツヤ肌・水光肌',spot:'シミ・くすみ',acne:'ニキビ・赤み',scar:'ニキビ跡・凸凹'};
+var WORRY_IC={pore:'ti-circle-dotted',wrinkle:'ti-face-id',dry:'ti-droplet',spot:'ti-sun',acne:'ti-flame',scar:'ti-grain'};
+var WORRY_NOTE={
+  pore:'角栓と皮脂を落とす「掃除」系から、毛穴そのものを引き締める再生系まで。まずは手頃なものから試すのが定番です。',
+  wrinkle:'筋肉に効かせるボトックス系と、土台から引き上げるリフト機器系。原因がどちらかで選ぶ施術が変わります。',
+  dry:'水分を「足す」注射と、肌そのものを作り替える「再生」注射。継続前提のものが多いのが特徴です。',
+  spot:'顔全体をまんべんなく明るくする継続型と、狙ったシミを一度で処理するスポット型に分かれます。',
+  acne:'いま出ている炎症を落ち着かせるケアと、繰り返す原因そのものにアプローチする施術があります。',
+  scar:'凹みを下から持ち上げる注入系と、組織を作り替えるレーザー系。跡の深さで向き不向きが分かれます。'
+};
 var TYPE_LBL={factory:'工場型',premium:'上質・高品質型'};
 
 /* 悩み別の施術リスト
@@ -647,18 +668,39 @@ function resetFinder(){
   renderTreatments();
 }
 
-/* ===== 悩み別の施術一覧（価格の低い順・クリックで詳細） ===== */
+/* ===== 悩み別のおすすめ施術（悩みごとにタブで切り替え・価格の低い順） ===== */
+var trTab=null;
+function setTrTab(w){trTab=w;renderTreatments();
+  var el=document.getElementById('treatments');
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
 function renderTreatments(){
   var box=document.getElementById('treatment-wrap');
   var picked=sel.concern;
   if(!picked.length){
+    trTab=null;
     box.innerHTML='<div class="tr-empty"><i class="ti ti-hand-click"></i>'
-      +'上の問診票で<b>「いまの肌悩み」</b>を選ぶと、その悩みに効く施術だけがここに並びます。<br>'
-      +'施術名をタップすると、詳しい説明が開きます。';
+      +'上の問診票で<b>「いまの肌悩み」</b>を選ぶと、その悩みにおすすめの施術をご紹介します。<br>'
+      +'複数選ぶと、悩みごとにタブで切り替えて見られます。';
     box.innerHTML+='</div>';
     return;
   }
-  var list=TREATMENTS.filter(function(t){return picked.indexOf(t.w)>-1;})
+  // 選択中の悩みが外れたら先頭のタブに戻す
+  if(!trTab || picked.indexOf(trTab)===-1) trTab=picked[0];
+
+  var tabs='';
+  if(picked.length>1){
+    tabs='<p class="tr-tabs-lead">お悩みを切り替えてご覧ください</p><div class="tr-tabs">'
+      +picked.map(function(w){
+        return '<button type="button" class="tr-tab'+(w===trTab?' on':'')+'" onclick="setTrTab(\''+w+'\')">'
+          +'<i class="ti '+WORRY_IC[w]+'"></i>'+WORRY_LBL[w]+'</button>';
+      }).join('')+'</div>';
+  }
+
+  var head='<div class="tr-head"><h3><i class="ti '+WORRY_IC[trTab]+'"></i>'+WORRY_LBL[trTab]+' におすすめの施術</h3>'
+    +'<p>'+(WORRY_NOTE[trTab]||'')+'</p></div>';
+
+  var list=TREATMENTS.filter(function(t){return t.w===trTab;})
                      .slice().sort(function(a,b){return a.lv-b.lv || a.pain-b.pain;});
   var rows=list.map(function(t,k){
     var badges=(t.pop?'<span class="tr-badge pop"><i class="ti ti-flame"></i>韓国で人気</span>':'')
@@ -669,7 +711,7 @@ function renderTreatments(){
       +'<button class="tr-toggle" type="button" onclick="toggleTr('+k+')" aria-expanded="false">'
       +'<span class="tr-ic"><i class="ti '+t.ic+'"></i></span>'
       +'<span class="tr-main">'
-      +'<span class="tr-for">'+WORRY_LBL[t.w]+'</span>'
+      +'<span class="tr-for">おすすめ '+(k+1)+'</span>'
       +'<span class="tr-title"><span class="tr-name">'+t.n+'</span>'+badges+'</span>'
       +'<span class="tr-meta">'
       +'<span class="star-row"><span class="star-label">😣 痛み</span>'+stars(t.pain)+'</span>'
@@ -694,12 +736,12 @@ function renderTreatments(){
       }).join('')+'</div></div>';
   }
 
-  box.innerHTML='<div class="tr-layout">'
+  box.innerHTML=tabs+head+'<div class="tr-layout">'
     +'<div class="tr-axis"><span class="ax-label ax-top">安い</span>'
     +'<span class="ax-line"></span><span class="ax-label ax-bottom">高い</span></div>'
     +'<div class="tr-list">'+rows+'</div></div>'
     +rej
-    +'<p class="tr-note">※ 上にいくほど手頃、下にいくほど高額な施術です。具体的な料金はショット数・薬剤・機器のグレード、院やキャンペーンによって大きく変わるため、あえて金額は載せていません。「韓国発」は韓国のメーカー製もしくは韓国発祥の施術、「韓国で人気」は現地で施術数が多く渡韓者にもよく選ばれているものを指します。痛み・効果の星、必要回数、ショット数はいずれも一般的な目安で、適正量は肌の状態と目的によって変わります。必ず現地の医師の診断を受けてください。</p>';
+    +'<p class="tr-note">※ ここに並ぶのは、選んだ肌悩みに対する<b>おすすめの施術例</b>です。どれを受けるべきかは肌の状態によって変わるため、必ず現地の医師にご相談ください。上にいくほど手頃、下にいくほど高額な施術です。具体的な料金はショット数・薬剤・機器のグレード、院やキャンペーンによって大きく変わるため、あえて金額は載せていません。「韓国発」は韓国のメーカー製もしくは韓国発祥の施術、「韓国で人気」は現地で施術数が多く渡韓者にもよく選ばれているものを指します。痛み・効果の星、必要回数、ショット数はいずれも一般的な目安で、適正量は肌の状態と目的によって変わります。必ず現地の医師の診断を受けてください。</p>';
 }
 function toggleTr(k){
   var row=document.getElementById('tr-'+k);
@@ -739,16 +781,22 @@ function render(){
   var box=document.getElementById('results');
   var hasFilter=sel.area.length||sel.type||sel.concern.length||sel.support.length;
 
+  // 何も選ばれていないうちはクリニックを一切表示しない
+  if(!hasFilter){
+    box.innerHTML='<div class="empty"><i class="ti ti-clipboard-heart" style="font-size:28px;display:block;margin-bottom:8px;color:var(--ink-faint)"></i>'
+      +'上の問診票で条件を選ぶと、<b>あなたに合うクリニックのカルテ</b>がここに表示されます。<br>'
+      +'エリア・スタイル・肌悩みなど、どれか一つ選ぶだけでも大丈夫です。</div>';
+    return;
+  }
+
   if(matched.length===0){
     box.innerHTML='<div class="empty"><i class="ti ti-mood-search"></i>条件に合うクリニックが見つかりませんでした。<br>サポート条件をひとつ外してみてください。</div>';
     return;
   }
 
-  // show top 3 when filtered, otherwise show all
-  var show=hasFilter?matched.slice(0,3):matched;
-  var lead=hasFilter
-    ? '<p class="result-lead">あなたの条件にいちばん近い <b>'+show.length+'院</b> をカルテで表示中（全'+matched.length+'院から）</p>'
-    : '<p class="result-lead">条件を選ぶと、あなたにぴったりの<b>2〜3院</b>に絞り込みます。まずは全'+matched.length+'院のカルテをどうぞ。</p>';
+  // show top 3
+  var show=matched.slice(0,3);
+  var lead='<p class="result-lead">あなたの条件にいちばん近い <b>'+show.length+'院</b> をカルテで表示中（全'+matched.length+'院から）</p>';
 
   var html=lead;
   show.forEach(function(o,idx){
